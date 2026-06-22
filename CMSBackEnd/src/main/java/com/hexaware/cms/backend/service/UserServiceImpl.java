@@ -53,7 +53,8 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public UserDTO getUserById(Integer userId) {
 
-		User user = repo.findById(userId).orElseThrow(() -> new UserNotFoundException("User not found with id " + userId));
+		User user = repo.findById(userId)
+				.orElseThrow(() -> new UserNotFoundException("User not found with id " + userId));
 
 		UserDTO dto = new UserDTO();
 
@@ -82,9 +83,9 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public User updateUser(Integer userId, UserDTO dto) {
 		// TODO Auto-generated method stub
-		Roles role = rolerepo.findById(dto.getRoleId()).orElseThrow(() -> new RoleNotFoundException("Role not found"));
-
-		User user = new User();
+		User user = repo.findById(userId)
+				.orElseThrow(() -> new UserNotFoundException("User not found with id " + userId));
+		Roles role = user.getRole();
 		user.setFirstName(dto.getFirstName());
 		user.setMiddleName(dto.getMiddleName());
 		user.setLastName(dto.getLastName());
@@ -97,7 +98,6 @@ public class UserServiceImpl implements IUserService {
 		user.setPanNo(dto.getPanNo());
 		user.setProfilePicture(dto.getProfilePicture());
 		user.setRole(role);
-
 		return repo.save(user);
 
 	}
@@ -105,7 +105,9 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public void deleteUser(Integer userId) {
 		// TODO Auto-generated method stub
-		repo.deleteById(userId);
+		User user = repo.findById(userId).orElseThrow(() -> new UserNotFoundException("User not found with id " + userId));
+
+		repo.delete(user);
 
 	}
 
