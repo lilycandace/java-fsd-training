@@ -12,8 +12,11 @@ import com.hexaware.cms.backend.entity.IncidentType;
 import com.hexaware.cms.backend.entity.Roles;
 import com.hexaware.cms.backend.service.ILookupService;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
 @RestController
 @RequestMapping("/api/lookups")
+@SecurityRequirement(name = "Bearer Authentication")
 public class LookupController {
 	
 	@Autowired

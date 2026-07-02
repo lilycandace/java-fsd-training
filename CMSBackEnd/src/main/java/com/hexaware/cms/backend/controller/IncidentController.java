@@ -17,8 +17,11 @@ import com.hexaware.cms.backend.dto.IncidentDTO;
 import com.hexaware.cms.backend.entity.Incident;
 import com.hexaware.cms.backend.service.IIncidentService;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
 @RestController
 @RequestMapping("api/incidents")
+@SecurityRequirement(name = "Bearer Authentication")
 public class IncidentController {
 
 	@Autowired

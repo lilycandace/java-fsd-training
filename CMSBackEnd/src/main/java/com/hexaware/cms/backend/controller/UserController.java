@@ -17,10 +17,12 @@ import com.hexaware.cms.backend.dto.UserDTO;
 import com.hexaware.cms.backend.entity.User;
 import com.hexaware.cms.backend.service.IUserService;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/users")
+@SecurityRequirement(name = "Bearer Authentication")
 public class UserController {
 
 	@Autowired

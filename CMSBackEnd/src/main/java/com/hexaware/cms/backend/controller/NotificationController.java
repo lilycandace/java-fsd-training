@@ -15,8 +15,11 @@ import com.hexaware.cms.backend.dto.NotificationDTO;
 import com.hexaware.cms.backend.entity.Notification;
 import com.hexaware.cms.backend.service.INotificationService;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
 @RestController
 @RequestMapping("/api/notifications")
+@SecurityRequirement(name = "Bearer Authentication")
 public class NotificationController {
 	@Autowired
 	INotificationService notifService;

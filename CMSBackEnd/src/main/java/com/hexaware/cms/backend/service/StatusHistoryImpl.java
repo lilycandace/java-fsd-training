@@ -3,6 +3,8 @@ package com.hexaware.cms.backend.service;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,8 @@ import com.hexaware.cms.backend.repository.UserRepository;
 
 @Service
 public class StatusHistoryImpl implements IStatusHistory{
+	private static final Logger logger =
+	        LoggerFactory.getLogger(UserServiceImpl.class);
 	
 	@Autowired
 	IncidentRepository incidentrepo;
@@ -30,9 +34,12 @@ public class StatusHistoryImpl implements IStatusHistory{
 	IncidentStatusHistoryRepository statusHistoryRepo;
     @Autowired
 	UserRepository userRepo;
+	@Autowired
+	IEmailService emailService;
 	@Override
 	public IncidentStatusHistory updateStatus(StatusUpdateDTO dto) {
 		// TODO Auto-generated method stub
+		logger.info("Updating status of incident {}", dto.getIncidentId());
 		Incident incident=incidentrepo.findById(dto.getIncidentId()).orElseThrow(()->new IncidentNotFoundException("Incident does not exist:"+dto.getIncidentId()));
 		IncidentStatus oldStatus =incident.getStatus();		
 		IncidentStatus newStatus =statusrepo.findById(dto.getStatusId()).orElseThrow(() ->new IncidentStatusNotFoundException("Status not found"));
@@ -51,7 +58,14 @@ public class StatusHistoryImpl implements IStatusHistory{
 		history.setRemarks(dto.getRemarks());
 
 		history.setChangedAt(LocalDateTime.now());
-		return statusHistoryRepo.save(history);
+		IncidentStatusHistory saveHist=statusHistoryRepo.save(history);
+		logger.info("Status updated successfully.");
+		emailService.sendEmail(
+		        incident.getUser().getEmail(),
+		        "Incident Status Updated",
+		        "Your incident status has been updated to: "
+		        + incident.getStatus().getStatusName());
+		return saveHist;
 	}
 
 	@Override

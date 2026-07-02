@@ -15,8 +15,11 @@ import com.hexaware.cms.backend.dto.StatusUpdateDTO;
 import com.hexaware.cms.backend.entity.IncidentStatusHistory;
 import com.hexaware.cms.backend.service.IStatusHistory;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
 @RestController
 @RequestMapping("/api/statusHistory")
+@SecurityRequirement(name = "Bearer Authentication")
 public class StatusHistoryController {
 
 	@Autowired

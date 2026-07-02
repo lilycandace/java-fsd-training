@@ -15,8 +15,11 @@ import com.hexaware.cms.backend.dto.AssignmentDTO;
 import com.hexaware.cms.backend.entity.IncidentAssignment;
 import com.hexaware.cms.backend.service.IAssignmentService;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
 @RestController
 @RequestMapping("/api/assignments")
+@SecurityRequirement(name = "Bearer Authentication")
 public class AssignmentController {
 	@Autowired
 	IAssignmentService assignmentService;

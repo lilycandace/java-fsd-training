@@ -13,9 +13,16 @@ import com.hexaware.cms.backend.exception.RoleNotFoundException;
 import com.hexaware.cms.backend.exception.UserNotFoundException;
 import com.hexaware.cms.backend.repository.RolesRepository;
 import com.hexaware.cms.backend.repository.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Service
 public class UserServiceImpl implements IUserService {
+
+	private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+
+	@Autowired
+	IEmailService emailService;
 
 	@Autowired
 	UserRepository repo;
@@ -27,7 +34,10 @@ public class UserServiceImpl implements IUserService {
 	public User registerUser(UserDTO dto) {
 		// TODO Auto-generated method stub
 
+		logger.info("Registering user with email: {}", dto.getEmail());
+
 		if (repo.findByEmail(dto.getEmail()).isPresent()) {
+			logger.warn("Registration failed. Email already exists: {}", dto.getEmail());
 			throw new DuplicateEmailException("Email already exists");
 		}
 
@@ -47,14 +57,22 @@ public class UserServiceImpl implements IUserService {
 		user.setProfilePicture(dto.getProfilePicture());
 		user.setRole(role);
 
-		return repo.save(user);
+		User savedUser = repo.save(user);
+
+		logger.info("User registered successfully with ID: {}", savedUser.getUserId());
+		emailService.sendEmail(savedUser.getEmail(), "Registration Successful",
+				"Welcome " + savedUser.getFirstName() + "!\n\nYour account has been created successfully.");
+
+		return savedUser;
 	}
 
 	@Override
 	public UserDTO getUserById(Integer userId) {
-
-		User user = repo.findById(userId)
-				.orElseThrow(() -> new UserNotFoundException("User not found with id " + userId));
+		logger.info("Fetching user with ID: {}", userId);
+		User user = repo.findById(userId).orElseThrow(() -> {
+			logger.error("User not found with ID: {}", userId);
+			return new UserNotFoundException("User not found with id " + userId);
+		});
 
 		UserDTO dto = new UserDTO();
 
@@ -83,8 +101,11 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public User updateUser(Integer userId, UserDTO dto) {
 		// TODO Auto-generated method stub
-		User user = repo.findById(userId)
-				.orElseThrow(() -> new UserNotFoundException("User not found with id " + userId));
+		logger.info("Updating user with ID: {}", userId);
+		User user = repo.findById(userId).orElseThrow(() -> {
+			logger.error("User not found with ID: {}", userId);
+			return new UserNotFoundException("User not found with id " + userId);
+		});
 		Roles role = user.getRole();
 		user.setFirstName(dto.getFirstName());
 		user.setMiddleName(dto.getMiddleName());
@@ -98,17 +119,22 @@ public class UserServiceImpl implements IUserService {
 		user.setPanNo(dto.getPanNo());
 		user.setProfilePicture(dto.getProfilePicture());
 		user.setRole(role);
-		return repo.save(user);
+		User savedUser = repo.save(user);
+		logger.info("User updated successfully.");
+		return savedUser;
 
 	}
 
 	@Override
 	public void deleteUser(Integer userId) {
 		// TODO Auto-generated method stub
-		User user = repo.findById(userId).orElseThrow(() -> new UserNotFoundException("User not found with id " + userId));
-
+		logger.info("Deleting user with ID: {}", userId);
+		User user = repo.findById(userId).orElseThrow(() -> {
+			logger.error("User not found with ID: {}", userId);
+			return new UserNotFoundException("User not found with id " + userId);
+		});
 		repo.delete(user);
-
+		logger.info("User deleted successfully with ID: {}", userId);
 	}
 
 }

@@ -1,0 +1,550 @@
+2026-07-02T10:18:33.159+05:30  INFO 8492 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : Starting CmsBackEndApplication using Java 21.0.5 with PID 8492 (C:\Users\Lily Candace\git\repository\CMSBackEnd\target\classes started by Lily Candace in C:\Users\Lily Candace\git\repository\CMSBackEnd)
+2026-07-02T10:18:33.161+05:30 DEBUG 8492 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : Running with Spring Boot v3.5.15, Spring v6.2.19
+2026-07-02T10:18:33.161+05:30  INFO 8492 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : No active profile set, falling back to 1 default profile: "default"
+2026-07-02T10:18:34.763+05:30  INFO 8492 --- [CMSBackEnd] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-02T10:18:34.909+05:30  INFO 8492 --- [CMSBackEnd] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 124 ms. Found 9 JPA repository interfaces.
+2026-07-02T10:18:35.800+05:30  INFO 8492 --- [CMSBackEnd] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-07-02T10:18:35.826+05:30  INFO 8492 --- [CMSBackEnd] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-07-02T10:18:35.827+05:30  INFO 8492 --- [CMSBackEnd] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.55]
+2026-07-02T10:18:35.921+05:30  INFO 8492 --- [CMSBackEnd] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-07-02T10:18:35.922+05:30  INFO 8492 --- [CMSBackEnd] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2685 ms
+2026-07-02T10:18:36.123+05:30  INFO 8492 --- [CMSBackEnd] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-02T10:18:36.217+05:30  INFO 8492 --- [CMSBackEnd] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.53.Final
+2026-07-02T10:18:36.271+05:30  INFO 8492 --- [CMSBackEnd] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-07-02T10:18:36.656+05:30  INFO 8492 --- [CMSBackEnd] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-02T10:18:36.704+05:30  INFO 8492 --- [CMSBackEnd] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-07-02T10:18:37.348+05:30  INFO 8492 --- [CMSBackEnd] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7e76a66f
+2026-07-02T10:18:37.351+05:30  INFO 8492 --- [CMSBackEnd] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-07-02T10:18:37.453+05:30  WARN 8492 --- [CMSBackEnd] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-02T10:18:37.499+05:30  INFO 8492 --- [CMSBackEnd] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.45
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-02T10:18:39.294+05:30  INFO 8492 --- [CMSBackEnd] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-02T10:18:39.582+05:30  INFO 8492 --- [CMSBackEnd] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-02T10:18:40.055+05:30 DEBUG 8492 --- [CMSBackEnd] [main] c.h.cms.backend.filter.JwtAuthFilter     : Filter 'jwtAuthFilter' configured for use
+2026-07-02T10:18:40.197+05:30  INFO 8492 --- [CMSBackEnd] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-07-02T10:18:40.198+05:30  WARN 8492 --- [CMSBackEnd] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-07-02T10:18:40.506+05:30  WARN 8492 --- [CMSBackEnd] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-07-02T10:18:41.526+05:30  INFO 8492 --- [CMSBackEnd] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-07-02T10:18:41.545+05:30  INFO 8492 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : Started CmsBackEndApplication in 9.108 seconds (process running for 10.308)
+2026-07-02T10:18:56.447+05:30  INFO 8492 --- [CMSBackEnd] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-07-02T10:18:56.448+05:30  INFO 8492 --- [CMSBackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-07-02T10:18:56.450+05:30  INFO 8492 --- [CMSBackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-07-02T10:18:58.434+05:30  INFO 8492 --- [CMSBackEnd] [http-nio-8080-exec-9] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 1350 ms
+2026-07-02T10:22:49.807+05:30  INFO 8492 --- [CMSBackEnd] [http-nio-8080-exec-8] c.h.c.backend.controller.AuthController  : Login attempt for email: lily@gmail.com
+2026-07-02T10:22:50.316+05:30  INFO 8492 --- [CMSBackEnd] [http-nio-8080-exec-8] c.h.c.backend.controller.AuthController  : User logged in successfully: lily@gmail.com
+2026-07-02T10:25:36.250+05:30  INFO 8492 --- [CMSBackEnd] [http-nio-8080-exec-1] c.h.cms.backend.service.UserServiceImpl  : Registering user with email: arun@gmail.com
+2026-07-02T10:25:36.418+05:30  INFO 8492 --- [CMSBackEnd] [http-nio-8080-exec-1] c.h.cms.backend.service.UserServiceImpl  : User registered successfully with ID: 11
+2026-07-02T10:26:19.315+05:30  INFO 8492 --- [CMSBackEnd] [RMI TCP Connection(11)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2026-07-02T10:26:19.319+05:30  INFO 8492 --- [CMSBackEnd] [RMI TCP Connection(11)-127.0.0.1] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-07-02T10:26:19.329+05:30  INFO 8492 --- [CMSBackEnd] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-07-02T10:26:19.339+05:30  INFO 8492 --- [CMSBackEnd] [RMI TCP Connection(11)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-07-02T10:26:19.343+05:30  INFO 8492 --- [CMSBackEnd] [RMI TCP Connection(11)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-07-02T10:26:19.351+05:30  INFO 8492 --- [CMSBackEnd] [RMI TCP Connection(11)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-07-02T10:41:42.768+05:30  INFO 25416 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : Starting CmsBackEndApplication using Java 21.0.5 with PID 25416 (C:\Users\Lily Candace\git\repository\CMSBackEnd\target\classes started by Lily Candace in C:\Users\Lily Candace\git\repository\CMSBackEnd)
+2026-07-02T10:41:42.771+05:30 DEBUG 25416 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : Running with Spring Boot v3.5.15, Spring v6.2.19
+2026-07-02T10:41:42.773+05:30  INFO 25416 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : No active profile set, falling back to 1 default profile: "default"
+2026-07-02T10:41:43.950+05:30  INFO 25416 --- [CMSBackEnd] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-02T10:41:44.047+05:30  INFO 25416 --- [CMSBackEnd] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 84 ms. Found 9 JPA repository interfaces.
+2026-07-02T10:41:44.870+05:30  INFO 25416 --- [CMSBackEnd] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-07-02T10:41:44.890+05:30  INFO 25416 --- [CMSBackEnd] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-07-02T10:41:44.890+05:30  INFO 25416 --- [CMSBackEnd] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.55]
+2026-07-02T10:41:44.964+05:30  INFO 25416 --- [CMSBackEnd] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-07-02T10:41:44.965+05:30  INFO 25416 --- [CMSBackEnd] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2127 ms
+2026-07-02T10:41:45.178+05:30  INFO 25416 --- [CMSBackEnd] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-02T10:41:45.254+05:30  INFO 25416 --- [CMSBackEnd] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.53.Final
+2026-07-02T10:41:45.303+05:30  INFO 25416 --- [CMSBackEnd] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-07-02T10:41:45.692+05:30  INFO 25416 --- [CMSBackEnd] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-02T10:41:45.750+05:30  INFO 25416 --- [CMSBackEnd] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-07-02T10:41:46.175+05:30  INFO 25416 --- [CMSBackEnd] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3dea1ecc
+2026-07-02T10:41:46.178+05:30  INFO 25416 --- [CMSBackEnd] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-07-02T10:41:46.249+05:30  WARN 25416 --- [CMSBackEnd] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-02T10:41:46.272+05:30  INFO 25416 --- [CMSBackEnd] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.45
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-02T10:41:48.231+05:30  INFO 25416 --- [CMSBackEnd] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-02T10:41:48.637+05:30  INFO 25416 --- [CMSBackEnd] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-02T10:41:49.237+05:30 DEBUG 25416 --- [CMSBackEnd] [main] c.h.cms.backend.filter.JwtAuthFilter     : Filter 'jwtAuthFilter' configured for use
+2026-07-02T10:41:49.398+05:30  INFO 25416 --- [CMSBackEnd] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-07-02T10:41:49.400+05:30  WARN 25416 --- [CMSBackEnd] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-07-02T10:41:49.779+05:30  WARN 25416 --- [CMSBackEnd] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-07-02T10:41:50.896+05:30  INFO 25416 --- [CMSBackEnd] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-07-02T10:41:50.909+05:30  INFO 25416 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : Started CmsBackEndApplication in 8.754 seconds (process running for 9.824)
+2026-07-02T10:41:57.062+05:30  INFO 25416 --- [CMSBackEnd] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-07-02T10:41:57.063+05:30  INFO 25416 --- [CMSBackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-07-02T10:41:57.067+05:30  INFO 25416 --- [CMSBackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2026-07-02T10:41:59.154+05:30  INFO 25416 --- [CMSBackEnd] [http-nio-8080-exec-9] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 1348 ms
+2026-07-02T10:42:33.046+05:30  INFO 25416 --- [CMSBackEnd] [http-nio-8080-exec-10] c.h.c.backend.controller.AuthController  : Login attempt for email: lily@gmail.com
+2026-07-02T10:42:33.481+05:30  INFO 25416 --- [CMSBackEnd] [http-nio-8080-exec-10] c.h.c.backend.controller.AuthController  : User logged in successfully: lily@gmail.com
+2026-07-02T10:45:31.357+05:30  INFO 25416 --- [CMSBackEnd] [RMI TCP Connection(8)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2026-07-02T10:45:31.361+05:30  INFO 25416 --- [CMSBackEnd] [RMI TCP Connection(8)-127.0.0.1] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-07-02T10:45:31.371+05:30  INFO 25416 --- [CMSBackEnd] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-07-02T10:45:31.384+05:30  INFO 25416 --- [CMSBackEnd] [RMI TCP Connection(8)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-07-02T10:45:31.388+05:30  INFO 25416 --- [CMSBackEnd] [RMI TCP Connection(8)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-07-02T10:45:31.401+05:30  INFO 25416 --- [CMSBackEnd] [RMI TCP Connection(8)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-07-02T10:45:33.831+05:30  INFO 3840 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : Starting CmsBackEndApplication using Java 21.0.5 with PID 3840 (C:\Users\Lily Candace\git\repository\CMSBackEnd\target\classes started by Lily Candace in C:\Users\Lily Candace\git\repository\CMSBackEnd)
+2026-07-02T10:45:33.832+05:30 DEBUG 3840 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : Running with Spring Boot v3.5.15, Spring v6.2.19
+2026-07-02T10:45:33.835+05:30  INFO 3840 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : No active profile set, falling back to 1 default profile: "default"
+2026-07-02T10:45:34.871+05:30  INFO 3840 --- [CMSBackEnd] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-02T10:45:34.978+05:30  INFO 3840 --- [CMSBackEnd] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 96 ms. Found 9 JPA repository interfaces.
+2026-07-02T10:45:35.685+05:30  INFO 3840 --- [CMSBackEnd] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-07-02T10:45:35.702+05:30  INFO 3840 --- [CMSBackEnd] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-07-02T10:45:35.704+05:30  INFO 3840 --- [CMSBackEnd] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.55]
+2026-07-02T10:45:35.775+05:30  INFO 3840 --- [CMSBackEnd] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-07-02T10:45:35.775+05:30  INFO 3840 --- [CMSBackEnd] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1881 ms
+2026-07-02T10:45:35.940+05:30  INFO 3840 --- [CMSBackEnd] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-02T10:45:35.995+05:30  INFO 3840 --- [CMSBackEnd] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.53.Final
+2026-07-02T10:45:36.081+05:30  INFO 3840 --- [CMSBackEnd] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-07-02T10:45:36.480+05:30  INFO 3840 --- [CMSBackEnd] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-02T10:45:36.534+05:30  INFO 3840 --- [CMSBackEnd] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-07-02T10:45:36.955+05:30  INFO 3840 --- [CMSBackEnd] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@651caa2e
+2026-07-02T10:45:36.958+05:30  INFO 3840 --- [CMSBackEnd] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-07-02T10:45:37.024+05:30  WARN 3840 --- [CMSBackEnd] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-02T10:45:37.042+05:30  INFO 3840 --- [CMSBackEnd] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.45
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-02T10:45:38.381+05:30  INFO 3840 --- [CMSBackEnd] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-02T10:45:38.514+05:30  INFO 3840 --- [CMSBackEnd] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-02T10:45:38.965+05:30 DEBUG 3840 --- [CMSBackEnd] [main] c.h.cms.backend.filter.JwtAuthFilter     : Filter 'jwtAuthFilter' configured for use
+2026-07-02T10:45:39.119+05:30  INFO 3840 --- [CMSBackEnd] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-07-02T10:45:39.120+05:30  WARN 3840 --- [CMSBackEnd] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-07-02T10:45:39.394+05:30  WARN 3840 --- [CMSBackEnd] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-07-02T10:45:40.494+05:30  INFO 3840 --- [CMSBackEnd] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-07-02T10:45:40.504+05:30  INFO 3840 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : Started CmsBackEndApplication in 7.278 seconds (process running for 8.047)
+2026-07-02T10:45:46.483+05:30  INFO 3840 --- [CMSBackEnd] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-07-02T10:45:46.484+05:30  INFO 3840 --- [CMSBackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-07-02T10:45:46.487+05:30  INFO 3840 --- [CMSBackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2026-07-02T10:45:48.484+05:30  INFO 3840 --- [CMSBackEnd] [http-nio-8080-exec-9] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 1316 ms
+2026-07-02T10:46:08.381+05:30  INFO 3840 --- [CMSBackEnd] [http-nio-8080-exec-10] c.h.c.backend.controller.AuthController  : Login attempt for email: lily@gmail.com
+2026-07-02T10:46:08.810+05:30  INFO 3840 --- [CMSBackEnd] [http-nio-8080-exec-10] c.h.c.backend.controller.AuthController  : User logged in successfully: lily@gmail.com
+2026-07-02T10:53:26.273+05:30  INFO 3840 --- [CMSBackEnd] [RMI TCP Connection(11)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2026-07-02T10:53:26.278+05:30  INFO 3840 --- [CMSBackEnd] [RMI TCP Connection(11)-127.0.0.1] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-07-02T10:53:26.296+05:30  INFO 3840 --- [CMSBackEnd] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-07-02T10:53:26.308+05:30  INFO 3840 --- [CMSBackEnd] [RMI TCP Connection(11)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-07-02T10:53:26.313+05:30  INFO 3840 --- [CMSBackEnd] [RMI TCP Connection(11)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-07-02T10:53:26.328+05:30  INFO 3840 --- [CMSBackEnd] [RMI TCP Connection(11)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-07-02T10:53:28.664+05:30  INFO 32912 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : Starting CmsBackEndApplication using Java 21.0.5 with PID 32912 (C:\Users\Lily Candace\git\repository\CMSBackEnd\target\classes started by Lily Candace in C:\Users\Lily Candace\git\repository\CMSBackEnd)
+2026-07-02T10:53:28.665+05:30 DEBUG 32912 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : Running with Spring Boot v3.5.15, Spring v6.2.19
+2026-07-02T10:53:28.666+05:30  INFO 32912 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : No active profile set, falling back to 1 default profile: "default"
+2026-07-02T10:53:29.673+05:30  INFO 32912 --- [CMSBackEnd] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-02T10:53:29.785+05:30  INFO 32912 --- [CMSBackEnd] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 95 ms. Found 9 JPA repository interfaces.
+2026-07-02T10:53:30.390+05:30  INFO 32912 --- [CMSBackEnd] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-07-02T10:53:30.418+05:30  INFO 32912 --- [CMSBackEnd] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-07-02T10:53:30.419+05:30  INFO 32912 --- [CMSBackEnd] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.55]
+2026-07-02T10:53:30.505+05:30  INFO 32912 --- [CMSBackEnd] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-07-02T10:53:30.506+05:30  INFO 32912 --- [CMSBackEnd] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1788 ms
+2026-07-02T10:53:30.701+05:30  INFO 32912 --- [CMSBackEnd] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-02T10:53:30.769+05:30  INFO 32912 --- [CMSBackEnd] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.53.Final
+2026-07-02T10:53:30.811+05:30  INFO 32912 --- [CMSBackEnd] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-07-02T10:53:31.129+05:30  INFO 32912 --- [CMSBackEnd] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-02T10:53:31.181+05:30  INFO 32912 --- [CMSBackEnd] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-07-02T10:53:31.599+05:30  INFO 32912 --- [CMSBackEnd] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1c62d2ad
+2026-07-02T10:53:31.603+05:30  INFO 32912 --- [CMSBackEnd] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-07-02T10:53:31.657+05:30  WARN 32912 --- [CMSBackEnd] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-02T10:53:31.678+05:30  INFO 32912 --- [CMSBackEnd] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.45
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-02T10:53:33.413+05:30  INFO 32912 --- [CMSBackEnd] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-02T10:53:33.618+05:30  INFO 32912 --- [CMSBackEnd] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-02T10:53:34.118+05:30 DEBUG 32912 --- [CMSBackEnd] [main] c.h.cms.backend.filter.JwtAuthFilter     : Filter 'jwtAuthFilter' configured for use
+2026-07-02T10:53:34.269+05:30  INFO 32912 --- [CMSBackEnd] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-07-02T10:53:34.270+05:30  WARN 32912 --- [CMSBackEnd] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-07-02T10:53:34.588+05:30  WARN 32912 --- [CMSBackEnd] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-07-02T10:53:35.678+05:30  INFO 32912 --- [CMSBackEnd] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-07-02T10:53:35.707+05:30  INFO 32912 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : Started CmsBackEndApplication in 7.569 seconds (process running for 8.323)
+2026-07-02T10:53:43.981+05:30  INFO 32912 --- [CMSBackEnd] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-07-02T10:53:43.982+05:30  INFO 32912 --- [CMSBackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-07-02T10:53:43.985+05:30  INFO 32912 --- [CMSBackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-07-02T10:53:45.843+05:30  INFO 32912 --- [CMSBackEnd] [http-nio-8080-exec-10] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 1240 ms
+2026-07-02T10:54:05.415+05:30  INFO 32912 --- [CMSBackEnd] [http-nio-8080-exec-9] c.h.c.backend.controller.AuthController  : Login attempt for email: lily@gmail.com
+2026-07-02T10:54:05.919+05:30  INFO 32912 --- [CMSBackEnd] [http-nio-8080-exec-9] c.h.c.backend.controller.AuthController  : User logged in successfully: lily@gmail.com
+2026-07-02T11:02:59.522+05:30  INFO 32912 --- [CMSBackEnd] [RMI TCP Connection(21)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2026-07-02T11:02:59.529+05:30  INFO 32912 --- [CMSBackEnd] [RMI TCP Connection(21)-127.0.0.1] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-07-02T11:02:59.546+05:30  INFO 32912 --- [CMSBackEnd] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-07-02T11:02:59.561+05:30  INFO 32912 --- [CMSBackEnd] [RMI TCP Connection(21)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-07-02T11:02:59.564+05:30  INFO 32912 --- [CMSBackEnd] [RMI TCP Connection(21)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-07-02T11:02:59.572+05:30  INFO 32912 --- [CMSBackEnd] [RMI TCP Connection(21)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-07-02T11:03:03.907+05:30  INFO 11780 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : Starting CmsBackEndApplication using Java 21.0.5 with PID 11780 (C:\Users\Lily Candace\git\repository\CMSBackEnd\target\classes started by Lily Candace in C:\Users\Lily Candace\git\repository\CMSBackEnd)
+2026-07-02T11:03:03.910+05:30 DEBUG 11780 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : Running with Spring Boot v3.5.15, Spring v6.2.19
+2026-07-02T11:03:03.911+05:30  INFO 11780 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : No active profile set, falling back to 1 default profile: "default"
+2026-07-02T11:03:05.231+05:30  INFO 11780 --- [CMSBackEnd] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-02T11:03:05.340+05:30  INFO 11780 --- [CMSBackEnd] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 99 ms. Found 9 JPA repository interfaces.
+2026-07-02T11:03:06.242+05:30  INFO 11780 --- [CMSBackEnd] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-07-02T11:03:06.267+05:30  INFO 11780 --- [CMSBackEnd] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-07-02T11:03:06.268+05:30  INFO 11780 --- [CMSBackEnd] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.55]
+2026-07-02T11:03:06.343+05:30  INFO 11780 --- [CMSBackEnd] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-07-02T11:03:06.344+05:30  INFO 11780 --- [CMSBackEnd] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2377 ms
+2026-07-02T11:03:06.523+05:30  INFO 11780 --- [CMSBackEnd] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-02T11:03:06.595+05:30  INFO 11780 --- [CMSBackEnd] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.53.Final
+2026-07-02T11:03:06.645+05:30  INFO 11780 --- [CMSBackEnd] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-07-02T11:03:07.167+05:30  INFO 11780 --- [CMSBackEnd] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-02T11:03:07.208+05:30  INFO 11780 --- [CMSBackEnd] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-07-02T11:03:07.849+05:30  INFO 11780 --- [CMSBackEnd] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@41f90b10
+2026-07-02T11:03:07.853+05:30  INFO 11780 --- [CMSBackEnd] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-07-02T11:03:07.947+05:30  WARN 11780 --- [CMSBackEnd] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-02T11:03:07.977+05:30  INFO 11780 --- [CMSBackEnd] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.45
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-02T11:03:10.180+05:30  INFO 11780 --- [CMSBackEnd] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-02T11:03:10.442+05:30  INFO 11780 --- [CMSBackEnd] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-02T11:03:11.100+05:30 DEBUG 11780 --- [CMSBackEnd] [main] c.h.cms.backend.filter.JwtAuthFilter     : Filter 'jwtAuthFilter' configured for use
+2026-07-02T11:03:11.223+05:30  INFO 11780 --- [CMSBackEnd] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-07-02T11:03:11.223+05:30  WARN 11780 --- [CMSBackEnd] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-07-02T11:03:11.699+05:30  WARN 11780 --- [CMSBackEnd] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-07-02T11:03:13.285+05:30  INFO 11780 --- [CMSBackEnd] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-07-02T11:03:13.300+05:30  INFO 11780 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : Started CmsBackEndApplication in 10.015 seconds (process running for 10.724)
+2026-07-02T11:03:22.702+05:30  INFO 11780 --- [CMSBackEnd] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-07-02T11:03:22.702+05:30  INFO 11780 --- [CMSBackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-07-02T11:03:22.706+05:30  INFO 11780 --- [CMSBackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2026-07-02T11:03:24.615+05:30  INFO 11780 --- [CMSBackEnd] [http-nio-8080-exec-9] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 1255 ms
+2026-07-02T11:03:43.274+05:30  INFO 11780 --- [CMSBackEnd] [http-nio-8080-exec-10] c.h.c.backend.controller.AuthController  : Login attempt for email: lily@gmail.com
+2026-07-02T11:03:43.698+05:30  INFO 11780 --- [CMSBackEnd] [http-nio-8080-exec-10] c.h.c.backend.controller.AuthController  : User logged in successfully: lily@gmail.com
+2026-07-02T11:37:48.903+05:30  INFO 11780 --- [CMSBackEnd] [RMI TCP Connection(44)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2026-07-02T11:37:48.908+05:30  INFO 11780 --- [CMSBackEnd] [RMI TCP Connection(44)-127.0.0.1] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-07-02T11:37:48.915+05:30  INFO 11780 --- [CMSBackEnd] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-07-02T11:37:48.928+05:30  INFO 11780 --- [CMSBackEnd] [RMI TCP Connection(44)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-07-02T11:37:48.931+05:30  INFO 11780 --- [CMSBackEnd] [RMI TCP Connection(44)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-07-02T11:37:48.938+05:30  INFO 11780 --- [CMSBackEnd] [RMI TCP Connection(44)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-07-02T11:41:42.676+05:30  INFO 14920 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : Starting CmsBackEndApplication using Java 21.0.5 with PID 14920 (C:\Users\Lily Candace\git\repository\CMSBackEnd\target\classes started by Lily Candace in C:\Users\Lily Candace\git\repository\CMSBackEnd)
+2026-07-02T11:41:42.678+05:30 DEBUG 14920 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : Running with Spring Boot v3.5.15, Spring v6.2.19
+2026-07-02T11:41:42.679+05:30  INFO 14920 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : No active profile set, falling back to 1 default profile: "default"
+2026-07-02T11:41:43.956+05:30  INFO 14920 --- [CMSBackEnd] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-02T11:41:44.056+05:30  INFO 14920 --- [CMSBackEnd] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 92 ms. Found 9 JPA repository interfaces.
+2026-07-02T11:41:44.789+05:30  INFO 14920 --- [CMSBackEnd] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-07-02T11:41:44.815+05:30  INFO 14920 --- [CMSBackEnd] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-07-02T11:41:44.817+05:30  INFO 14920 --- [CMSBackEnd] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.55]
+2026-07-02T11:41:44.895+05:30  INFO 14920 --- [CMSBackEnd] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-07-02T11:41:44.895+05:30  INFO 14920 --- [CMSBackEnd] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2160 ms
+2026-07-02T11:41:45.086+05:30  INFO 14920 --- [CMSBackEnd] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-02T11:41:45.147+05:30  INFO 14920 --- [CMSBackEnd] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.53.Final
+2026-07-02T11:41:45.185+05:30  INFO 14920 --- [CMSBackEnd] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-07-02T11:41:45.596+05:30  INFO 14920 --- [CMSBackEnd] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-02T11:41:45.640+05:30  INFO 14920 --- [CMSBackEnd] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-07-02T11:41:46.090+05:30  INFO 14920 --- [CMSBackEnd] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7af9595d
+2026-07-02T11:41:46.091+05:30  INFO 14920 --- [CMSBackEnd] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-07-02T11:41:46.147+05:30  WARN 14920 --- [CMSBackEnd] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-02T11:41:46.162+05:30  INFO 14920 --- [CMSBackEnd] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.45
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-02T11:41:47.872+05:30  INFO 14920 --- [CMSBackEnd] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-02T11:41:48.096+05:30  INFO 14920 --- [CMSBackEnd] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-02T11:41:48.613+05:30 DEBUG 14920 --- [CMSBackEnd] [main] c.h.cms.backend.filter.JwtAuthFilter     : Filter 'jwtAuthFilter' configured for use
+2026-07-02T11:41:48.796+05:30  INFO 14920 --- [CMSBackEnd] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-07-02T11:41:48.797+05:30  WARN 14920 --- [CMSBackEnd] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-07-02T11:41:49.154+05:30  WARN 14920 --- [CMSBackEnd] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-07-02T11:41:50.317+05:30  INFO 14920 --- [CMSBackEnd] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-07-02T11:41:50.331+05:30  INFO 14920 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : Started CmsBackEndApplication in 8.265 seconds (process running for 8.91)
+2026-07-02T11:42:11.478+05:30  INFO 14920 --- [CMSBackEnd] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-07-02T11:42:11.479+05:30  INFO 14920 --- [CMSBackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-07-02T11:42:11.481+05:30  INFO 14920 --- [CMSBackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-07-02T11:42:13.401+05:30  INFO 14920 --- [CMSBackEnd] [http-nio-8080-exec-9] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 1267 ms
+2026-07-02T11:42:29.387+05:30  INFO 14920 --- [CMSBackEnd] [http-nio-8080-exec-10] c.h.c.backend.controller.AuthController  : Login attempt for email: lily@gmail.com
+2026-07-02T11:42:29.799+05:30  INFO 14920 --- [CMSBackEnd] [http-nio-8080-exec-10] c.h.c.backend.controller.AuthController  : User logged in successfully: lily@gmail.com
+2026-07-02T11:54:54.471+05:30  INFO 14920 --- [CMSBackEnd] [RMI TCP Connection(21)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2026-07-02T11:54:54.476+05:30  INFO 14920 --- [CMSBackEnd] [RMI TCP Connection(21)-127.0.0.1] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-07-02T11:54:54.487+05:30  INFO 14920 --- [CMSBackEnd] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-07-02T11:54:54.496+05:30  INFO 14920 --- [CMSBackEnd] [RMI TCP Connection(21)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-07-02T11:54:54.499+05:30  INFO 14920 --- [CMSBackEnd] [RMI TCP Connection(21)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-07-02T11:54:54.513+05:30  INFO 14920 --- [CMSBackEnd] [RMI TCP Connection(21)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-07-02T11:54:59.401+05:30  INFO 20972 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : Starting CmsBackEndApplication using Java 21.0.5 with PID 20972 (C:\Users\Lily Candace\git\repository\CMSBackEnd\target\classes started by Lily Candace in C:\Users\Lily Candace\git\repository\CMSBackEnd)
+2026-07-02T11:54:59.402+05:30 DEBUG 20972 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : Running with Spring Boot v3.5.15, Spring v6.2.19
+2026-07-02T11:54:59.403+05:30  INFO 20972 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : No active profile set, falling back to 1 default profile: "default"
+2026-07-02T11:55:00.736+05:30  INFO 20972 --- [CMSBackEnd] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-02T11:55:00.835+05:30  INFO 20972 --- [CMSBackEnd] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 83 ms. Found 9 JPA repository interfaces.
+2026-07-02T11:55:01.635+05:30  INFO 20972 --- [CMSBackEnd] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-07-02T11:55:01.661+05:30  INFO 20972 --- [CMSBackEnd] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-07-02T11:55:01.661+05:30  INFO 20972 --- [CMSBackEnd] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.55]
+2026-07-02T11:55:01.727+05:30  INFO 20972 --- [CMSBackEnd] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-07-02T11:55:01.727+05:30  INFO 20972 --- [CMSBackEnd] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2266 ms
+2026-07-02T11:55:01.905+05:30  INFO 20972 --- [CMSBackEnd] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-02T11:55:01.953+05:30  INFO 20972 --- [CMSBackEnd] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.53.Final
+2026-07-02T11:55:01.985+05:30  INFO 20972 --- [CMSBackEnd] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-07-02T11:55:02.316+05:30  INFO 20972 --- [CMSBackEnd] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-02T11:55:02.350+05:30  INFO 20972 --- [CMSBackEnd] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-07-02T11:55:02.770+05:30  INFO 20972 --- [CMSBackEnd] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2b058bfd
+2026-07-02T11:55:02.774+05:30  INFO 20972 --- [CMSBackEnd] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-07-02T11:55:02.840+05:30  WARN 20972 --- [CMSBackEnd] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-02T11:55:02.857+05:30  INFO 20972 --- [CMSBackEnd] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.45
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-02T11:55:04.248+05:30  INFO 20972 --- [CMSBackEnd] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-02T11:55:04.419+05:30  INFO 20972 --- [CMSBackEnd] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-02T11:55:04.944+05:30 DEBUG 20972 --- [CMSBackEnd] [main] c.h.cms.backend.filter.JwtAuthFilter     : Filter 'jwtAuthFilter' configured for use
+2026-07-02T11:55:05.112+05:30  INFO 20972 --- [CMSBackEnd] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-07-02T11:55:05.113+05:30  WARN 20972 --- [CMSBackEnd] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-07-02T11:55:05.435+05:30  WARN 20972 --- [CMSBackEnd] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-07-02T11:55:06.567+05:30  INFO 20972 --- [CMSBackEnd] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-07-02T11:55:06.584+05:30  INFO 20972 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : Started CmsBackEndApplication in 7.728 seconds (process running for 8.452)
+2026-07-02T11:55:13.922+05:30  INFO 20972 --- [CMSBackEnd] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-07-02T11:55:13.923+05:30  INFO 20972 --- [CMSBackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-07-02T11:55:13.929+05:30  INFO 20972 --- [CMSBackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2026-07-02T11:55:15.849+05:30  INFO 20972 --- [CMSBackEnd] [http-nio-8080-exec-7] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 1302 ms
+2026-07-02T11:55:36.645+05:30  INFO 20972 --- [CMSBackEnd] [http-nio-8080-exec-10] c.h.c.backend.controller.AuthController  : Login attempt for email: lily@gmail.com
+2026-07-02T11:55:37.063+05:30  INFO 20972 --- [CMSBackEnd] [http-nio-8080-exec-10] c.h.c.backend.controller.AuthController  : User logged in successfully: lily@gmail.com
+2026-07-02T11:57:44.185+05:30  INFO 20972 --- [CMSBackEnd] [RMI TCP Connection(11)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2026-07-02T11:57:44.189+05:30  INFO 20972 --- [CMSBackEnd] [RMI TCP Connection(11)-127.0.0.1] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-07-02T11:57:44.199+05:30  INFO 20972 --- [CMSBackEnd] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-07-02T11:57:44.207+05:30  INFO 20972 --- [CMSBackEnd] [RMI TCP Connection(11)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-07-02T11:57:44.211+05:30  INFO 20972 --- [CMSBackEnd] [RMI TCP Connection(11)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-07-02T11:57:44.222+05:30  INFO 20972 --- [CMSBackEnd] [RMI TCP Connection(11)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-07-02T11:57:46.999+05:30  INFO 8296 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : Starting CmsBackEndApplication using Java 21.0.5 with PID 8296 (C:\Users\Lily Candace\git\repository\CMSBackEnd\target\classes started by Lily Candace in C:\Users\Lily Candace\git\repository\CMSBackEnd)
+2026-07-02T11:57:47.001+05:30 DEBUG 8296 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : Running with Spring Boot v3.5.15, Spring v6.2.19
+2026-07-02T11:57:47.002+05:30  INFO 8296 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : No active profile set, falling back to 1 default profile: "default"
+2026-07-02T11:57:48.267+05:30  INFO 8296 --- [CMSBackEnd] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-02T11:57:48.388+05:30  INFO 8296 --- [CMSBackEnd] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 107 ms. Found 9 JPA repository interfaces.
+2026-07-02T11:57:49.263+05:30  INFO 8296 --- [CMSBackEnd] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-07-02T11:57:49.291+05:30  INFO 8296 --- [CMSBackEnd] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-07-02T11:57:49.292+05:30  INFO 8296 --- [CMSBackEnd] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.55]
+2026-07-02T11:57:49.371+05:30  INFO 8296 --- [CMSBackEnd] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-07-02T11:57:49.371+05:30  INFO 8296 --- [CMSBackEnd] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2306 ms
+2026-07-02T11:57:49.629+05:30  INFO 8296 --- [CMSBackEnd] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-02T11:57:49.704+05:30  INFO 8296 --- [CMSBackEnd] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.53.Final
+2026-07-02T11:57:49.751+05:30  INFO 8296 --- [CMSBackEnd] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-07-02T11:57:50.221+05:30  INFO 8296 --- [CMSBackEnd] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-02T11:57:50.269+05:30  INFO 8296 --- [CMSBackEnd] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-07-02T11:57:50.674+05:30  INFO 8296 --- [CMSBackEnd] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7af9595d
+2026-07-02T11:57:50.678+05:30  INFO 8296 --- [CMSBackEnd] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-07-02T11:57:50.738+05:30  WARN 8296 --- [CMSBackEnd] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-02T11:57:50.762+05:30  INFO 8296 --- [CMSBackEnd] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.45
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-02T11:57:52.625+05:30  INFO 8296 --- [CMSBackEnd] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-02T11:57:52.881+05:30  INFO 8296 --- [CMSBackEnd] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-02T11:57:53.365+05:30 DEBUG 8296 --- [CMSBackEnd] [main] c.h.cms.backend.filter.JwtAuthFilter     : Filter 'jwtAuthFilter' configured for use
+2026-07-02T11:57:53.514+05:30  INFO 8296 --- [CMSBackEnd] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-07-02T11:57:53.515+05:30  WARN 8296 --- [CMSBackEnd] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-07-02T11:57:53.830+05:30  WARN 8296 --- [CMSBackEnd] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-07-02T11:57:54.783+05:30  INFO 8296 --- [CMSBackEnd] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-07-02T11:57:54.801+05:30  INFO 8296 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : Started CmsBackEndApplication in 8.515 seconds (process running for 9.326)
+2026-07-02T11:59:06.797+05:30  INFO 8296 --- [CMSBackEnd] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-07-02T11:59:06.798+05:30  INFO 8296 --- [CMSBackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-07-02T11:59:06.801+05:30  INFO 8296 --- [CMSBackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-07-02T12:02:54.982+05:30  INFO 8296 --- [CMSBackEnd] [RMI TCP Connection(13)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2026-07-02T12:02:54.986+05:30  INFO 8296 --- [CMSBackEnd] [RMI TCP Connection(13)-127.0.0.1] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-07-02T12:02:54.996+05:30  INFO 8296 --- [CMSBackEnd] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-07-02T12:02:55.007+05:30  INFO 8296 --- [CMSBackEnd] [RMI TCP Connection(13)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-07-02T12:02:55.011+05:30  INFO 8296 --- [CMSBackEnd] [RMI TCP Connection(13)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-07-02T12:02:55.022+05:30  INFO 8296 --- [CMSBackEnd] [RMI TCP Connection(13)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-07-02T21:48:34.030+05:30  INFO 9744 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : Starting CmsBackEndApplication using Java 21.0.5 with PID 9744 (C:\Users\Lily Candace\git\repository\CMSBackEnd\target\classes started by Lily Candace in C:\Users\Lily Candace\git\repository\CMSBackEnd)
+2026-07-02T21:48:34.033+05:30 DEBUG 9744 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : Running with Spring Boot v3.5.15, Spring v6.2.19
+2026-07-02T21:48:34.034+05:30  INFO 9744 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : No active profile set, falling back to 1 default profile: "default"
+2026-07-02T21:48:37.340+05:30  INFO 9744 --- [CMSBackEnd] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-02T21:48:37.461+05:30  INFO 9744 --- [CMSBackEnd] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 103 ms. Found 9 JPA repository interfaces.
+2026-07-02T21:48:38.415+05:30  INFO 9744 --- [CMSBackEnd] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-07-02T21:48:38.440+05:30  INFO 9744 --- [CMSBackEnd] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-07-02T21:48:38.441+05:30  INFO 9744 --- [CMSBackEnd] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.55]
+2026-07-02T21:48:38.532+05:30  INFO 9744 --- [CMSBackEnd] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-07-02T21:48:38.532+05:30  INFO 9744 --- [CMSBackEnd] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4426 ms
+2026-07-02T21:48:38.794+05:30  INFO 9744 --- [CMSBackEnd] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-02T21:48:38.943+05:30  INFO 9744 --- [CMSBackEnd] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.53.Final
+2026-07-02T21:48:39.024+05:30  INFO 9744 --- [CMSBackEnd] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-07-02T21:48:39.545+05:30  INFO 9744 --- [CMSBackEnd] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-02T21:48:39.599+05:30  INFO 9744 --- [CMSBackEnd] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-07-02T21:48:40.303+05:30  INFO 9744 --- [CMSBackEnd] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@40dee07b
+2026-07-02T21:48:40.308+05:30  INFO 9744 --- [CMSBackEnd] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-07-02T21:48:40.408+05:30  WARN 9744 --- [CMSBackEnd] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-02T21:48:40.448+05:30  INFO 9744 --- [CMSBackEnd] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.45
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-02T21:48:42.332+05:30  INFO 9744 --- [CMSBackEnd] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-02T21:48:42.617+05:30  INFO 9744 --- [CMSBackEnd] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-02T21:48:43.229+05:30 DEBUG 9744 --- [CMSBackEnd] [main] c.h.cms.backend.filter.JwtAuthFilter     : Filter 'jwtAuthFilter' configured for use
+2026-07-02T21:48:43.425+05:30  INFO 9744 --- [CMSBackEnd] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-07-02T21:48:43.427+05:30  WARN 9744 --- [CMSBackEnd] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-07-02T21:48:43.821+05:30  WARN 9744 --- [CMSBackEnd] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-07-02T21:48:45.109+05:30  INFO 9744 --- [CMSBackEnd] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-07-02T21:48:45.137+05:30  INFO 9744 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : Started CmsBackEndApplication in 11.841 seconds (process running for 25.292)
+2026-07-02T21:49:01.716+05:30  INFO 9744 --- [CMSBackEnd] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-07-02T21:49:01.717+05:30  INFO 9744 --- [CMSBackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-07-02T21:49:01.721+05:30  INFO 9744 --- [CMSBackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2026-07-02T21:49:03.631+05:30  INFO 9744 --- [CMSBackEnd] [http-nio-8080-exec-9] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 1297 ms
+2026-07-02T21:49:25.748+05:30  INFO 9744 --- [CMSBackEnd] [http-nio-8080-exec-10] c.h.c.backend.controller.AuthController  : Login attempt for email: lily@gmail.com
+2026-07-02T21:49:26.226+05:30  INFO 9744 --- [CMSBackEnd] [http-nio-8080-exec-10] c.h.c.backend.controller.AuthController  : User logged in successfully: lily@gmail.com
+2026-07-02T21:55:45.871+05:30  INFO 9744 --- [CMSBackEnd] [RMI TCP Connection(15)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2026-07-02T21:55:45.874+05:30  INFO 9744 --- [CMSBackEnd] [RMI TCP Connection(15)-127.0.0.1] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-07-02T21:55:45.880+05:30  INFO 9744 --- [CMSBackEnd] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-07-02T21:55:45.885+05:30  INFO 9744 --- [CMSBackEnd] [RMI TCP Connection(15)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-07-02T21:55:45.887+05:30  INFO 9744 --- [CMSBackEnd] [RMI TCP Connection(15)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-07-02T21:55:45.896+05:30  INFO 9744 --- [CMSBackEnd] [RMI TCP Connection(15)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-07-02T21:55:49.618+05:30  INFO 32152 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : Starting CmsBackEndApplication using Java 21.0.5 with PID 32152 (C:\Users\Lily Candace\git\repository\CMSBackEnd\target\classes started by Lily Candace in C:\Users\Lily Candace\git\repository\CMSBackEnd)
+2026-07-02T21:55:49.628+05:30 DEBUG 32152 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : Running with Spring Boot v3.5.15, Spring v6.2.19
+2026-07-02T21:55:49.630+05:30  INFO 32152 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : No active profile set, falling back to 1 default profile: "default"
+2026-07-02T21:55:51.130+05:30  INFO 32152 --- [CMSBackEnd] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-02T21:55:51.241+05:30  INFO 32152 --- [CMSBackEnd] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 99 ms. Found 9 JPA repository interfaces.
+2026-07-02T21:55:52.192+05:30  INFO 32152 --- [CMSBackEnd] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-07-02T21:55:52.258+05:30  INFO 32152 --- [CMSBackEnd] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-07-02T21:55:52.259+05:30  INFO 32152 --- [CMSBackEnd] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.55]
+2026-07-02T21:55:52.369+05:30  INFO 32152 --- [CMSBackEnd] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-07-02T21:55:52.371+05:30  INFO 32152 --- [CMSBackEnd] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2607 ms
+2026-07-02T21:55:52.626+05:30  INFO 32152 --- [CMSBackEnd] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-02T21:55:52.759+05:30  INFO 32152 --- [CMSBackEnd] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.53.Final
+2026-07-02T21:55:52.827+05:30  INFO 32152 --- [CMSBackEnd] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-07-02T21:55:53.292+05:30  INFO 32152 --- [CMSBackEnd] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-02T21:55:53.348+05:30  INFO 32152 --- [CMSBackEnd] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-07-02T21:55:53.982+05:30  INFO 32152 --- [CMSBackEnd] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@45790cb
+2026-07-02T21:55:53.987+05:30  INFO 32152 --- [CMSBackEnd] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-07-02T21:55:54.068+05:30  WARN 32152 --- [CMSBackEnd] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-02T21:55:54.097+05:30  INFO 32152 --- [CMSBackEnd] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.45
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-02T21:55:56.125+05:30  INFO 32152 --- [CMSBackEnd] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-02T21:55:56.344+05:30  INFO 32152 --- [CMSBackEnd] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-02T21:55:56.941+05:30 DEBUG 32152 --- [CMSBackEnd] [main] c.h.cms.backend.filter.JwtAuthFilter     : Filter 'jwtAuthFilter' configured for use
+2026-07-02T21:55:57.102+05:30  INFO 32152 --- [CMSBackEnd] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-07-02T21:55:57.102+05:30  WARN 32152 --- [CMSBackEnd] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-07-02T21:55:57.477+05:30  WARN 32152 --- [CMSBackEnd] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-07-02T21:55:58.667+05:30  INFO 32152 --- [CMSBackEnd] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-07-02T21:55:58.679+05:30  INFO 32152 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : Started CmsBackEndApplication in 10.115 seconds (process running for 11.033)
+2026-07-02T21:56:10.899+05:30  INFO 32152 --- [CMSBackEnd] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-07-02T21:56:10.900+05:30  INFO 32152 --- [CMSBackEnd] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-07-02T21:56:10.905+05:30  INFO 32152 --- [CMSBackEnd] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2026-07-02T21:59:15.392+05:30  INFO 32152 --- [CMSBackEnd] [RMI TCP Connection(12)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2026-07-02T21:59:15.397+05:30  INFO 32152 --- [CMSBackEnd] [RMI TCP Connection(12)-127.0.0.1] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-07-02T21:59:15.410+05:30  INFO 32152 --- [CMSBackEnd] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-07-02T21:59:15.419+05:30  INFO 32152 --- [CMSBackEnd] [RMI TCP Connection(12)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-07-02T21:59:15.423+05:30  INFO 32152 --- [CMSBackEnd] [RMI TCP Connection(12)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-07-02T21:59:15.436+05:30  INFO 32152 --- [CMSBackEnd] [RMI TCP Connection(12)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-07-02T22:20:51.397+05:30  INFO 32732 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : Starting CmsBackEndApplication using Java 21.0.5 with PID 32732 (C:\Users\Lily Candace\git\repository\CMSBackEnd\target\classes started by Lily Candace in C:\Users\Lily Candace\git\repository\CMSBackEnd)
+2026-07-02T22:20:51.400+05:30 DEBUG 32732 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : Running with Spring Boot v3.5.15, Spring v6.2.19
+2026-07-02T22:20:51.402+05:30  INFO 32732 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : No active profile set, falling back to 1 default profile: "default"
+2026-07-02T22:20:54.008+05:30  INFO 32732 --- [CMSBackEnd] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-02T22:20:54.295+05:30  INFO 32732 --- [CMSBackEnd] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 250 ms. Found 9 JPA repository interfaces.
+2026-07-02T22:20:56.189+05:30  INFO 32732 --- [CMSBackEnd] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-07-02T22:20:56.247+05:30  INFO 32732 --- [CMSBackEnd] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-07-02T22:20:56.248+05:30  INFO 32732 --- [CMSBackEnd] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.55]
+2026-07-02T22:20:56.536+05:30  INFO 32732 --- [CMSBackEnd] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-07-02T22:20:56.538+05:30  INFO 32732 --- [CMSBackEnd] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 5054 ms
+2026-07-02T22:20:57.091+05:30  INFO 32732 --- [CMSBackEnd] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-02T22:20:57.330+05:30  INFO 32732 --- [CMSBackEnd] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.53.Final
+2026-07-02T22:20:57.466+05:30  INFO 32732 --- [CMSBackEnd] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-07-02T22:20:58.557+05:30  INFO 32732 --- [CMSBackEnd] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-02T22:20:58.672+05:30  INFO 32732 --- [CMSBackEnd] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-07-02T22:20:59.850+05:30  INFO 32732 --- [CMSBackEnd] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7b795db7
+2026-07-02T22:20:59.859+05:30  INFO 32732 --- [CMSBackEnd] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-07-02T22:21:00.141+05:30  WARN 32732 --- [CMSBackEnd] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-02T22:21:00.239+05:30  INFO 32732 --- [CMSBackEnd] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.45
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-02T22:21:04.239+05:30  INFO 32732 --- [CMSBackEnd] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-02T22:21:04.657+05:30  INFO 32732 --- [CMSBackEnd] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-02T22:21:05.839+05:30 DEBUG 32732 --- [CMSBackEnd] [main] c.h.cms.backend.filter.JwtAuthFilter     : Filter 'jwtAuthFilter' configured for use
+2026-07-02T22:21:06.230+05:30  INFO 32732 --- [CMSBackEnd] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-07-02T22:21:06.231+05:30  WARN 32732 --- [CMSBackEnd] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-07-02T22:21:07.145+05:30  WARN 32732 --- [CMSBackEnd] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-07-02T22:21:09.793+05:30  INFO 32732 --- [CMSBackEnd] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-07-02T22:21:09.823+05:30  INFO 32732 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : Started CmsBackEndApplication in 19.087 seconds (process running for 20.005)
+2026-07-02T22:22:16.559+05:30  INFO 32732 --- [CMSBackEnd] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-07-02T22:22:16.560+05:30  INFO 32732 --- [CMSBackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-07-02T22:22:16.580+05:30  INFO 32732 --- [CMSBackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 19 ms
+2026-07-02T22:22:19.757+05:30  INFO 32732 --- [CMSBackEnd] [http-nio-8080-exec-9] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 2076 ms
+2026-07-02T22:22:55.337+05:30  INFO 32732 --- [CMSBackEnd] [http-nio-8080-exec-1] c.h.c.backend.controller.AuthController  : Login attempt for email: lily@gmail.com
+2026-07-02T22:22:55.876+05:30  INFO 32732 --- [CMSBackEnd] [http-nio-8080-exec-1] c.h.c.backend.controller.AuthController  : User logged in successfully: lily@gmail.com
+2026-07-02T22:25:59.202+05:30  INFO 32732 --- [CMSBackEnd] [RMI TCP Connection(13)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2026-07-02T22:25:59.206+05:30  INFO 32732 --- [CMSBackEnd] [RMI TCP Connection(13)-127.0.0.1] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-07-02T22:25:59.216+05:30  INFO 32732 --- [CMSBackEnd] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-07-02T22:25:59.226+05:30  INFO 32732 --- [CMSBackEnd] [RMI TCP Connection(13)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-07-02T22:25:59.230+05:30  INFO 32732 --- [CMSBackEnd] [RMI TCP Connection(13)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-07-02T22:25:59.251+05:30  INFO 32732 --- [CMSBackEnd] [RMI TCP Connection(13)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-07-02T22:26:02.599+05:30  INFO 17500 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : Starting CmsBackEndApplication using Java 21.0.5 with PID 17500 (C:\Users\Lily Candace\git\repository\CMSBackEnd\target\classes started by Lily Candace in C:\Users\Lily Candace\git\repository\CMSBackEnd)
+2026-07-02T22:26:02.602+05:30 DEBUG 17500 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : Running with Spring Boot v3.5.15, Spring v6.2.19
+2026-07-02T22:26:02.603+05:30  INFO 17500 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : No active profile set, falling back to 1 default profile: "default"
+2026-07-02T22:26:04.006+05:30  INFO 17500 --- [CMSBackEnd] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-02T22:26:04.160+05:30  INFO 17500 --- [CMSBackEnd] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 133 ms. Found 9 JPA repository interfaces.
+2026-07-02T22:26:05.037+05:30  INFO 17500 --- [CMSBackEnd] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-07-02T22:26:05.061+05:30  INFO 17500 --- [CMSBackEnd] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-07-02T22:26:05.062+05:30  INFO 17500 --- [CMSBackEnd] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.55]
+2026-07-02T22:26:05.159+05:30  INFO 17500 --- [CMSBackEnd] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-07-02T22:26:05.159+05:30  INFO 17500 --- [CMSBackEnd] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2489 ms
+2026-07-02T22:26:05.387+05:30  INFO 17500 --- [CMSBackEnd] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-02T22:26:05.502+05:30  INFO 17500 --- [CMSBackEnd] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.53.Final
+2026-07-02T22:26:05.597+05:30  INFO 17500 --- [CMSBackEnd] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-07-02T22:26:06.044+05:30  INFO 17500 --- [CMSBackEnd] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-02T22:26:06.130+05:30  INFO 17500 --- [CMSBackEnd] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-07-02T22:26:06.736+05:30  INFO 17500 --- [CMSBackEnd] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1d1c63af
+2026-07-02T22:26:06.740+05:30  INFO 17500 --- [CMSBackEnd] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-07-02T22:26:06.817+05:30  WARN 17500 --- [CMSBackEnd] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-02T22:26:06.845+05:30  INFO 17500 --- [CMSBackEnd] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.45
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-02T22:26:08.743+05:30  INFO 17500 --- [CMSBackEnd] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-02T22:26:08.963+05:30  INFO 17500 --- [CMSBackEnd] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-02T22:26:09.527+05:30 DEBUG 17500 --- [CMSBackEnd] [main] c.h.cms.backend.filter.JwtAuthFilter     : Filter 'jwtAuthFilter' configured for use
+2026-07-02T22:26:09.739+05:30  INFO 17500 --- [CMSBackEnd] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-07-02T22:26:09.740+05:30  WARN 17500 --- [CMSBackEnd] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-07-02T22:26:10.151+05:30  WARN 17500 --- [CMSBackEnd] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-07-02T22:26:11.411+05:30  INFO 17500 --- [CMSBackEnd] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-07-02T22:26:11.424+05:30  INFO 17500 --- [CMSBackEnd] [main] c.h.cms.backend.CmsBackEndApplication    : Started CmsBackEndApplication in 9.559 seconds (process running for 10.433)
+2026-07-02T22:29:22.760+05:30  INFO 17500 --- [CMSBackEnd] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-07-02T22:29:22.761+05:30  INFO 17500 --- [CMSBackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-07-02T22:29:22.766+05:30  INFO 17500 --- [CMSBackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2026-07-02T22:29:25.983+05:30  INFO 17500 --- [CMSBackEnd] [http-nio-8080-exec-9] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 2446 ms
+2026-07-02T22:29:45.757+05:30  INFO 17500 --- [CMSBackEnd] [http-nio-8080-exec-10] c.h.c.backend.controller.AuthController  : Login attempt for email: lily@gmail.com
+2026-07-02T22:29:46.285+05:30  INFO 17500 --- [CMSBackEnd] [http-nio-8080-exec-10] c.h.c.backend.controller.AuthController  : User logged in successfully: lily@gmail.com
+2026-07-02T22:30:09.623+05:30  INFO 17500 --- [CMSBackEnd] [http-nio-8080-exec-1] c.h.c.backend.service.EmailServiceImpl   : Sending email to lilycandace24@gmail.com
+2026-07-02T22:30:16.176+05:30  INFO 17500 --- [CMSBackEnd] [http-nio-8080-exec-1] c.h.c.backend.service.EmailServiceImpl   : Email sent successfully to lilycandace24@gmail.com
+2026-07-02T22:42:23.514+05:30  INFO 17500 --- [CMSBackEnd] [RMI TCP Connection(26)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2026-07-02T22:42:23.538+05:30  INFO 17500 --- [CMSBackEnd] [RMI TCP Connection(26)-127.0.0.1] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-07-02T22:42:23.547+05:30  INFO 17500 --- [CMSBackEnd] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-07-02T22:42:23.560+05:30  INFO 17500 --- [CMSBackEnd] [RMI TCP Connection(26)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-07-02T22:42:23.567+05:30  INFO 17500 --- [CMSBackEnd] [RMI TCP Connection(26)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-07-02T22:42:23.577+05:30  INFO 17500 --- [CMSBackEnd] [RMI TCP Connection(26)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

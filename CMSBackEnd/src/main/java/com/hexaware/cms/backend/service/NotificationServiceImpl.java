@@ -3,6 +3,8 @@ package com.hexaware.cms.backend.service;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,8 @@ import com.hexaware.cms.backend.repository.UserRepository;
 
 @Service
 public class NotificationServiceImpl implements INotificationService{
+	private static final Logger logger =
+	        LoggerFactory.getLogger(UserServiceImpl.class);
 
 	
 	@Autowired
@@ -24,6 +28,7 @@ public class NotificationServiceImpl implements INotificationService{
 	@Override
 	public Notification createNotification(NotificationDTO dto) {
 		// TODO Auto-generated method stub
+		logger.info("Creating notification for user {}", dto.getUserId());
 		User user=userRepo.findById(dto.getUserId()).orElseThrow(()->new UserNotFoundException("User not found:"+dto.getUserId()));
 		Notification notif=new Notification();	
 		notif.setUser(user);
