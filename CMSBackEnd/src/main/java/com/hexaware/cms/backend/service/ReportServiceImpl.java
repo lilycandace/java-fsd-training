@@ -4,6 +4,8 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.time.LocalDate;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,9 +23,14 @@ public class ReportServiceImpl implements IReportService {
 
 	@Autowired
 	private IncidentRepository incidentRepository;
+	private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+
 
 	@Override
 	public ByteArrayInputStream generateIncidentReport(Integer incidentId) {
+		
+
+		
 
 		Incident incident = incidentRepository.findById(incidentId)
 				.orElseThrow(() -> new IncidentNotFoundException("Incident not found"));
@@ -33,6 +40,8 @@ public class ReportServiceImpl implements IReportService {
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 
 		try {
+			logger.info("Generating PDF for Incident {}",
+			        incidentId);
 
 			PdfWriter.getInstance(document, out);
 
@@ -138,6 +147,8 @@ public class ReportServiceImpl implements IReportService {
 			document.add(footer);
 
 			document.close();
+			
+			logger.info("PDF generated successfully.");
 
 			return new ByteArrayInputStream(out.toByteArray());
 

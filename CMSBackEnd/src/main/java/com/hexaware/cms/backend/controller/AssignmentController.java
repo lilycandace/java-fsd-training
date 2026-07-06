@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,13 +24,14 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 public class AssignmentController {
 	@Autowired
 	IAssignmentService assignmentService;
-
+	
+	@PreAuthorize("hasRole('StationHead')")
 	@PostMapping("/assignOfficer")
 	public ResponseEntity<IncidentAssignment> assignOfficer(@RequestBody AssignmentDTO dto) {
 
 		return ResponseEntity.ok(assignmentService.assignOfficer(dto));
 	}
-
+	@PreAuthorize("hasAnyRole('Officer','StationHead')")
 	@GetMapping("/getAssignments/{id}")
 	public ResponseEntity<List<IncidentAssignment>> getAssignmentsByOfficer(@PathVariable Integer id) {
 

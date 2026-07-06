@@ -19,7 +19,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.hexaware.cms.backend.filter.JwtAuthFilter;
 import com.hexaware.cms.backend.service.UserInfoUserDetailsService;
-
+import org.springframework.security.config.Customizer;
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
@@ -68,11 +68,18 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-		return http.csrf(csrf -> csrf.disable())
+		return http
+		        .cors(Customizer.withDefaults())
+		        .csrf(csrf -> csrf.disable())
 
 				.authorizeHttpRequests(auth -> auth
 
-						.requestMatchers("/auth/login", "/swagger-ui/**", "/v3/api-docs/**").permitAll()
+						.requestMatchers(
+							    "/auth/login",
+							    "/api/users/registerUser",
+							    "/swagger-ui/**",
+							    "/v3/api-docs/**")
+							.permitAll()
 
 						.anyRequest().authenticated())
 

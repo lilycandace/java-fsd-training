@@ -11,34 +11,31 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.hexaware.cms.backend.entity.User;
 
 
-public class UserInfoUserDetails implements UserDetails {  // UserDetailsImp class
+public class UserInfoUserDetails implements UserDetails {
 
-
-    private String email;
-    private String password;
-    private List<GrantedAuthority> authorities;
+    private User user;
 
     public UserInfoUserDetails(User user) {
-        email=user.getEmail();
-        password=user.getPassword();
-        authorities = Arrays.asList(
-                new SimpleGrantedAuthority(
-                        user.getRole().getRoleName()));
+        this.user = user;
     }
 
+ 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
+
+        return List.of(
+                new SimpleGrantedAuthority(
+                        "ROLE_" + user.getRole().getRoleName()));
     }
 
     @Override
     public String getPassword() {
-        return password;
+        return user.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return email;
+        return user.getEmail();
     }
 
     @Override

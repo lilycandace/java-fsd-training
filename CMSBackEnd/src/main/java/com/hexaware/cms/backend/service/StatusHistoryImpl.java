@@ -22,31 +22,34 @@ import com.hexaware.cms.backend.repository.IncidentStatusRepository;
 import com.hexaware.cms.backend.repository.UserRepository;
 
 @Service
-public class StatusHistoryImpl implements IStatusHistory{
-	private static final Logger logger =
-	        LoggerFactory.getLogger(UserServiceImpl.class);
-	
+public class StatusHistoryImpl implements IStatusHistory {
+	private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+
 	@Autowired
 	IncidentRepository incidentrepo;
-    @Autowired
+	@Autowired
 	IncidentStatusRepository statusrepo;
-    @Autowired
+	@Autowired
 	IncidentStatusHistoryRepository statusHistoryRepo;
-    @Autowired
+	@Autowired
 	UserRepository userRepo;
 	@Autowired
 	IEmailService emailService;
+
 	@Override
 	public IncidentStatusHistory updateStatus(StatusUpdateDTO dto) {
 		// TODO Auto-generated method stub
 		logger.info("Updating status of incident {}", dto.getIncidentId());
-		Incident incident=incidentrepo.findById(dto.getIncidentId()).orElseThrow(()->new IncidentNotFoundException("Incident does not exist:"+dto.getIncidentId()));
-		IncidentStatus oldStatus =incident.getStatus();		
-		IncidentStatus newStatus =statusrepo.findById(dto.getStatusId()).orElseThrow(() ->new IncidentStatusNotFoundException("Status not found"));
+		Incident incident = incidentrepo.findById(dto.getIncidentId())
+				.orElseThrow(() -> new IncidentNotFoundException("Incident does not exist:" + dto.getIncidentId()));
+		IncidentStatus oldStatus = incident.getStatus();
+		IncidentStatus newStatus = statusrepo.findById(dto.getStatusId())
+				.orElseThrow(() -> new IncidentStatusNotFoundException("Status not found"));
 		incident.setStatus(newStatus);
-		User changedBy = userRepo.findById( dto.getChangedById()) .orElseThrow(() ->new UserNotFoundException( "User not found"));
+		User changedBy = userRepo.findById(dto.getChangedById())
+				.orElseThrow(() -> new UserNotFoundException("User not found"));
 		incidentrepo.save(incident);
-		IncidentStatusHistory history =new IncidentStatusHistory();
+		IncidentStatusHistory history = new IncidentStatusHistory();
 		history.setIncident(incident);
 
 		history.setOldStatus(oldStatus);
@@ -58,13 +61,16 @@ public class StatusHistoryImpl implements IStatusHistory{
 		history.setRemarks(dto.getRemarks());
 
 		history.setChangedAt(LocalDateTime.now());
-		IncidentStatusHistory saveHist=statusHistoryRepo.save(history);
+		IncidentStatusHistory saveHist = statusHistoryRepo.save(history);
 		logger.info("Status updated successfully.");
-		emailService.sendEmail(
-		        incident.getUser().getEmail(),
-		        "Incident Status Updated",
-		        "Your incident status has been updated to: "
-		        + incident.getStatus().getStatusName());
+		String subject = "Crime Management System - Status Updated";
+
+		String body = "Dear " + incident.getUser().getFirstName() + ",\n\n"
+				+ "The status of your incident has been updated.\n\n" + "Incident ID : " + incident.getIncidentId()
+				+ "\n" + "Current Status : " + incident.getStatus().getStatusName() + "\n\n" + "Regards,\n"
+				+ "Crime Management System";
+
+		emailService.sendEmail(incident.getUser().getEmail(), subject, body);
 		return saveHist;
 	}
 

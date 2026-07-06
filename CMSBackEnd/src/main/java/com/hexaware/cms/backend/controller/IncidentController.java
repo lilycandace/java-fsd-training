@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,19 +27,20 @@ public class IncidentController {
 
 	@Autowired
 	IIncidentService incidentService;
-
+	
+	@PreAuthorize("hasRole('Citizen')")
 	@PostMapping("/createIncident")
 	public ResponseEntity<Incident> createIncident(@RequestBody IncidentDTO dto) {
 
 		return ResponseEntity.ok(incidentService.createIncident(dto));
 	}
-
+	@PreAuthorize("hasAnyRole('Citizen','Officer','StationHead')")
 	@GetMapping("/getIncident/{id}")
 	public ResponseEntity<Incident> getIncident(@PathVariable Integer id) {
 
 		return ResponseEntity.ok(incidentService.getIncidentById(id));
 	}
-
+	@PreAuthorize("hasAnyRole('Officer','StationHead')")
 	@GetMapping("/getAllIncidents")
 	public ResponseEntity<List<Incident>> getAllIncidents() {
 
@@ -50,13 +52,13 @@ public class IncidentController {
 
 		return ResponseEntity.ok(incidentService.getIncidentsByUser(userId));
 	}
-
+	@PreAuthorize("hasAnyRole('Citizen','StationHead')")
 	@PutMapping("/updateIncident/{id}")
 	public ResponseEntity<Incident> updateIncident(@PathVariable Integer id, @RequestBody IncidentDTO dto) {
 
 		return ResponseEntity.ok(incidentService.updateIncident(id, dto));
 	}
-
+	@PreAuthorize("hasRole('StationHead')")
 	@DeleteMapping("/deleteIncident/{id}")
 	public ResponseEntity<String> deleteIncident(@PathVariable Integer id) {
 

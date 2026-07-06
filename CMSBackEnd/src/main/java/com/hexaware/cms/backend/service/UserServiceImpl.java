@@ -60,9 +60,18 @@ public class UserServiceImpl implements IUserService {
 		User savedUser = repo.save(user);
 
 		logger.info("User registered successfully with ID: {}", savedUser.getUserId());
-		emailService.sendEmail(savedUser.getEmail(), "Registration Successful",
-				"Welcome " + savedUser.getFirstName() + "!\n\nYour account has been created successfully.");
+		String subject = "Crime Management System - Registration Successful";
 
+		String body =
+		        "Dear " + savedUser.getFirstName() + ",\n\n"
+		      + "Welcome to the Crime Management System.\n\n"
+		      + "Your account has been created successfully.\n\n"
+		      + "Registered Email : " + savedUser.getEmail() + "\n\n"
+		      + "You can now log in and report incidents.\n\n"
+		      + "Regards,\n"
+		      + "Crime Management System";
+
+		emailService.sendEmail(savedUser.getEmail(), subject, body);
 		return savedUser;
 	}
 
@@ -135,6 +144,30 @@ public class UserServiceImpl implements IUserService {
 		});
 		repo.delete(user);
 		logger.info("User deleted successfully with ID: {}", userId);
+	}
+
+	@Override
+	public UserDTO getMyProfile(String email) {
+
+	    User user = repo.findByEmail(email)
+	            .orElseThrow(() ->
+	                    new UserNotFoundException("User not found"));
+
+	    UserDTO dto = new UserDTO();
+
+	    dto.setFirstName(user.getFirstName());
+	    dto.setMiddleName(user.getMiddleName());
+	    dto.setLastName(user.getLastName());
+	    dto.setEmail(user.getEmail());
+	    dto.setPhone(user.getPhone());
+	    dto.setAddress(user.getAddress());
+	    dto.setDob(user.getDob());
+	    dto.setAadhaarNo(user.getAadhaarNo());
+	    dto.setPanNo(user.getPanNo());
+	    dto.setProfilePicture(user.getProfilePicture());
+	    dto.setRoleId(user.getRole().getRoleId());
+
+	    return dto;
 	}
 
 }

@@ -7,6 +7,7 @@ import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import com.hexaware.cms.backend.service.IReportService;
@@ -20,7 +21,8 @@ public class ReportController {
 
     @Autowired
     private IReportService reportService;
-
+    
+    @PreAuthorize("hasAnyRole('Citizen','Officer','StationHead')")
     @GetMapping("/incident/{incidentId}")
     public ResponseEntity<InputStreamResource> downloadIncidentReport(
             @PathVariable Integer incidentId) {

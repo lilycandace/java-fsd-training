@@ -59,5 +59,17 @@ public class GlobalExceptionHandler {
 
 		return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+	@ExceptionHandler(BadCredentialsException.class)
+	public ResponseEntity<ErrorResponse> handleBadCredentials(BadCredentialsException ex) {
+
+	    ErrorResponse error = new ErrorResponse(
+	            LocalDateTime.now(),
+	            HttpStatus.UNAUTHORIZED.value(),
+	            "Authentication Failed",
+	            "Invalid email or password"
+	    );
+
+	    return new ResponseEntity<>(error, HttpStatus.UNAUTHORIZED);
+	}
 
 }

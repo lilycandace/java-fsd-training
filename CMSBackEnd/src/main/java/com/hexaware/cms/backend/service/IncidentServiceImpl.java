@@ -1,5 +1,6 @@
 package com.hexaware.cms.backend.service;
 
+import java.io.ByteArrayInputStream;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -32,9 +33,12 @@ public class IncidentServiceImpl implements IIncidentService {
 	IncidentTypeRepository incidentTypeRepo;
 	@Autowired
 	IncidentStatusRepository incidentStatusRepo;
-	
+
 	@Autowired
 	IEmailService emailService;
+
+	@Autowired
+	private IReportService reportService;
 
 	@Override
 	public Incident createIncident(IncidentDTO dto) {
@@ -59,12 +63,32 @@ public class IncidentServiceImpl implements IIncidentService {
 		incident.setLocation(dto.getLocation());
 
 		incident.setIncidentDate(LocalDateTime.now());
-		Incident saveIncident = incidentRepo.save(incident);
+		Incident savedIncident = incidentRepo.save(incident);
+		ByteArrayInputStream pdf = reportService.generateIncidentReport(savedIncident.getIncidentId());
+
 		logger.info("Incident created successfully.");
-		emailService.sendEmail(saveIncident.getUser().getEmail(), "Incident Registered",
-				"Your incident has been registered successfully.\n\n" + "Incident ID : "
-						+ saveIncident.getIncidentId());
-		return saveIncident;
+		String subject = "Crime Management System - Incident Registered";
+
+		String body = "Dear " + savedIncident.getUser().getFirstName() + ",\n\n"
+				+ "Your incident has been registered successfully.\n\n" + "Incident ID : "
+				+ savedIncident.getIncidentId() + "\n" + "Title : " + savedIncident.getTitle() + "\n" + "Status : "
+				+ savedIncident.getStatus().getStatusName() + "\n\n"
+				+ "Our team will review your complaint and notify you of any updates.\n\n" + "Regards,\n"
+				+ "Crime Management System";
+
+		emailService.sendEmailWithAttachment(
+
+				savedIncident.getUser().getEmail(),
+
+				subject,
+
+				body,
+
+				pdf,
+
+				"Incident_" + savedIncident.getIncidentId() + ".pdf");
+
+		return savedIncident;
 	}
 
 	@Override

@@ -8,6 +8,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,11 +19,11 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 @RestController
 @RequestMapping("/files")
 @SecurityRequirement(name = "Bearer Authentication")
-public class FileController {
+public class FileController {//Evidence Controller
 
     @Autowired
     private IFileStorageService fileStorageService;
-
+    @PreAuthorize("hasAnyRole('Citizen','Officer')")
     @PostMapping(
             value = "/upload",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE
@@ -34,6 +35,7 @@ public class FileController {
 
         return ResponseEntity.ok("File uploaded successfully: " + fileName);
     }
+    @PreAuthorize("hasAnyRole('Citizen','Officer','StationHead')")
     @GetMapping("/download/{filename}")
     public ResponseEntity<Resource> downloadFile(
             @PathVariable String filename) {
@@ -54,6 +56,7 @@ public class FileController {
                 .contentType(MediaType.parseMediaType(contentType))
                 .body(resource);
     }
+    @PreAuthorize("hasRole('Officer')")
     @DeleteMapping("/delete/{filename}")
     public ResponseEntity<String> deleteFile(
             @PathVariable String filename) {
@@ -66,6 +69,7 @@ public class FileController {
 
         return ResponseEntity.badRequest().body("File not found.");
     }
+    @PreAuthorize("hasAnyRole('Citizen','Officer','StationHead')")
     @GetMapping("/view/{filename}")
     public ResponseEntity<Resource> viewFile(
             @PathVariable String filename) {

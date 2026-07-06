@@ -54,9 +54,14 @@ public class AssignmentServiceImpl implements IAssignmentService {
 		assignment.setAssignedBy(assignedBy);
 		IncidentAssignment saveAssign = assignmentRepo.save(assignment);
 		logger.info("Officer assigned successfully.");
-		emailService.sendEmail(assignment.getOfficer().getEmail(), "New Incident Assigned",
-				"Dear " + assignment.getOfficer().getFirstName() + ",\n\nIncident ID "
-						+ assignment.getIncident().getIncidentId() + " has been assigned to you.");
+		String subject = "Crime Management System - Incident Assigned";
+
+		String body = "Dear " + assignment.getOfficer().getFirstName() + ",\n\n"
+				+ "A new incident has been assigned to you.\n\n" + "Incident ID : "
+				+ assignment.getIncident().getIncidentId() + "\n" + "Please log in to review the incident details.\n\n"
+				+ "Regards,\n" + "Crime Management System";
+
+		emailService.sendEmail(assignment.getOfficer().getEmail(), subject, body);
 
 		return saveAssign;
 	}

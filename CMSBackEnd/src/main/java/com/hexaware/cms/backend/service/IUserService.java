@@ -15,5 +15,7 @@ public interface IUserService {
 	User updateUser(Integer userId, UserDTO dto);
 
 	void deleteUser(Integer userId);
+	
+	UserDTO getMyProfile(String email);
 
 }

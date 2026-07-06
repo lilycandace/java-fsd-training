@@ -6,6 +6,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,9 +20,16 @@ public class FileStorageServiceImpl implements IFileStorageService {
 
 	@Value("${file.upload-dir}")
 	private String uploadDir;
+	private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+
+	
 
 	@Override
 	public String uploadFile(MultipartFile file) {
+		
+
+
+
 
 		try {
 
@@ -39,6 +48,7 @@ public class FileStorageServiceImpl implements IFileStorageService {
 
 			// Copy the uploaded file into the uploads folder
 			Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+			logger.info("Uploading file {}", file.getOriginalFilename());
 
 			return fileName;
 
@@ -59,6 +69,8 @@ public class FileStorageServiceImpl implements IFileStorageService {
 	        Resource resource = new UrlResource(filePath.toUri());
 
 	        if (resource.exists() && resource.isReadable()) {
+	    		logger.info("Downloading file {}", filename);
+
 	            return resource;
 	        }
 
@@ -77,6 +89,7 @@ public class FileStorageServiceImpl implements IFileStorageService {
 	    try {
 
 	        Path filePath = Paths.get(uploadDir).resolve(filename);
+			logger.info("Deleting file {}", filename);
 
 	        return Files.deleteIfExists(filePath);
 
@@ -97,6 +110,8 @@ public class FileStorageServiceImpl implements IFileStorageService {
 	        Resource resource = new UrlResource(filePath.toUri());
 
 	        if (resource.exists() && resource.isReadable()) {
+	    		logger.info("Viewing file {}", filename);
+
 	            return resource;
 	        }
 
