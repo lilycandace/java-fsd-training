@@ -120,7 +120,10 @@ public class UserServiceImpl implements IUserService {
 		user.setMiddleName(dto.getMiddleName());
 		user.setLastName(dto.getLastName());
 		user.setEmail(dto.getEmail());
-		user.setPassword(dto.getPassword());
+//		user.setPassword(dto.getPassword());
+		if (dto.getPassword() != null && !dto.getPassword().isBlank()) {
+		    user.setPassword(dto.getPassword());
+		}
 		user.setPhone(dto.getPhone());
 		user.setAddress(dto.getAddress());
 		user.setDob(dto.getDob());
@@ -154,7 +157,7 @@ public class UserServiceImpl implements IUserService {
 	                    new UserNotFoundException("User not found"));
 
 	    UserDTO dto = new UserDTO();
-
+	    dto.setUserId(user.getUserId());
 	    dto.setFirstName(user.getFirstName());
 	    dto.setMiddleName(user.getMiddleName());
 	    dto.setLastName(user.getLastName());

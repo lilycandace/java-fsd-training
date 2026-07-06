@@ -53,25 +53,25 @@ export default function Navbar() {
               </NavLink>
             </li>
             {auth.isLoggedIn && auth.role === "Officer" && (
-    <>
-        <li className="nav-item">
-            <NavLink className="nav-link" to="/dashboard">
-                Dashboard
-            </NavLink>
-        </li>
+              <>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/dashboard">
+                    Dashboard
+                  </NavLink>
+                </li>
 
-        <li className="nav-item">
-            <NavLink className="nav-link" to="/profile">
-                Profile
-            </NavLink>
-        </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/profile">
+                    Profile
+                  </NavLink>
+                </li>
 
-        <li className="nav-item">
-            <NavLink className="nav-link" to="/officers">
-                Assigned Cases
-            </NavLink>
-        </li>
-        <li className="nav-item d-flex align-items-center me-3">
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/officers">
+                    Assigned Cases
+                  </NavLink>
+                </li>
+                <li className="nav-item d-flex align-items-center me-3">
 
                   <span className="text-white">
 
@@ -90,8 +90,8 @@ export default function Navbar() {
                     Logout
                   </button>
                 </li>
-    </>
-)}
+              </>
+            )}
 
             {!auth.isLoggedIn && (
               <>
@@ -106,11 +106,11 @@ export default function Navbar() {
                     Register
                   </NavLink>
                 </li>
-                
+
               </>
             )}
 
-            {auth.isLoggedIn && auth.role === "Citizen" &&  (
+            {auth.isLoggedIn && auth.role === "Citizen" && (
               <>
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/dashboard">
@@ -157,38 +157,53 @@ export default function Navbar() {
               </>
             )}
             {auth.isLoggedIn && auth.role === "Stationhead" && (
-    <>
-        <li className="nav-item">
-            <NavLink className="nav-link" to="/dashboard">
-                Dashboard
-            </NavLink>
-        </li>
+              <>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/dashboard">
+                    Dashboard
+                  </NavLink>
+                </li>
 
-        <li className="nav-item">
-            <NavLink className="nav-link" to="/profile">
-                Profile
-            </NavLink>
-        </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/profile">
+                    Profile
+                  </NavLink>
+                </li>
 
-        <li className="nav-item">
-            <NavLink className="nav-link" to="/officers">
-                Officers
-            </NavLink>
-        </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/officers">
+                    Officers
+                  </NavLink>
+                </li>
 
-        <li className="nav-item">
-            <NavLink className="nav-link" to="/assign">
-                Assign Cases
-            </NavLink>
-        </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/assign">
+                    Assign Cases
+                  </NavLink>
+                </li>
 
-        <li className="nav-item">
-            <NavLink className="nav-link" to="/verify">
-                Verify Cases
-            </NavLink>
-        </li>
-    </>
-)}
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/verify">
+                    Verify Cases
+                  </NavLink>
+                </li>
+                <li className="nav-item d-flex align-items-center me-3">
+                  <span className="text-white">
+                    <i className="bi bi-person-circle me-1"></i>
+                    Welcome, {auth.firstName}
+                  </span>
+                </li>
+
+                <li className="nav-item">
+                  <button
+                    className="btn btn-outline-light ms-3"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </button>
+                </li>
+              </>
+            )}
 
           </ul>
 
