@@ -6,10 +6,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.hexaware.cms.backend.entity.Incident;
+import com.hexaware.cms.backend.entity.User;
 
 @Repository
 public interface IncidentRepository    extends JpaRepository<Incident, Integer> {
 
     List<Incident> findByUserUserId(Integer userId);
+
+	List<Incident> findByUser(User user);
 
 }

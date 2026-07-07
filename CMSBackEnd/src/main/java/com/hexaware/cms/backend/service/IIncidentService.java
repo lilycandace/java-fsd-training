@@ -2,11 +2,13 @@ package com.hexaware.cms.backend.service;
 
 import java.util.List;
 
+import org.springframework.security.core.Authentication;
+
 import com.hexaware.cms.backend.dto.IncidentDTO;
 import com.hexaware.cms.backend.entity.Incident;
 
 public interface IIncidentService {
-	Incident createIncident(IncidentDTO dto);
+//	Incident createIncident(IncidentDTO dto);
 
 	Incident getIncidentById(Integer incidentId);
 
@@ -17,5 +19,9 @@ public interface IIncidentService {
 	Incident updateIncident(Integer incidentId, IncidentDTO dto);
 
 	void deleteIncident(Integer incidentId);
+	
+	public List<Incident> getIncidentsByEmail(String email) ;
+	
+	public Incident createIncident(IncidentDTO dto,Authentication auth);
 
 }

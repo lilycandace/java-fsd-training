@@ -7,6 +7,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import com.hexaware.cms.backend.dto.IncidentDTO;
@@ -41,11 +42,13 @@ public class IncidentServiceImpl implements IIncidentService {
 	private IReportService reportService;
 
 	@Override
-	public Incident createIncident(IncidentDTO dto) {
+	public Incident createIncident(IncidentDTO dto,Authentication auth) {
 		// TODO Auto-generated method stub
 		logger.info("Creating incident: {}", dto.getTitle());
-		User user = userRepo.findById(dto.getUserId()).orElseThrow(() -> new UserNotFoundException("User not found"));
-		IncidentType type = incidentTypeRepo.findById(dto.getIncidentTypeId())
+		String email = auth.getName();
+
+		User user = userRepo.findByEmail(email)
+		        .orElseThrow(() -> new UserNotFoundException("User not found"));		IncidentType type = incidentTypeRepo.findById(dto.getIncidentTypeId())
 				.orElseThrow(() -> new RuntimeException("Incident Type not found"));
 		IncidentStatus status = incidentStatusRepo.findByStatusName("INITIATED")
 				.orElseThrow(() -> new RuntimeException("Status not found"));
@@ -133,5 +136,13 @@ public class IncidentServiceImpl implements IIncidentService {
 				.orElseThrow(() -> new IncidentNotFoundException("Incident not found with id:" + incidentId));
 		incidentRepo.delete(incident);
 	}
+	public List<Incident> getIncidentsByEmail(String email) {
 
+	    User user = userRepo.findByEmail(email)
+	            .orElseThrow(() -> new UserNotFoundException("User not found"));
+
+	    return incidentRepo.findByUser(user);
+	}
+
+	
 }

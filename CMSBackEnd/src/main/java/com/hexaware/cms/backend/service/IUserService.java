@@ -17,5 +17,7 @@ public interface IUserService {
 	void deleteUser(Integer userId);
 	
 	UserDTO getMyProfile(String email);
+	List<UserDTO> getAllOfficers();
+	List<UserDTO> getAllCitizens();
 
 }

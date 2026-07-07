@@ -19,27 +19,16 @@ import Footer from "./components/footer.components";
 import NotFound from "./components/notfound.components";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { useEffect } from "react";
-
 import { useDispatch } from "react-redux";
-
+import Management from "./components/management.components";
 import { loginSuccess } from "./redux/slices/authSlice";
 function App() {
 
- const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-// useEffect(() => {
 
-//     const auth = JSON.parse(localStorage.getItem("auth"));
 
-//     console.log("App Loaded");
-//     console.log("Stored Auth:", auth);
-
-//     if (auth) {
-//         console.log("Dispatching loginSuccess...");
-//         dispatch(loginSuccess(auth));
-//     }
-
-// }, [dispatch]);
+  // }, [dispatch]);
   return (
     <BrowserRouter>
 
@@ -73,9 +62,12 @@ function App() {
 
         <Route path="/officers" element={<ProtectedRoute><OfficerList /></ProtectedRoute>} />
 
-        <Route path="/assign" element={<ProtectedRoute><AssignIncident /></ProtectedRoute>} />
+        <Route path="/assign/:id" element={<ProtectedRoute><AssignIncident /></ProtectedRoute>} />
 
         <Route path="/verify" element={<ProtectedRoute><VerifyIncident /></ProtectedRoute>} />
+        <Route path="/management" element={ <ProtectedRoute>   <Management /> </ProtectedRoute>  }
+        />
+     
 
         <Route path="*" element={<NotFound />} />
 

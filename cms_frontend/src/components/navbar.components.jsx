@@ -165,20 +165,14 @@ export default function Navbar() {
                 </li>
 
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/profile">
-                    Profile
-                  </NavLink>
-                </li>
-
-                <li className="nav-item">
-                  <NavLink className="nav-link" to="/officers">
-                    Officers
+                  <NavLink className="nav-link" to="/management">
+                    Management
                   </NavLink>
                 </li>
 
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/assign">
-                    Assign Cases
+                    Assign Incident
                   </NavLink>
                 </li>
 
@@ -187,6 +181,13 @@ export default function Navbar() {
                     Verify Cases
                   </NavLink>
                 </li>
+
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/profile">
+                    Profile
+                  </NavLink>
+                </li>
+
                 <li className="nav-item d-flex align-items-center me-3">
                   <span className="text-white">
                     <i className="bi bi-person-circle me-1"></i>

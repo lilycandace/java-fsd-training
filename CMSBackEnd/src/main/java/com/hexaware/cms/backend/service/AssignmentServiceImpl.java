@@ -10,11 +10,13 @@ import org.springframework.stereotype.Service;
 import com.hexaware.cms.backend.dto.AssignmentDTO;
 import com.hexaware.cms.backend.entity.Incident;
 import com.hexaware.cms.backend.entity.IncidentAssignment;
+import com.hexaware.cms.backend.entity.IncidentStatus;
 import com.hexaware.cms.backend.entity.User;
 import com.hexaware.cms.backend.exception.IncidentNotFoundException;
 import com.hexaware.cms.backend.exception.UserNotFoundException;
 import com.hexaware.cms.backend.repository.IncidentAssignmentRepository;
 import com.hexaware.cms.backend.repository.IncidentRepository;
+import com.hexaware.cms.backend.repository.IncidentStatusRepository;
 import com.hexaware.cms.backend.repository.UserRepository;
 
 @Service
@@ -32,6 +34,9 @@ public class AssignmentServiceImpl implements IAssignmentService {
 
 	@Autowired
 	IEmailService emailService;
+
+	@Autowired
+	IncidentStatusRepository statusRepo;
 
 	@Override
 	public IncidentAssignment assignOfficer(AssignmentDTO dto) {
@@ -52,7 +57,18 @@ public class AssignmentServiceImpl implements IAssignmentService {
 		assignment.setIncident(incident);
 		assignment.setOfficer(officer);
 		assignment.setAssignedBy(assignedBy);
+		IncidentStatus activeStatus = statusRepo.findByStatusName("active")
+				.orElseThrow(() -> new RuntimeException("Status not found"));
+
+		incident.setStatus(activeStatus);
+
+		incidentRepo.save(incident);
 		IncidentAssignment saveAssign = assignmentRepo.save(assignment);
+		IncidentStatus active = statusRepo .findByStatusName("active").orElseThrow(() ->new RuntimeException("Status not found"));
+
+		incident.setStatus(active);
+
+		incidentRepo.save(incident);
 		logger.info("Officer assigned successfully.");
 		String subject = "Crime Management System - Incident Assigned";
 

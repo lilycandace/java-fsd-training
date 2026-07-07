@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class IncidentDTO {
 
-    private Integer userId;
+//    private Integer userId;
 
     private Integer incidentTypeId;
 

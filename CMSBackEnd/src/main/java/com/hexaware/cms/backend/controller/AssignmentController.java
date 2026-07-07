@@ -25,13 +25,13 @@ public class AssignmentController {
 	@Autowired
 	IAssignmentService assignmentService;
 	
-	@PreAuthorize("hasRole('StationHead')")
+	@PreAuthorize("hasRole('Stationhead')")
 	@PostMapping("/assignOfficer")
 	public ResponseEntity<IncidentAssignment> assignOfficer(@RequestBody AssignmentDTO dto) {
 
 		return ResponseEntity.ok(assignmentService.assignOfficer(dto));
 	}
-	@PreAuthorize("hasAnyRole('Officer','StationHead')")
+	@PreAuthorize("hasAnyRole('Officer','Stationhead')")
 	@GetMapping("/getAssignments/{id}")
 	public ResponseEntity<List<IncidentAssignment>> getAssignmentsByOfficer(@PathVariable Integer id) {
 

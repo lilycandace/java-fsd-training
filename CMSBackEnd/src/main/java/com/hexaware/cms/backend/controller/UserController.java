@@ -38,20 +38,21 @@ public class UserController {
 		return ResponseEntity.ok(userService.registerUser(dto));
 	}
 
-	@PreAuthorize("hasAnyRole('Officer','StationHead')")
+	@PreAuthorize("hasAnyRole('Officer','Stationhead')")
 	@GetMapping("/getUserbyId/{id}")
 	public ResponseEntity<UserDTO> getUserById(@PathVariable Integer id) {
 
-	    return ResponseEntity.ok(userService.getUserById(id));
+		return ResponseEntity.ok(userService.getUserById(id));
 	}
-	@PreAuthorize("hasRole('StationHead')")
+
+	@PreAuthorize("hasRole('Stationhead')")
 	@GetMapping("/getAllUsers")
 	public ResponseEntity<List<User>> getAllUsers() {
 
 		return ResponseEntity.ok(userService.getAllUsers());
 	}
-	
-	@PreAuthorize("hasAnyRole('Citizen','StationHead')")
+
+	@PreAuthorize("hasAnyRole('Citizen','Stationhead')")
 	@PutMapping("/updateUser/{id}")
 	public ResponseEntity<User> updateUser(@PathVariable Integer id, @RequestBody UserDTO dto) {
 
@@ -59,20 +60,54 @@ public class UserController {
 	}
 
 	@DeleteMapping("/deleteUser/{id}")
-	@PreAuthorize("hasRole('StationHead')")
+	@PreAuthorize("hasRole('Stationhead')")
 	public ResponseEntity<String> deleteUser(@PathVariable Integer id) {
 
 		userService.deleteUser(id);
 
 		return ResponseEntity.ok("User deleted successfully");
 	}
-	@PreAuthorize("hasRole('Citizen')")
+
+	@PreAuthorize("hasAnyRole('Citizen','Officer','Stationhead')")
 	@GetMapping("/profile")
 	public ResponseEntity<UserDTO> getMyProfile(Authentication authentication) {
 
-	    String email = authentication.getName();
+		String email = authentication.getName();
 
-	    return ResponseEntity.ok(userService.getMyProfile(email));
+		return ResponseEntity.ok(userService.getMyProfile(email));
 	}
-	
+
+	@PreAuthorize("hasRole('Stationhead')")
+	@GetMapping("/officers")
+	public ResponseEntity<List<UserDTO>> getAllOfficers() {
+
+		return ResponseEntity.ok(userService.getAllOfficers());
+
+	}
+
+	@PreAuthorize("hasRole('Stationhead')")
+	@PostMapping("/addOfficer")
+	public ResponseEntity<User> addOfficer(@RequestBody UserDTO dto) {
+
+		dto.setRoleId(2);
+
+		return ResponseEntity.ok(userService.registerUser(dto));
+
+	}
+	@PreAuthorize("hasRole('Stationhead')")
+	@DeleteMapping("/deleteOfficer/{id}")
+	public ResponseEntity<String> deleteOfficer(
+	        @PathVariable Integer id) {
+
+	    userService.deleteUser(id);
+
+	    return ResponseEntity.ok("Officer deleted successfully.");
+
+	}
+	@PreAuthorize("hasRole('Stationhead')")
+	@GetMapping("/citizens")
+	public ResponseEntity<List<UserDTO>> getAllCitizens() {
+	    return ResponseEntity.ok(userService.getAllCitizens());
+	}
+
 }

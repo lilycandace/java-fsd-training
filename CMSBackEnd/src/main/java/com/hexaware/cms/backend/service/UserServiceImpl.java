@@ -172,5 +172,67 @@ public class UserServiceImpl implements IUserService {
 
 	    return dto;
 	}
+	@Override
+	public List<UserDTO> getAllOfficers() {
+
+	    List<User> officers =
+	            repo.findByRoleRoleName("Officer");
+
+	    return officers.stream()
+
+	            .map(user -> {
+
+	                UserDTO dto = new UserDTO();
+
+	                dto.setUserId(user.getUserId());
+
+	                dto.setFirstName(user.getFirstName());
+
+	                dto.setLastName(user.getLastName());
+
+	                dto.setEmail(user.getEmail());
+
+	                dto.setPhone(user.getPhone());
+
+	                dto.setRoleId(user.getRole().getRoleId());
+
+	                return dto;
+
+	            })
+
+	            .toList();
+
+	}
+
+	@Override
+	public List<UserDTO> getAllCitizens() {
+		// TODO Auto-generated method stub
+		List<User> citizens =
+	            repo.findByRoleRoleName("Citizen");
+
+	    return citizens.stream()
+
+	            .map(user -> {
+
+	                UserDTO dto = new UserDTO();
+
+	                dto.setUserId(user.getUserId());
+
+	                dto.setFirstName(user.getFirstName());
+
+	                dto.setLastName(user.getLastName());
+
+	                dto.setEmail(user.getEmail());
+
+	                dto.setPhone(user.getPhone());
+
+	                dto.setRoleId(user.getRole().getRoleId());
+
+	                return dto;
+
+	            })
+
+	            .toList();
+	}
 
 }
