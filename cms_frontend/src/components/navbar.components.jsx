@@ -1,7 +1,16 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/slices/authSlice";
-
+import {
+  FaHome, FaTachometerAlt, FaUser,
+  FaClipboardList,
+  FaUserShield,
+  FaCheckCircle,
+  FaUsers,
+  FaSignOutAlt,
+  FaShieldAlt,
+  FaPlusCircle
+} from "react-icons/fa";
 export default function Navbar() {
 
   const auth = useSelector((state) => state.auth);
@@ -22,12 +31,12 @@ export default function Navbar() {
 
   return (
 
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+    <nav className="navbar navbar-expand-lg shadow sticky-top custom-navbar">
 
       <div className="container">
 
-        <NavLink className="navbar-brand fw-bold" to="/">
-          <i className="bi bi-shield-lock-fill me-2"></i>
+        <NavLink className="navbar-brand fw-bold fs-4" to="/">
+          <FaShieldAlt className="me-2 text-warning" />
           Crime Management System
         </NavLink>
 
@@ -49,6 +58,7 @@ export default function Navbar() {
 
             <li className="nav-item">
               <NavLink className="nav-link" to="/">
+                <FaHome className="me-2" />
                 Home
               </NavLink>
             </li>
@@ -56,18 +66,21 @@ export default function Navbar() {
               <>
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/dashboard">
+                    <FaTachometerAlt className="me-2" />
                     Dashboard
                   </NavLink>
                 </li>
 
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/profile">
+                    <FaUser className="me-2" />
                     Profile
                   </NavLink>
                 </li>
 
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/officers">
+                    <FaUserShield className="me-2" />
                     Assigned Cases
                   </NavLink>
                 </li>
@@ -84,9 +97,10 @@ export default function Navbar() {
                 </li>
                 <li className="nav-item">
                   <button
-                    className="btn btn-outline-light ms-3"
+                    className="btn btn-outline-light rounded-pill ms-3"
                     onClick={handleLogout}
                   >
+                    <FaSignOutAlt className="me-2" />
                     Logout
                   </button>
                 </li>
@@ -114,24 +128,28 @@ export default function Navbar() {
               <>
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/dashboard">
+                    <FaTachometerAlt className="me-2" />
                     Dashboard
                   </NavLink>
                 </li>
 
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/profile">
+                    <FaUser className="me-2" />
                     Profile
                   </NavLink>
                 </li>
 
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/incidents">
+                    <FaClipboardList className="me-2" />
                     My Incidents
                   </NavLink>
                 </li>
 
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/incidents/create">
+                    <FaPlusCircle className="me-2" />
                     Report Incident
                   </NavLink>
                 </li>
@@ -148,9 +166,10 @@ export default function Navbar() {
                 </li>
                 <li className="nav-item">
                   <button
-                    className="btn btn-outline-light ms-3"
+                    className="btn btn-outline-light rounded-pill ms-3"
                     onClick={handleLogout}
                   >
+                    <FaSignOutAlt className="me-2" />
                     Logout
                   </button>
                 </li>
@@ -160,12 +179,14 @@ export default function Navbar() {
               <>
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/dashboard">
+                    <FaTachometerAlt className="me-2" />
                     Dashboard
                   </NavLink>
                 </li>
 
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/management">
+                    <FaUsers className="me-2" />
                     Management
                   </NavLink>
                 </li>
@@ -178,12 +199,14 @@ export default function Navbar() {
 
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/verify">
+                    <FaCheckCircle className="me-2" />
                     Verify Cases
                   </NavLink>
                 </li>
 
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/profile">
+                    <FaUser className="me-2" />
                     Profile
                   </NavLink>
                 </li>
@@ -197,9 +220,10 @@ export default function Navbar() {
 
                 <li className="nav-item">
                   <button
-                    className="btn btn-outline-light ms-3"
+                    className="btn btn-outline-light rounded-pill ms-3"
                     onClick={handleLogout}
                   >
+                    <FaSignOutAlt className="me-2" />
                     Logout
                   </button>
                 </li>

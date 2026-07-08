@@ -1,0 +1,35 @@
+.table{
+
+    background:white;
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+}
+
+.table thead{
+
+    background:#0D6EFD;
+
+    color:white;
+
+}
+
+.table th{
+
+    padding:15px;
+
+}
+
+.table td{
+
+    vertical-align:middle;
+
+}
+
+.table-hover tbody tr:hover{
+
+    background:#F8F9FA;
+
+}

@@ -3,6 +3,7 @@ package com.hexaware.cms.backend.service;
 import java.util.List;
 
 import com.hexaware.cms.backend.dto.AssignmentDTO;
+import com.hexaware.cms.backend.dto.OfficerWorkloadDTO;
 import com.hexaware.cms.backend.dto.VerifyCaseDTO;
 import com.hexaware.cms.backend.entity.IncidentAssignment;
 
@@ -13,5 +14,7 @@ public interface IAssignmentService {
 	
 	public IncidentAssignment getAssignmentByIncident(Integer incidentId);
 	List<VerifyCaseDTO> getClosedAssignments();
+	
+	List<OfficerWorkloadDTO> getOfficerWorkloads();
 
 }

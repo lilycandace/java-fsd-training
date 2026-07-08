@@ -1,0 +1,39 @@
+.dashboard-card{
+
+    text-align:center;
+
+    padding:20px;
+
+}
+
+.dashboard-card h6{
+
+    color:#777;
+
+    font-size:15px;
+
+}
+
+.dashboard-card h2{
+
+    margin-top:10px;
+
+    font-size:35px;
+
+    font-weight:700;
+
+    color:#0D6EFD;
+
+}
+
+.quick-actions{
+
+    display:flex;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+    margin-top:20px;
+
+}

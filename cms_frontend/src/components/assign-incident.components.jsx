@@ -17,6 +17,15 @@ export default function AssignIncident() {
     const [incident, setIncident] = useState({});
 
     const [officers, setOfficers] = useState([]);
+    const [assignment, setAssignment] = useState({
+
+        incidentId: id,
+
+        officerId: "",
+
+        assignedById: auth.userId
+
+    });
 
     const [selectedOfficer, setSelectedOfficer] = useState("");
 
@@ -32,23 +41,62 @@ export default function AssignIncident() {
 
             .catch(console.log);
 
-        UserService.getAllOfficers()
+        // UserService.getAllOfficers()
 
-            .then(res => {
+        //     .then(res => {
 
-                setOfficers(res.data);
+        //         setOfficers(res.data);
+
+        //     })
+
+        //     .catch(console.log);
+
+        AssignmentService.getOfficerWorkloads()
+
+            .then((response) => {
+
+
+                console.log("API Response:", response.data);
+
+                console.log("First Officer:", response.data[0]);
+
+                console.log("Officer ID:", response.data[0].officerId);
+
+
+
+                setOfficers(response.data);
+
+                if (response.data.length > 0) {
+
+                    setAssignment(prev => ({
+
+                        ...prev,
+
+                        officerId: response.data[0].officerId
+
+                    }));
+
+                }
 
             })
-
-            .catch(console.log);
+            .catch(console.log)
 
     }, [id]);
+    const handleChange = (e) => {
 
+        const { name, value } = e.target;
+
+        setAssignment(prev => ({
+            ...prev,
+            [name]: value
+        }));
+
+    };
     const handleSubmit = (e) => {
 
         e.preventDefault();
 
-        if (selectedOfficer === "") {
+        if (!assignment.officerId) {
 
             alert("Please select an officer.");
 
@@ -60,24 +108,25 @@ export default function AssignIncident() {
 
             incidentId: Number(id),
 
-            officerId: Number(selectedOfficer),
+            officerId: Number(assignment.officerId),
 
             assignedById: auth.userId
 
         })
 
-        .then(() => {
+            .then(() => {
 
-            alert("Officer assigned successfully.");
+                alert("Officer assigned successfully.");
 
-            navigate("/management");
+                navigate("/management");
 
-        })
+            })
 
-        .catch(console.log);
+            .catch(console.log);
 
     };
 
+    console.log("Assignment:", assignment);
     return (
 
         <div className="container mt-5">
@@ -129,41 +178,21 @@ export default function AssignIncident() {
                         </label>
 
                         <select
-
                             className="form-select"
-
-                            value={selectedOfficer}
-
-                            onChange={(e) =>
-
-                                setSelectedOfficer(e.target.value)
-
-                            }
-
+                            name="officerId"
+                            value={assignment.officerId}
+                            onChange={handleChange}
                         >
+                            <option value="">Select Officer</option>
 
-                            <option value="">
-
-                                Choose Officer
-
-                            </option>
-
-                            {officers.map(officer => (
-
+                            {officers.map((officer) => (
                                 <option
-
-                                    key={officer.userId}
-
-                                    value={officer.userId}
-
+                                    key={officer.officerId}
+                                    value={officer.officerId}
                                 >
-
-                                    {officer.firstName} {officer.lastName}
-
+                                    {officer.officerName} ({officer.activeCases} Active Cases)
                                 </option>
-
                             ))}
-
                         </select>
 
                         <div className="mt-4">

@@ -22,6 +22,11 @@ class AssignmentService {
         return http.get("/api/assignments/closedAssignments");
 
     }
+    getOfficerWorkloads() {
+
+    return http.get("/api/assignments/workloads");
+
+}
 }
 
 export default new AssignmentService();

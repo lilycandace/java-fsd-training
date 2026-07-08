@@ -720,14 +720,9 @@ export default function Management() {
 
                                         <td>{i.incidentId}</td>
 
-                                        {/* <td>{i.user.firstName}</td> */}
-                                        <td>
-
-                                            {i.user.firstName} {i.user.lastName}
-
-                                        </td>
-
                                         <td>{i.title}</td>
+
+                                        <td>{i.user.firstName}</td>
 
                                         <td>{i.status.statusName}</td>
 
@@ -737,23 +732,16 @@ export default function Management() {
                                                 className="btn btn-primary btn-sm me-2"
                                                 to={`/incidents/${i.incidentId}`}
                                             >
-
                                                 View
-
                                             </Link>
 
-                                            <td>{i.incidentId}</td>
-
                                             {i.status.statusName === "initiated" && (
-
 
                                                 <Link
                                                     className="btn btn-success btn-sm"
                                                     to={`/assign/${i.incidentId}`}
                                                 >
-
                                                     Assign
-
                                                 </Link>
 
                                             )}

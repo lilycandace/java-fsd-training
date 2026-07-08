@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hexaware.cms.backend.dto.AssignmentDTO;
+import com.hexaware.cms.backend.dto.OfficerWorkloadDTO;
 import com.hexaware.cms.backend.dto.VerifyCaseDTO;
 import com.hexaware.cms.backend.entity.IncidentAssignment;
 import com.hexaware.cms.backend.service.IAssignmentService;
@@ -53,6 +54,14 @@ public class AssignmentController {
 	public ResponseEntity<List<VerifyCaseDTO>> getClosedAssignments() {
 
 		return ResponseEntity.ok(assignmentService.getClosedAssignments());
+
+	}
+	@PreAuthorize("hasRole('Stationhead')")
+	@GetMapping("/workloads")
+	public ResponseEntity<List<OfficerWorkloadDTO>> getOfficerWorkloads() {
+
+	    return ResponseEntity.ok(
+	            assignmentService.getOfficerWorkloads());
 
 	}
 

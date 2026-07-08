@@ -4,6 +4,13 @@ import IncidentService from "../services/incident.service";
 import { Link, useNavigate } from "react-router-dom";
 import AssignmentService from "../services/assignment.service";
 import userService from "../services/user.service";
+import { FaClipboardList, FaDoorClosed } from "react-icons/fa";
+import { FaClock, FaSpinner, FaCheckCircle, FaUserShield, FaUsers, FaTimesCircle,FaUser,FaHourglassStart  } from "react-icons/fa";
+import { MdAssignmentAdd } from "react-icons/md";
+import { PiDetectiveFill } from "react-icons/pi";
+import { MdOutlineVerifiedUser } from "react-icons/md";
+import { MdLocalPolice } from "react-icons/md";
+import { HiFlag } from "react-icons/hi";
 
 export default function Dashboard() {
 
@@ -117,6 +124,19 @@ export default function Dashboard() {
             <h2>
                 Welcome, {auth.firstName} 👋
             </h2>
+            {/* <span className="text-white fw-semibold">
+
+    <FaUser className="me-2"/>
+
+    {auth.firstName}
+
+    <span className="badge bg-warning text-dark ms-2">
+
+        {auth.role}
+
+    </span>
+
+</span> */}
             {auth.role === "Citizen" && (
                 <>
                     <p className="text-muted">
@@ -125,27 +145,66 @@ export default function Dashboard() {
 
                     <div className="row mt-4">
 
-                        <div className="col-md-3">
+                        {/* <div className="col-md-3">
                             <div className="card shadow text-center">
                                 <div className="card-body">
                                     <h6>Total Incidents</h6>
                                     <h2>{total}</h2>
                                 </div>
                             </div>
-                        </div>
-
+                        </div> */}
                         <div className="col-md-3">
-                            <div className="card shadow text-center">
+
+                            <div className="card dashboard-card">
+
                                 <div className="card-body">
-                                    <h6>Pending</h6>
-                                    <h2>{initiated}</h2>
+
+                                    <FaClipboardList
+                                        size={40}
+                                        color="#0D6EFD"
+                                        className="mb-3"
+                                    />
+
+                                    <h6>Total Incidents</h6>
+
+                                    <h2>{total}</h2>
+
                                 </div>
+
                             </div>
+
                         </div>
 
                         <div className="col-md-3">
-                            <div className="card shadow text-center">
+
+                            <div className="card dashboard-card">
+
                                 <div className="card-body">
+
+                                    <FaClock
+                                        size={40}
+                                        color="#FFC107"
+                                        className="mb-3"
+                                    />
+
+                                    <h6>Pending</h6>
+
+                                    <h2>{initiated}</h2>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div className="col-md-3">
+                            <div className="card dashboard-card">
+                                <div className="card-body">
+                                    <FaSpinner
+                                        size={40}
+                                        color="#07ff13"
+                                        className="mb-3"
+                                    />
                                     <h6>In Progress</h6>
                                     <h2>{inProgress}</h2>
                                 </div>
@@ -153,16 +212,26 @@ export default function Dashboard() {
                         </div>
 
                         <div className="col-md-3">
-                            <div className="card shadow text-center">
+                            <div className="card dashboard-card">
                                 <div className="card-body">
+                                    <FaDoorClosed
+                                        size={40}
+                                        color="#9b1010"
+                                        className="mb-3"
+                                    />
                                     <h6>Resolved</h6>
                                     <h2>{resolved}</h2>
                                 </div>
                             </div>
                         </div>
                         <div className="col-md-3">
-                            <div className="card shadow text-center">
+                            <div className="card dashboard-card">
                                 <div className="card-body">
+                                    <FaCheckCircle
+                                        size={40}
+                                        color="#109b5a"
+                                        className="mb-3"
+                                    />
                                     <h6>Verified</h6>
                                     <h2>{verified}</h2>
                                 </div>
@@ -243,8 +312,13 @@ export default function Dashboard() {
                     {/* Officer dashboard here */}
 
                     <div className="col-md-3">
-                        <div className="card shadow text-center">
+                        <div className="card dashboard-card">
                             <div className="card-body">
+                                <MdAssignmentAdd
+                                        size={40}
+                                        color="#f0f33b"
+                                        className="mb-3"
+                                    />
                                 <h6>Assigned Cases</h6>
                                 <h2>{assigned}</h2>
                             </div>
@@ -252,8 +326,13 @@ export default function Dashboard() {
                     </div>
 
                     <div className="col-md-3">
-                        <div className="card shadow text-center">
+                        <div className="card dashboard-card">
                             <div className="card-body">
+                                <PiDetectiveFill
+                                        size={40}
+                                        color="#121ca0"
+                                        className="mb-3"
+                                    />
                                 <h6>Active</h6>
                                 <h2>{active}</h2>
                             </div>
@@ -261,16 +340,27 @@ export default function Dashboard() {
                     </div>
 
                     <div className="col-md-3">
-                        <div className="card shadow text-center">
+                        <div className="card dashboard-card">
                             <div className="card-body">
+                                <MdOutlineVerifiedUser
+                                        size={40}
+                                        color="#12a02c"
+                                        className="mb-3"
+                                    />
                                 <h6>Verified</h6>
                                 <h2>{verified}</h2>
                             </div>
                         </div>
                     </div>
                     <div className="col-md-3">
-                        <div className="card shadow text-center">
+                        <div className="card dashboard-card">
                             <div className="card-body">
+                                 <FaDoorClosed
+                                        size={40}
+                                        color="#12a08d"
+                                        className="mb-3"
+                                    />
+
                                 <h6>Closed</h6>
                                 <h2>{closed}</h2>
                             </div>
@@ -301,7 +391,51 @@ export default function Dashboard() {
 
                                     <td>{assignment.incident.title}</td>
 
-                                    <td>{assignment.incident.status.statusName}</td>
+                                    {/* <td>{assignment.incident.status.statusName}</td> */}
+                                    {/* //with styling */}
+                                    <td>
+
+                                        {assignment.incident.status.statusName === "initiated" &&
+
+                                            <span className="badge bg-warning">
+
+                                                Initiated
+
+                                            </span>
+
+                                        }
+
+                                        {assignment.incident.status.statusName === "active" &&
+
+                                            <span className="badge bg-primary">
+
+                                                Active
+
+                                            </span>
+
+                                        }
+
+                                        {assignment.incident.status.statusName === "verified" &&
+
+                                            <span className="badge bg-success">
+
+                                                Verified
+
+                                            </span>
+
+                                        }
+
+                                        {assignment.incident.status.statusName === "closed" &&
+
+                                            <span className="badge bg-dark">
+
+                                                Closed
+
+                                            </span>
+
+                                        }
+
+                                    </td>
 
                                     <td>
 
@@ -353,11 +487,11 @@ export default function Dashboard() {
 
                 <div>
 
-                    <h2>
+                    {/* <h2>
 
                         Welcome {auth.firstName}
 
-                    </h2>
+                    </h2> */}
 
                     <p className="text-muted">
 
@@ -369,9 +503,15 @@ export default function Dashboard() {
 
                         <div className="col-md-3">
 
-                            <div className="card shadow text-center">
+                            <div className="card dashboard-card">
 
                                 <div className="card-body">
+                                 <MdLocalPolice
+                                        size={40}
+                                        color="#0f0646"
+                                        className="mb-3"
+                                    />
+
 
                                     <h6>Total Officers</h6>
 
@@ -385,9 +525,14 @@ export default function Dashboard() {
 
                         <div className="col-md-3">
 
-                            <div className="card shadow text-center">
+                            <div className="card dashboard-card">
 
                                 <div className="card-body">
+                                    <FaUser
+                                        size={40}
+                                        color="#3eddfd"
+                                        className="mb-3"
+                                    />
 
                                     <h6>Total Citizens</h6>
 
@@ -401,9 +546,15 @@ export default function Dashboard() {
 
                         <div className="col-md-3">
 
-                            <div className="card shadow text-center">
+                            <div className="card dashboard-card">
 
                                 <div className="card-body">
+                                    <HiFlag
+                                        size={40}
+                                        color="#8ff0ce"
+                                        className="mb-3"
+                                    />
+
 
                                     <h6>Total Incidents</h6>
 
@@ -417,9 +568,15 @@ export default function Dashboard() {
 
                         <div className="col-md-3">
 
-                            <div className="card shadow text-center">
+                            <div className="card dashboard-card">
 
                                 <div className="card-body">
+                                    <FaHourglassStart
+                                        size={40}
+                                        color="#9d9d16"
+                                        className="mb-3"
+                                    />
+
 
                                     <h6>Initiated</h6>
 
@@ -433,9 +590,14 @@ export default function Dashboard() {
 
                         <div className="col-md-3 mt-3">
 
-                            <div className="card shadow text-center">
+                            <div className="card dashboard-card">
 
                                 <div className="card-body">
+                                    <FaSpinner
+                                        size={40}
+                                        color="#07ff13"
+                                        className="mb-3"
+                                    />
 
                                     <h6>Active</h6>
 
@@ -449,9 +611,14 @@ export default function Dashboard() {
 
                         <div className="col-md-3 mt-3">
 
-                            <div className="card shadow text-center">
+                            <div className="card dashboard-card">
 
                                 <div className="card-body">
+                                    <FaDoorClosed
+                                        size={40}
+                                        color="#9b1010"
+                                        className="mb-3"
+                                    />
 
                                     <h6>Closed</h6>
 
@@ -465,9 +632,14 @@ export default function Dashboard() {
 
                         <div className="col-md-3 mt-3">
 
-                            <div className="card shadow text-center">
+                            <div className="card dashboard-card">
 
                                 <div className="card-body">
+                                    <FaCheckCircle
+                                        size={40}
+                                        color="#109b5a"
+                                        className="mb-3"
+                                    />
 
                                     <h6>Verified</h6>
 

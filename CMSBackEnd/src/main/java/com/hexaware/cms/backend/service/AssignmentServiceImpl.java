@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hexaware.cms.backend.dto.AssignmentDTO;
+import com.hexaware.cms.backend.dto.OfficerWorkloadDTO;
 import com.hexaware.cms.backend.dto.VerifyCaseDTO;
 import com.hexaware.cms.backend.entity.Incident;
 import com.hexaware.cms.backend.entity.IncidentAssignment;
@@ -163,6 +164,12 @@ public class AssignmentServiceImpl implements IAssignmentService {
 		}
 
 		return list;
+	}
+	@Override
+	public List<OfficerWorkloadDTO> getOfficerWorkloads() {
+
+	    return assignmentRepo.getOfficerWorkloads();
+
 	}
 
 }
