@@ -3,12 +3,18 @@ import { useEffect, useState } from "react";
 import IncidentService from "../services/incident.service";
 import { Link, useNavigate } from "react-router-dom";
 import AssignmentService from "../services/assignment.service";
+import userService from "../services/user.service";
 
 export default function Dashboard() {
 
     const auth = useSelector((state) => state.auth);
     const [incidents, setIncidents] = useState([]);
     const [assignments, setAssignments] = useState([]);
+    //for stationhead
+    const [officers, setOfficers] = useState([]);
+
+    const [citizens, setCitizens] = useState([]);
+
 
     const navigate = useNavigate();
     useEffect(() => {
@@ -30,8 +36,34 @@ export default function Dashboard() {
                 });
 
         }
+        if (auth.role === "Stationhead") {
+
+            loadDashboard();
+
+        }
 
     }, []);
+    const loadDashboard = () => {
+
+        userService.getAllOfficers()
+
+            .then(res => setOfficers(res.data));
+
+        userService.getAllCitizens()
+
+            .then(res => setCitizens(res.data));
+
+        IncidentService.getAllIncidents()
+
+            .then(res => setIncidents(res.data));
+
+    };
+
+    const totalOfficers = officers.length;
+
+    const totalCitizens = citizens.length;
+
+    const totalIncidents = incidents.length;
     const total = incidents.length;
 
     const initiated = incidents.filter(
@@ -85,125 +117,125 @@ export default function Dashboard() {
             <h2>
                 Welcome, {auth.firstName} 👋
             </h2>
-               {auth.role === "Citizen" && (
-<>
-            <p className="text-muted">
-                Citizen Dashboard
-            </p>
+            {auth.role === "Citizen" && (
+                <>
+                    <p className="text-muted">
+                        Citizen Dashboard
+                    </p>
 
-            <div className="row mt-4">
+                    <div className="row mt-4">
 
-                <div className="col-md-3">
-                    <div className="card shadow text-center">
-                        <div className="card-body">
-                            <h6>Total Incidents</h6>
-                            <h2>{total}</h2>
+                        <div className="col-md-3">
+                            <div className="card shadow text-center">
+                                <div className="card-body">
+                                    <h6>Total Incidents</h6>
+                                    <h2>{total}</h2>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <div className="col-md-3">
-                    <div className="card shadow text-center">
-                        <div className="card-body">
-                            <h6>Pending</h6>
-                            <h2>{initiated}</h2>
+                        <div className="col-md-3">
+                            <div className="card shadow text-center">
+                                <div className="card-body">
+                                    <h6>Pending</h6>
+                                    <h2>{initiated}</h2>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <div className="col-md-3">
-                    <div className="card shadow text-center">
-                        <div className="card-body">
-                            <h6>In Progress</h6>
-                            <h2>{inProgress}</h2>
+                        <div className="col-md-3">
+                            <div className="card shadow text-center">
+                                <div className="card-body">
+                                    <h6>In Progress</h6>
+                                    <h2>{inProgress}</h2>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <div className="col-md-3">
-                    <div className="card shadow text-center">
-                        <div className="card-body">
-                            <h6>Resolved</h6>
-                            <h2>{resolved}</h2>
+                        <div className="col-md-3">
+                            <div className="card shadow text-center">
+                                <div className="card-body">
+                                    <h6>Resolved</h6>
+                                    <h2>{resolved}</h2>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div className="col-md-3">
-                    <div className="card shadow text-center">
-                        <div className="card-body">
-                            <h6>Verified</h6>
-                            <h2>{verified}</h2>
+                        <div className="col-md-3">
+                            <div className="card shadow text-center">
+                                <div className="card-body">
+                                    <h6>Verified</h6>
+                                    <h2>{verified}</h2>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
-                </div>
+                    <div className="mt-5">
 
-            </div>
-               <div className="mt-5">
+                        <h4>Recent Incidents</h4>
 
-                <h4>Recent Incidents</h4>
+                        <table className="table table-striped table-hover">
 
-                <table className="table table-striped table-hover">
+                            <thead>
 
-                    <thead>
+                                <tr>
 
-                        <tr>
-
-                            <th>Title</th>
-                            <th>Type</th>
-                            <th>Status</th>
-                            <th>Date</th>
-
-                        </tr>
-
-                    </thead>
-
-                    <tbody>
-
-                        {incidents.length === 0 ? (
-
-                            <tr>
-
-                                <td colSpan="4" className="text-center">
-
-                                    No incidents found.
-
-                                </td>
-
-                            </tr>
-
-                        ) : (
-
-                            incidents.slice(0, 5).map((incident) => (
-
-                                <tr key={incident.incidentId}>
-
-                                    <td>{incident.title}</td>
-
-                                    <td>{incident.incidentType?.typeName}</td>
-
-                                    <td>{incident.status?.statusName}</td>
-
-                                    <td>
-
-                                        {new Date(
-                                            incident.incidentDate
-                                        ).toLocaleDateString()}
-
-                                    </td>
+                                    <th>Title</th>
+                                    <th>Type</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
 
                                 </tr>
 
-                            ))
+                            </thead>
 
-                        )}
+                            <tbody>
 
-                    </tbody>
+                                {incidents.length === 0 ? (
 
-                </table>
+                                    <tr>
 
-            </div>
-            </>
-               )}
+                                        <td colSpan="4" className="text-center">
+
+                                            No incidents found.
+
+                                        </td>
+
+                                    </tr>
+
+                                ) : (
+
+                                    incidents.slice(0, 5).map((incident) => (
+
+                                        <tr key={incident.incidentId}>
+
+                                            <td>{incident.title}</td>
+
+                                            <td>{incident.incidentType?.typeName}</td>
+
+                                            <td>{incident.status?.statusName}</td>
+
+                                            <td>
+
+                                                {new Date(
+                                                    incident.incidentDate
+                                                ).toLocaleDateString()}
+
+                                            </td>
+
+                                        </tr>
+
+                                    ))
+
+                                )}
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+                </>
+            )}
             {auth.role === "Officer" && (
 
                 <div className="row mt-4">
@@ -317,7 +349,212 @@ export default function Dashboard() {
 
         </div>
 
-    </div> */}
+    </div> */}{auth.role === "Stationhead" && (
+
+                <div>
+
+                    <h2>
+
+                        Welcome {auth.firstName}
+
+                    </h2>
+
+                    <p className="text-muted">
+
+                        Station Head Dashboard
+
+                    </p>
+
+                    <div className="row mt-4">
+
+                        <div className="col-md-3">
+
+                            <div className="card shadow text-center">
+
+                                <div className="card-body">
+
+                                    <h6>Total Officers</h6>
+
+                                    <h2>{totalOfficers}</h2>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div className="col-md-3">
+
+                            <div className="card shadow text-center">
+
+                                <div className="card-body">
+
+                                    <h6>Total Citizens</h6>
+
+                                    <h2>{totalCitizens}</h2>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div className="col-md-3">
+
+                            <div className="card shadow text-center">
+
+                                <div className="card-body">
+
+                                    <h6>Total Incidents</h6>
+
+                                    <h2>{totalIncidents}</h2>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div className="col-md-3">
+
+                            <div className="card shadow text-center">
+
+                                <div className="card-body">
+
+                                    <h6>Initiated</h6>
+
+                                    <h2>{initiated}</h2>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div className="col-md-3 mt-3">
+
+                            <div className="card shadow text-center">
+
+                                <div className="card-body">
+
+                                    <h6>Active</h6>
+
+                                    <h2>{active}</h2>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div className="col-md-3 mt-3">
+
+                            <div className="card shadow text-center">
+
+                                <div className="card-body">
+
+                                    <h6>Closed</h6>
+
+                                    <h2>{closed}</h2>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div className="col-md-3 mt-3">
+
+                            <div className="card shadow text-center">
+
+                                <div className="card-body">
+
+                                    <h6>Verified</h6>
+
+                                    <h2>{verified}</h2>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div className="mt-5">
+
+                        <h4>
+
+                            Latest Incidents
+
+                        </h4>
+
+                        <table className="table table-striped">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>ID</th>
+
+                                    <th>Citizen</th>
+
+                                    <th>Title</th>
+
+                                    <th>Status</th>
+
+                                    <th>View</th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                {incidents.slice(0, 5).map(i => (
+
+                                    <tr key={i.incidentId}>
+
+                                        <td>{i.incidentId}</td>
+
+                                        <td>
+
+                                            {i.user.firstName} {i.user.lastName}
+
+                                        </td>
+
+                                        <td>{i.title}</td>
+
+                                        <td>{i.status.statusName}</td>
+
+                                        <td>
+
+                                            <Link
+
+                                                className="btn btn-primary btn-sm"
+
+                                                to={`/incidents/${i.incidentId}`}
+
+                                            >
+
+                                                View
+
+                                            </Link>
+
+                                        </td>
+
+                                    </tr>
+
+                                ))}
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            )}
 
 
         </div>

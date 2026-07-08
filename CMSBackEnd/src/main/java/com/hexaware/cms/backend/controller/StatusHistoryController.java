@@ -25,7 +25,7 @@ public class StatusHistoryController {
 
 	@Autowired
 	IStatusHistory statusHistoryService;
-	@PreAuthorize("hasRole('Officer')")
+	@PreAuthorize("hasAnyRole('Officer','Stationhead')")
 	@PutMapping("/updateStatus")
 	public ResponseEntity<IncidentStatusHistory> updateStatus(@RequestBody StatusUpdateDTO dto) {
 

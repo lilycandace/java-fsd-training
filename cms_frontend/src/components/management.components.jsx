@@ -12,6 +12,7 @@ export default function Management() {
     const [showForm, setShowForm] = useState(false);
     const [users, setUsers] = useState([]);
     const [incidents, setIncidents] = useState([]);
+    const [errors, setErrors] = useState({});
 
     const [newOfficer, setNewOfficer] = useState({
         firstName: "",
@@ -38,6 +39,132 @@ export default function Management() {
             })
 
             .catch(console.log);
+
+    };
+    const validateField = (name, value) => {
+
+        let error = "";
+
+        switch (name) {
+
+            case "firstName":
+
+            case "middleName":
+
+            case "lastName":
+
+                if (!value.trim()) {
+
+                    error = "This field is required";
+
+                }
+
+                else if (!/^[A-Za-z ]+$/.test(value)) {
+
+                    error = "Only alphabets are allowed";
+
+                }
+
+                break;
+
+            case "email":
+
+                if (!value.trim()) {
+
+                    error = "Email is required";
+
+                }
+
+                else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+
+                    error = "Invalid email address";
+
+                }
+
+                break;
+
+            case "password":
+
+                if (!value.trim()) {
+
+                    error = "Password is required";
+
+                }
+
+                else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/.test(value)) {
+
+                    error = "Minimum 8 characters with uppercase, lowercase, number and special character";
+
+                }
+
+                break;
+
+
+            case "phone":
+
+                if (!/^[6-9]\d{9}$/.test(value)) {
+
+                    error = "Enter a valid 10-digit phone number";
+
+                }
+
+                break;
+
+            case "aadhaarNo":
+
+                if (!/^\d{12}$/.test(value)) {
+
+                    error = "Aadhaar must contain 12 digits";
+
+                }
+
+                break;
+
+            case "panNo":
+
+                if (!/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(value)) {
+
+                    error = "Invalid PAN number";
+
+                }
+
+                break;
+
+            case "address":
+
+                if (value.trim().length < 10) {
+
+                    error = "Address must contain at least 10 characters";
+
+                }
+
+                break;
+
+            case "dob":
+
+                if (!value) {
+
+                    error = "Date of Birth is required";
+
+                }
+
+                else if (new Date(value) > new Date()) {
+
+                    error = "Invalid Date of Birth";
+
+                }
+
+                break;
+
+        }
+
+        setErrors(prev => ({
+
+            ...prev,
+
+            [name]: error
+
+        }));
 
     };
     const loadUsers = () => {
@@ -127,6 +254,7 @@ export default function Management() {
             [name]: value
 
         });
+        validateField(name, value);
 
     };
 
@@ -212,12 +340,17 @@ export default function Management() {
 
                                                 <input
                                                     type="text"
-                                                    className="form-control"
+                                                    className={`form-control ${errors.firstName ? "is-invalid" : ""}`}
                                                     name="firstName"
                                                     value={newOfficer.firstName}
                                                     onChange={handleChange}
                                                     required
                                                 />
+                                                <div className="invalid-feedback">
+
+                                                    {errors.firstName}
+
+                                                </div>
 
                                             </div>
 
@@ -232,6 +365,11 @@ export default function Management() {
                                                     value={newOfficer.middleName}
                                                     onChange={handleChange}
                                                 />
+                                                <div className="invalid-feedback">
+
+                                                    {errors.middleName}
+
+                                                </div>
 
                                             </div>
 
@@ -241,12 +379,17 @@ export default function Management() {
 
                                                 <input
                                                     type="text"
-                                                    className="form-control"
+                                                    className={`form-control ${errors.lastName ? "is-invalid" : ""}`}
                                                     name="lastName"
                                                     value={newOfficer.lastName}
                                                     onChange={handleChange}
                                                     required
                                                 />
+                                                <div className="invalid-feedback">
+
+                                                    {errors.lastName}
+
+                                                </div>
 
                                             </div>
 
@@ -260,12 +403,17 @@ export default function Management() {
 
                                                 <input
                                                     type="email"
-                                                    className="form-control"
+                                                    className={`form-control ${errors.email ? "is-invalid" : ""}`}
                                                     name="email"
                                                     value={newOfficer.email}
                                                     onChange={handleChange}
                                                     required
                                                 />
+                                                <div className="invalid-feedback">
+
+                                                    {errors.email}
+
+                                                </div>
 
                                             </div>
 
@@ -275,13 +423,18 @@ export default function Management() {
 
                                                 <input
                                                     type="password"
-                                                    className="form-control"
+                                                    className={`form-control ${errors.password ? "is-invalid" : ""}`}
                                                     name="password"
                                                     value={newOfficer.password}
                                                     onChange={handleChange}
                                                     placeholder="Officer@123"
                                                     required
                                                 />
+                                                <div className="invalid-feedback">
+
+                                                    {errors.password}
+
+                                                </div>
 
                                             </div>
 
@@ -295,12 +448,17 @@ export default function Management() {
 
                                                 <input
                                                     type="text"
-                                                    className="form-control"
+                                                    className={`form-control ${errors.phone ? "is-invalid" : ""}`}
                                                     name="phone"
                                                     value={newOfficer.phone}
                                                     onChange={handleChange}
                                                     required
                                                 />
+                                                <div className="invalid-feedback">
+
+                                                    {errors.phone}
+
+                                                </div>
 
                                             </div>
 
@@ -310,12 +468,17 @@ export default function Management() {
 
                                                 <input
                                                     type="date"
-                                                    className="form-control"
+                                                    className={`form-control ${errors.dob ? "is-invalid" : ""}`}
                                                     name="dob"
                                                     value={newOfficer.dob}
                                                     onChange={handleChange}
                                                     required
                                                 />
+                                                <div className="invalid-feedback">
+
+                                                    {errors.dob}
+
+                                                </div>
 
                                             </div>
 
@@ -327,12 +490,17 @@ export default function Management() {
 
                                             <textarea
                                                 rows="3"
-                                                className="form-control"
+                                                className={`form-control ${errors.address ? "is-invalid" : ""}`}
                                                 name="address"
                                                 value={newOfficer.address}
                                                 onChange={handleChange}
                                                 required
                                             />
+                                            <div className="invalid-feedback">
+
+                                                {errors.address}
+
+                                            </div>
 
                                         </div>
 
@@ -344,12 +512,17 @@ export default function Management() {
 
                                                 <input
                                                     type="text"
-                                                    className="form-control"
+                                                    className={`form-control ${errors.panNo ? "is-invalid" : ""}`}
                                                     name="panNo"
                                                     value={newOfficer.panNo}
                                                     onChange={handleChange}
                                                     required
                                                 />
+                                                <div className="invalid-feedback">
+
+                                                    {errors.panNo}
+
+                                                </div>
 
                                             </div>
 
@@ -359,14 +532,20 @@ export default function Management() {
 
                                                 <input
                                                     type="text"
-                                                    className="form-control"
+                                                    className={`form-control ${errors.aadhaarNo ? "is-invalid" : ""}`}
                                                     name="aadhaarNo"
                                                     value={newOfficer.aadhaarNo}
                                                     onChange={handleChange}
                                                     required
                                                 />
+                                                <div className="invalid-feedback">
+
+                                                    {errors.aadhaarNo}
+
+                                                </div>
 
                                             </div>
+
 
                                         </div>
 
@@ -535,7 +714,7 @@ export default function Management() {
                             <tbody>
 
                                 {incidents.map(i => (
-                                    
+
 
                                     <tr key={i.incidentId}>
 
@@ -566,7 +745,7 @@ export default function Management() {
                                             <td>{i.incidentId}</td>
 
                                             {i.status.statusName === "initiated" && (
-                                                
+
 
                                                 <Link
                                                     className="btn btn-success btn-sm"

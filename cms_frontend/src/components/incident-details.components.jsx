@@ -5,29 +5,35 @@ import { useEffect, useState } from "react";
 import IncidentService from "../services/incident.service";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import assignmentService from "../services/assignment.service";
 function IncidentDetails() {
     const { id } = useParams();
 
     const auth = useSelector((state) => state.auth);
     const navigate = useNavigate();
-
+    const [assignment, setAssignment] = useState(null);
     const [incident, setIncident] = useState(null);
     const [status, setStatus] = useState("");
     const [remarks, setRemarks] = useState("");
 
     useEffect(() => {
 
-        IncidentService.getIncident(id)
+    IncidentService.getIncident(id)
+        .then((response) => {
 
-            .then((response) => {
+            setIncident(response.data);
 
-                setIncident(response.data);
+        });
 
-                setStatus(response.data.status.statusName);
+    assignmentService.getAssignmentByIncident(id)
+        .then((response) => {
 
-            });
+            setAssignment(response.data);
 
-    }, [id]);
+        })
+        .catch(console.log);
+
+}, [id]);
 
 
     if (!incident) {
@@ -43,6 +49,20 @@ function IncidentDetails() {
         );
 
     }
+    const assignmentsByIncident = () => {
+
+        AssignmentService.getAssignmentByIncident(id)
+
+            .then((response) => {
+
+                setAssignment(response.data);
+
+            })
+
+            .catch(console.log);
+
+    };
+
     const updateStatus = () => {
 
         const auth = JSON.parse(localStorage.getItem("auth"));
@@ -150,7 +170,8 @@ function IncidentDetails() {
 
                     <button
                         className="btn btn-outline-secondary"
-                        onClick={() => navigate("/incidents")}
+                        // onClick={() => navigate("/incidents")}
+                        onClick={() => navigate(-1)}
                     >
                         ← Back
                     </button>
@@ -304,9 +325,9 @@ function IncidentDetails() {
 
                                 >
 
-                            
 
-                                <option value="1">
+
+                                    <option value="1">
 
                                         active
 
@@ -318,7 +339,7 @@ function IncidentDetails() {
                                         Closed
 
                                     </option>
-                                    
+
 
                                 </select>
                                 <textarea
@@ -392,32 +413,15 @@ function IncidentDetails() {
 
                     <hr />
 
-                    <h5>
+                    <p>
 
-                        Officer Assigned
+                        <strong>Assigned Officer:</strong>{" "}
 
-                    </h5>
+                        {assignment
+                            ? assignment.officer.firstName + " " + assignment.officer.lastName
+                            : "Not Assigned"}
 
-                    {
-                        incident.assignments?.length > 0
-
-                            ?
-
-                            <p>
-
-                                Officer Assigned
-
-                            </p>
-
-                            :
-
-                            <p className="text-muted">
-
-                                Not Assigned Yet
-
-                            </p>
-
-                    }
+                    </p>
 
                     <hr />
 

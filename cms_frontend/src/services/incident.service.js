@@ -32,6 +32,11 @@ getAllIncidents(){
 return http.get("/api/incidents/getAllIncidents");
 
 }
+getClosedIncidents() {
+
+    return http.get("/api/incidents/closedIncidents");
+
+}
 }
 
 export default new IncidentService();

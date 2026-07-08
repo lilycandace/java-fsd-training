@@ -10,5 +10,7 @@ public interface IStatusHistory {
 	IncidentStatusHistory updateStatus(StatusUpdateDTO dto);
 
 	List<IncidentStatusHistory> getHistoryByIncident(Integer incidentId);
+	
+	
 
 }

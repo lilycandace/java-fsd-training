@@ -12,7 +12,16 @@ class AssignmentService {
         return http.post("/api/assignments/assignOfficer", data);
 
     }
+    getAssignmentByIncident(id) {
 
+        return http.get(`/api/assignments/incident/${id}`);
+
+    }
+    getClosedAssignments() {
+
+        return http.get("/api/assignments/closedAssignments");
+
+    }
 }
 
 export default new AssignmentService();

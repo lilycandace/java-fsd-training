@@ -170,11 +170,11 @@ export default function Navbar() {
                   </NavLink>
                 </li>
 
-                <li className="nav-item">
+                {/* <li className="nav-item">
                   <NavLink className="nav-link" to="/assign">
                     Assign Incident
                   </NavLink>
-                </li>
+                </li> */}
 
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/verify">

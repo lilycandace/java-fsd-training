@@ -1,5 +1,6 @@
 package com.hexaware.cms.backend.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -8,14 +9,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hexaware.cms.backend.dto.AssignmentDTO;
+import com.hexaware.cms.backend.dto.VerifyCaseDTO;
 import com.hexaware.cms.backend.entity.Incident;
 import com.hexaware.cms.backend.entity.IncidentAssignment;
 import com.hexaware.cms.backend.entity.IncidentStatus;
+import com.hexaware.cms.backend.entity.IncidentStatusHistory;
 import com.hexaware.cms.backend.entity.User;
 import com.hexaware.cms.backend.exception.IncidentNotFoundException;
 import com.hexaware.cms.backend.exception.UserNotFoundException;
 import com.hexaware.cms.backend.repository.IncidentAssignmentRepository;
 import com.hexaware.cms.backend.repository.IncidentRepository;
+import com.hexaware.cms.backend.repository.IncidentStatusHistoryRepository;
 import com.hexaware.cms.backend.repository.IncidentStatusRepository;
 import com.hexaware.cms.backend.repository.UserRepository;
 
@@ -37,6 +41,9 @@ public class AssignmentServiceImpl implements IAssignmentService {
 
 	@Autowired
 	IncidentStatusRepository statusRepo;
+	
+	@Autowired
+	IncidentStatusHistoryRepository statusHistoryRepo;
 
 	@Override
 	public IncidentAssignment assignOfficer(AssignmentDTO dto) {
@@ -87,6 +94,75 @@ public class AssignmentServiceImpl implements IAssignmentService {
 		// TODO Auto-generated method stub
 
 		return assignmentRepo.findByOfficerUserId(officerId);
+	}
+	@Override
+	public IncidentAssignment getAssignmentByIncident(Integer incidentId) {
+
+	    return assignmentRepo.findByIncidentIncidentId(incidentId)
+	            .orElse(null);
+
+	}
+	@Override
+	public List<VerifyCaseDTO> getClosedAssignments() {
+		List<IncidentAssignment> assignments =
+	            assignmentRepo.findByIncidentStatusStatusName("closed");
+
+
+		List<VerifyCaseDTO> list = new ArrayList<>();
+
+		for (IncidentAssignment assignment : assignments) {
+
+		    VerifyCaseDTO dto = new VerifyCaseDTO();
+
+		    dto.setAssignmentId(assignment.getAssignmentId());
+
+		    dto.setIncidentId(
+		            assignment.getIncident().getIncidentId());
+
+		    dto.setTitle(
+		            assignment.getIncident().getTitle());
+
+		    dto.setCitizenName(
+
+		            assignment.getIncident().getUser().getFirstName()
+
+		            + " "
+
+		            + assignment.getIncident().getUser().getLastName());
+
+		    dto.setOfficerName(
+
+		            assignment.getOfficer().getFirstName()
+
+		            + " "
+
+		            + assignment.getOfficer().getLastName());
+
+		    dto.setAssignedAt(
+
+		            assignment.getAssignedAt());
+
+		    IncidentStatusHistory history =
+		            statusHistoryRepo
+		            .findFirstByIncidentIncidentIdAndNewStatusStatusNameOrderByChangedAtDesc(
+
+		                    assignment.getIncident().getIncidentId(),
+
+		                    "closed")
+
+		            .orElse(null);
+
+		    if(history != null){
+
+		        dto.setClosedAt(history.getChangedAt());
+
+		    }
+
+		    list.add(dto);
+
+		}
+
+		return list;
 	}
 
 }

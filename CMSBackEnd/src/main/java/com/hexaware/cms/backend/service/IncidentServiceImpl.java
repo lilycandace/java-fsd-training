@@ -143,6 +143,12 @@ public class IncidentServiceImpl implements IIncidentService {
 
 	    return incidentRepo.findByUser(user);
 	}
+	@Override
+	public List<Incident> getClosedIncidents() {
+
+	    return incidentRepo.findByStatusStatusName("closed");
+
+	}
 
 	
 }

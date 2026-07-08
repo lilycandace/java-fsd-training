@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hexaware.cms.backend.dto.IncidentDTO;
 import com.hexaware.cms.backend.entity.Incident;
+import com.hexaware.cms.backend.entity.IncidentAssignment;
 import com.hexaware.cms.backend.service.IIncidentService;
 import com.hexaware.cms.backend.service.IReportService;
 
@@ -97,6 +98,14 @@ public class IncidentController {
 		return ResponseEntity.ok()
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=Incident_" + incidentId + ".pdf")
 				.contentType(MediaType.APPLICATION_PDF).body(pdf.readAllBytes());
+
+	}
+
+	@PreAuthorize("hasRole('Stationhead')")
+	@GetMapping("/closedIncidents")
+	public ResponseEntity<List<Incident>> getClosedIncidents() {
+
+		return ResponseEntity.ok(incidentService.getClosedIncidents());
 
 	}
 

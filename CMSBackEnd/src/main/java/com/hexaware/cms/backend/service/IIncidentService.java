@@ -23,5 +23,7 @@ public interface IIncidentService {
 	public List<Incident> getIncidentsByEmail(String email) ;
 	
 	public Incident createIncident(IncidentDTO dto,Authentication auth);
+	
+	List<Incident> getClosedIncidents();
 
 }

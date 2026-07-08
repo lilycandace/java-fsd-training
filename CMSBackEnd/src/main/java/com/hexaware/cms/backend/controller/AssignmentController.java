@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hexaware.cms.backend.dto.AssignmentDTO;
+import com.hexaware.cms.backend.dto.VerifyCaseDTO;
 import com.hexaware.cms.backend.entity.IncidentAssignment;
 import com.hexaware.cms.backend.service.IAssignmentService;
 
@@ -24,18 +25,35 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 public class AssignmentController {
 	@Autowired
 	IAssignmentService assignmentService;
-	
+
 	@PreAuthorize("hasRole('Stationhead')")
 	@PostMapping("/assignOfficer")
 	public ResponseEntity<IncidentAssignment> assignOfficer(@RequestBody AssignmentDTO dto) {
 
 		return ResponseEntity.ok(assignmentService.assignOfficer(dto));
 	}
+
 	@PreAuthorize("hasAnyRole('Officer','Stationhead')")
 	@GetMapping("/getAssignments/{id}")
 	public ResponseEntity<List<IncidentAssignment>> getAssignmentsByOfficer(@PathVariable Integer id) {
 
 		return ResponseEntity.ok(assignmentService.getAssignmentsByOfficer(id));
+	}
+
+	@PreAuthorize("hasAnyRole('Officer','Citizen','Stationhead')")
+	@GetMapping("/incident/{incidentId}")
+	public ResponseEntity<IncidentAssignment> getAssignmentByIncident(@PathVariable Integer incidentId) {
+
+		return ResponseEntity.ok(assignmentService.getAssignmentByIncident(incidentId));
+
+	}
+
+	@PreAuthorize("hasRole('Stationhead')")
+	@GetMapping("/closedAssignments")
+	public ResponseEntity<List<VerifyCaseDTO>> getClosedAssignments() {
+
+		return ResponseEntity.ok(assignmentService.getClosedAssignments());
+
 	}
 
 }

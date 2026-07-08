@@ -4,8 +4,9 @@ import IncidentService from "../services/incident.service";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 export default function CreateIncident() {
-const navigate = useNavigate();
-const auth = useSelector((state) => state.auth);
+    const navigate = useNavigate();
+    const auth = useSelector((state) => state.auth);
+    const [errors, setErrors] = useState({});
     const [incident, setIncident] = useState({
 
         incidentType: "",
@@ -42,16 +43,177 @@ const auth = useSelector((state) => state.auth);
 
     const incidentTypeMap = {
 
-    theft: 1,
-    murder: 2,
-    missing_person: 3,
-    abuse: 4,
-    lost_property: 5,
-    petit_larceny: 6,
-    criminal_mischief: 7,
-    graffiti: 8
+        theft: 1,
+        murder: 2,
+        missing_person: 3,
+        abuse: 4,
+        lost_property: 5,
+        petit_larceny: 6,
+        criminal_mischief: 7,
+        graffiti: 8
 
-};
+    };
+    const validateIncident = (name, value) => {
+
+        let error = "";
+
+        switch (name) {
+
+            case "incidentType":
+
+                if (value === "") {
+
+                    error = "Please select an incident type";
+
+                }
+
+                break;
+
+            case "title":
+
+                if (value.trim().length < 5) {
+
+                    error = "Title should contain at least 5 characters";
+
+                }
+
+                break;
+
+            case "description":
+
+                if (value.trim().length < 20) {
+
+                    error = "Description should contain at least 20 characters";
+
+                }
+
+                break;
+
+            case "location":
+
+                if (value.trim().length < 5) {
+
+                    error = "Location is required";
+
+                }
+
+                break;
+            case "estimatedValue":
+
+                if (Number(value) <= 0) {
+
+                    error = "Enter a valid amount";
+
+                }
+
+                break;
+            case "propertyStolen":
+
+                if (value.trim() == "") {
+
+                    error = "Property name is required";
+
+                }
+
+                break;
+            case "victimName":
+
+                if (value.trim() == "") {
+
+                    error = "Victim name is required";
+
+                }
+
+                break;
+            case "weaponUsed":
+
+                if (value.trim() == "") {
+
+                    error = "Weapon details required";
+
+                }
+
+                break;
+            case "missingPersonName":
+
+                if (value.trim() == "") {
+
+                    error = "Missing person name required";
+
+                }
+
+                break;
+            case "age":
+
+                if (Number(value) <= 0) {
+
+                    error = "Enter valid age";
+
+                }
+
+                break;
+            case "lastSeenLocation":
+
+                if (value.trim() == "") {
+
+                    error = "Last seen location required";
+
+                }
+
+                break;
+            case "lastSeenDate":
+
+                if (value == "") {
+
+                    error = "Last seen date required";
+
+                }
+
+                break;
+            case "abuseType":
+
+                if (value == "") {
+
+                    error = "Select abuse type";
+
+                }
+
+                break;
+            case "relationship":
+
+                if (value.trim() == "") {
+
+                    error = "Relationship required";
+
+                }
+
+                break;
+            case "damageCost":
+
+                if (Number(value) <= 0) {
+
+                    error = "Enter valid cost";
+
+                }
+
+                break;
+            case "graffitiLocation":
+
+                if (value.trim() == "") {
+
+                    error = "Location required";
+
+                }
+
+                break;
+
+
+        }    setErrors(prev => ({
+            ...prev,
+            [name]: error
+        }));
+
+    }
 
     const handleChange = (e) => {
 
@@ -64,6 +226,7 @@ const auth = useSelector((state) => state.auth);
             [name]: value
 
         });
+        validateIncident(name, value);
 
     };
 
@@ -120,28 +283,28 @@ Immediate Danger : ${incident.immediateDanger}`;
 
         }
 
-     const payload = {
-    incidentTypeId: incidentTypeMap[incident.incidentType],
-    title: incident.title,
-    description: fullDescription,
-    location: incident.location
-};
+        const payload = {
+            incidentTypeId: incidentTypeMap[incident.incidentType],
+            title: incident.title,
+            description: fullDescription,
+            location: incident.location
+        };
 
         IncidentService.createIncident(payload)
-    .then(() => {
+            .then(() => {
 
-        alert("Incident reported successfully!");
+                alert("Incident reported successfully!");
 
-        navigate("/dashboard");
+                navigate("/dashboard");
 
-    })
-    .catch((error) => {
+            })
+            .catch((error) => {
 
-        console.log(error);
+                console.log(error);
 
-        alert("Unable to create incident.");
+                alert("Unable to create incident.");
 
-    });
+            });
 
     };
 
@@ -157,18 +320,23 @@ Immediate Danger : ${incident.immediateDanger}`;
 
                 <input
                     type="text"
-                    className="form-control"
+                    className={`form-control ${errors.title ? "is-invalid" : ""}`}
                     name="title"
                     value={incident.title}
                     onChange={handleChange}
                 />
+                <div className="invalid-feedback">
 
-                
+                    {errors.title}
+
+                </div>
+
+
 
                 <label className="mt-3">Incident Type</label>
 
                 <select
-                    className="form-control"
+                    className={`form-control ${errors.incidentType?"is-invalid":""}`}
                     name="incidentType"
                     value={incident.incidentType}
                     onChange={handleChange}
@@ -193,6 +361,11 @@ Immediate Danger : ${incident.immediateDanger}`;
                     <option value="graffiti">Graffiti</option>
 
                 </select>
+                <div className="invalid-feedback">
+
+                    {errors.incidentType}
+
+                </div>
                 {incident.incidentType === "theft" && (
 
                     <div className="mt-3">
@@ -201,21 +374,31 @@ Immediate Danger : ${incident.immediateDanger}`;
 
                         <input
                             type="text"
-                            className="form-control"
+                            className={`form-control ${errors.propertyStolen?"is-invalid":""}`}
                             name="propertyStolen"
                             value={incident.propertyStolen}
                             onChange={handleChange}
                         />
+                        <div className="invalid-feedback">
+
+                    {errors.propertyStolen}
+
+                </div>
 
                         <label className="mt-3">Estimated Value</label>
 
                         <input
                             type="number"
-                            className="form-control"
+                            className={`form-control ${errors.estimatedValue?"is-invalid":""}`}
                             name="estimatedValue"
                             value={incident.estimatedValue}
                             onChange={handleChange}
                         />
+                        <div className="invalid-feedback">
+
+                    {errors.estimatedValue}
+
+                </div>
 
                         <label className="mt-3">Was the suspect known?</label>
 
@@ -241,21 +424,31 @@ Immediate Danger : ${incident.immediateDanger}`;
 
                         <input
                             type="text"
-                            className="form-control"
+                            className={`form-control ${errors.victimName?"is-invalid":""}`}
                             name="victimName"
                             value={incident.victimName}
                             onChange={handleChange}
                         />
+                        <div className="invalid-feedback">
+
+                    {errors.victimName}
+
+                </div>
 
                         <label className="mt-3">Weapon Used</label>
 
                         <input
                             type="text"
-                            className="form-control"
+                            className={`form-control ${errors.weaponUsed?"is-invalid":""}`}
                             name="weaponUsed"
                             value={incident.weaponUsed}
                             onChange={handleChange}
                         />
+                        <div className="invalid-feedback">
+
+                    {errors.weaponUsed}
+
+                </div>
 
                         <label className="mt-3">Number of witnesses</label>
 
@@ -278,20 +471,30 @@ Immediate Danger : ${incident.immediateDanger}`;
 
                         <input
                             type="text"
-                            className="form-control"
+                            className={`form-control ${errors.missingPersonName?"is-invalid":""}`}
                             name="missingPersonName"
                             value={incident.missingPersonName}
                             onChange={handleChange}
                         />
+                        <div className="invalid-feedback">
+
+                    {errors.missingPersonName}
+
+                </div>
                         <label className="mt-3">Age</label>
 
                         <input
                             type="number"
-                            className="form-control"
+                            className={`form-control ${errors.age?"is-invalid":""}`}
                             name="age"
                             value={incident.age}
                             onChange={handleChange}
                         />
+                        <div className="invalid-feedback">
+
+                    {errors.age}
+
+                </div>
                         <label className="mt-3">Gender</label>
 
                         <select
@@ -310,20 +513,30 @@ Immediate Danger : ${incident.immediateDanger}`;
 
                         <input
                             type="text"
-                            className="form-control"
+                            className={`form-control ${errors.lastSeenLocation?"is-invalid":""}`}
                             name="lastSeenLocation"
                             value={incident.lastSeenLocation}
                             onChange={handleChange}
                         />
+                        <div className="invalid-feedback">
+
+                    {errors.lastSeenLocation}
+
+                </div>
                         <label className="mt-3">Last seen date</label>
 
                         <input
                             type="date"
-                            className="form-control"
+                            className={`form-control ${errors.lastSeenDate?"is-invalid":""}`}
                             name="lastSeenDate"
                             value={incident.lastSeenDate}
                             onChange={handleChange}
                         />
+                        <div className="invalid-feedback">
+
+                    {errors.lastSeenDate}
+
+                </div>
 
 
 
@@ -347,7 +560,7 @@ Immediate Danger : ${incident.immediateDanger}`;
                         <label className="mt-3">Abuse Type</label>
 
                         <select
-                            className="form-control"
+                            className={`form-control ${errors.abuseType?"is-invalid":""}`}
                             name="abuseType"
                             value={incident.abuseType}
                             onChange={handleChange}
@@ -357,15 +570,25 @@ Immediate Danger : ${incident.immediateDanger}`;
                             <option value="Physical_violence">Physical Violence</option>
                             <option value="Verbal_abuse">Verbal Abuse</option>
                         </select>
+                        <div className="invalid-feedback">
+
+                    {errors.abuseType}
+
+                </div>
 
                         <label className="mt-3">Relationship to the victim?</label>
                         <input
                             type="text"
-                            className="form-control"
+                            className={`form-control ${errors.relationship?"is-invalid":""}`}
                             name="relationship"
                             value={incident.relationship}
                             onChange={handleChange}
                         />
+                        <div className="invalid-feedback">
+
+                    {errors.relationship}
+
+                </div>
 
                         <label className="mt-3">Immediate Danger?</label>
 
