@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import AssignmentService from "../services/assignment.service";
 import userService from "../services/user.service";
 import { FaClipboardList, FaDoorClosed } from "react-icons/fa";
-import { FaClock, FaSpinner, FaCheckCircle, FaUserShield, FaUsers, FaTimesCircle,FaUser,FaHourglassStart  } from "react-icons/fa";
+import { FaClock, FaSpinner, FaCheckCircle, FaUserShield, FaUsers, FaTimesCircle, FaUser, FaHourglassStart } from "react-icons/fa";
 import { MdAssignmentAdd } from "react-icons/md";
 import { PiDetectiveFill } from "react-icons/pi";
 import { MdOutlineVerifiedUser } from "react-icons/md";
@@ -39,6 +39,12 @@ export default function Dashboard() {
 
             AssignmentService.getAssignmentsByOfficer(auth.userId)
                 .then((response) => {
+                    console.table(
+            response.data.map(a => ({
+                incidentId: a.incident.incidentId,
+                status: a.incident.status.statusName
+            }))
+        );
                     setAssignments(response.data);
                 });
 
@@ -60,9 +66,26 @@ export default function Dashboard() {
 
             .then(res => setCitizens(res.data));
 
-        IncidentService.getAllIncidents()
+        // IncidentService.getAllIncidents()
 
-            .then(res => setIncidents(res.data));
+        //     .then(res => setIncidents(res.data));
+        IncidentService.getAllIncidents()
+    .then(res => {
+
+        console.log("Dashboard Incidents:", res.data);
+
+        res.data.forEach(i => {
+            console.log(
+                i.incidentId,
+                i.status.statusId,
+                i.status.statusName
+            );
+        });
+
+        setIncidents(res.data);
+
+    });
+            
 
     };
 
@@ -102,17 +125,17 @@ export default function Dashboard() {
         a => a.incident.status.statusName.toLowerCase() === "initiated"
     ).length;
 
-    const active = assignments.filter(
-        a => a.incident.status.statusName.toLowerCase() === "active"
-    ).length;
+    const officerActive = assignments.filter(
+    a => a.incident.status.statusName.toLowerCase() === "active"
+).length;
 
-    const verifiedAssgn = assignments.filter(
-        a => a.incident.status.statusName.toLowerCase() === "verified"
-    ).length;
+const officerVerified = assignments.filter(
+    a => a.incident.status.statusName.toLowerCase() === "verified"
+).length;
 
-    const closed = assignments.filter(
-        a => a.incident.status.statusName.toLowerCase() === "closed"
-    ).length;
+const officerClosed = assignments.filter(
+    a => a.incident.status.statusName.toLowerCase() === "closed"
+).length;
 
 
     console.log(auth);
@@ -121,39 +144,38 @@ export default function Dashboard() {
 
         <div className="container mt-4">
 
-            <h2>
-                Welcome, {auth.firstName} 👋
-            </h2>
-            {/* <span className="text-white fw-semibold">
+            <div className="mb-4">
 
-    <FaUser className="me-2"/>
+                <h2 className="fw-bold">
 
-    {auth.firstName}
+                    Welcome back,
 
-    <span className="badge bg-warning text-dark ms-2">
+                    <span className="text-primary">
 
-        {auth.role}
+                        {" "}{auth.firstName}
 
-    </span>
+                    </span>
 
-</span> */}
+                    👋
+
+                </h2>
+
+                <p className="text-secondary">
+
+                    {auth.role} Dashboard
+
+                </p>
+
+            </div>
             {auth.role === "Citizen" && (
                 <>
-                    <p className="text-muted">
-                        Citizen Dashboard
-                    </p>
+
 
                     <div className="row mt-4">
 
-                        {/* <div className="col-md-3">
-                            <div className="card shadow text-center">
-                                <div className="card-body">
-                                    <h6>Total Incidents</h6>
-                                    <h2>{total}</h2>
-                                </div>
-                            </div>
-                        </div> */}
+
                         <div className="col-md-3">
+
 
                             <div className="card dashboard-card">
 
@@ -170,7 +192,6 @@ export default function Dashboard() {
                                     <h2>{total}</h2>
 
                                 </div>
-
                             </div>
 
                         </div>
@@ -206,7 +227,7 @@ export default function Dashboard() {
                                         className="mb-3"
                                     />
                                     <h6>In Progress</h6>
-                                    <h2>{inProgress}</h2>
+                                    <h2>{active}</h2>
                                 </div>
                             </div>
                         </div>
@@ -239,70 +260,154 @@ export default function Dashboard() {
                         </div>
 
                     </div>
-                    <div className="mt-5">
+                    <div className="card mt-4">
 
-                        <h4>Recent Incidents</h4>
+                        <div className="card-body">
 
-                        <table className="table table-striped table-hover">
+                            <h4 className="mb-4">
 
-                            <thead>
+                                Recent Incidents
 
-                                <tr>
+                            </h4>
 
-                                    <th>Title</th>
-                                    <th>Type</th>
-                                    <th>Status</th>
-                                    <th>Date</th>
+                            <table className="table table-hover">
 
-                                </tr>
-
-                            </thead>
-
-                            <tbody>
-
-                                {incidents.length === 0 ? (
+                                <thead>
 
                                     <tr>
 
-                                        <td colSpan="4" className="text-center">
-
-                                            No incidents found.
-
-                                        </td>
+                                        <th>Title</th>
+                                        <th>Type</th>
+                                        <th>Status</th>
+                                        <th>Date</th>
 
                                     </tr>
 
-                                ) : (
+                                </thead>
 
-                                    incidents.slice(0, 5).map((incident) => (
+                                <tbody>
 
-                                        <tr key={incident.incidentId}>
+                                    {incidents.length === 0 ? (
 
-                                            <td>{incident.title}</td>
+                                        <tr>
 
-                                            <td>{incident.incidentType?.typeName}</td>
+                                            <td colSpan="4" className="text-center">
 
-                                            <td>{incident.status?.statusName}</td>
-
-                                            <td>
-
-                                                {new Date(
-                                                    incident.incidentDate
-                                                ).toLocaleDateString()}
+                                                No incidents found.
 
                                             </td>
 
                                         </tr>
 
-                                    ))
+                                    ) : (
 
-                                )}
+                                        incidents.slice(0, 5).map((incident) => (
 
-                            </tbody>
+                                            <tr key={incident.incidentId}>
 
-                        </table>
+                                                <td>{incident.title}</td>
 
+                                                {/* <td>{incident.incidentType?.typeName}</td> */}
+                                                <td>{incident.incidentType.incidentTypeName}</td>
+
+                                                <td>
+
+                                                    {incident.status.statusName === "initiated" &&
+
+                                                        <span className="badge bg-warning">
+
+                                                            Initiated
+
+                                                        </span>
+
+                                                    }
+
+                                                    {incident.status.statusName === "active" &&
+
+                                                        <span className="badge bg-primary">
+
+                                                            Active
+
+                                                        </span>
+
+                                                    }
+
+                                                    {incident.status.statusName === "verified" &&
+
+                                                        <span className="badge bg-success">
+
+                                                            Verified
+
+                                                        </span>
+
+                                                    }
+
+                                                    {incident.status.statusName === "closed" &&
+
+                                                        <span className="badge bg-dark">
+
+                                                            Closed
+
+                                                        </span>
+
+                                                    }
+
+                                                </td>
+
+                                                <td>
+
+                                                    {new Date(
+                                                        incident.incidentDate
+                                                    ).toLocaleDateString()}
+
+                                                </td>
+
+                                            </tr>
+
+                                        ))
+
+                                    )}
+
+                                </tbody>
+
+                            </table>
+                        </div>
                     </div>
+                    {/* <div className="card mt-4">
+
+                        <div className="card-body">
+
+                            <h5>
+
+                                Quick Actions
+
+                            </h5>
+
+                            <div className="d-flex gap-3 mt-3">
+
+                                <button
+                                    className="btn btn-danger"
+                                    onClick={() => navigate("/incidents/create")}
+                                >
+
+                                    Report Incident
+
+                                </button>
+
+                                <button
+                                    className="btn btn-primary"
+                                    onClick={() => navigate("/incidents")}
+                                >
+
+                                    My Incidents
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div> */}
                 </>
             )}
             {auth.role === "Officer" && (
@@ -315,10 +420,10 @@ export default function Dashboard() {
                         <div className="card dashboard-card">
                             <div className="card-body">
                                 <MdAssignmentAdd
-                                        size={40}
-                                        color="#f0f33b"
-                                        className="mb-3"
-                                    />
+                                    size={40}
+                                    color="#f0f33b"
+                                    className="mb-3"
+                                />
                                 <h6>Assigned Cases</h6>
                                 <h2>{assigned}</h2>
                             </div>
@@ -329,12 +434,12 @@ export default function Dashboard() {
                         <div className="card dashboard-card">
                             <div className="card-body">
                                 <PiDetectiveFill
-                                        size={40}
-                                        color="#121ca0"
-                                        className="mb-3"
-                                    />
+                                    size={40}
+                                    color="#121ca0"
+                                    className="mb-3"
+                                />
                                 <h6>Active</h6>
-                                <h2>{active}</h2>
+                                <h2>{officerActive}</h2>
                             </div>
                         </div>
                     </div>
@@ -343,26 +448,26 @@ export default function Dashboard() {
                         <div className="card dashboard-card">
                             <div className="card-body">
                                 <MdOutlineVerifiedUser
-                                        size={40}
-                                        color="#12a02c"
-                                        className="mb-3"
-                                    />
+                                    size={40}
+                                    color="#12a02c"
+                                    className="mb-3"
+                                />
                                 <h6>Verified</h6>
-                                <h2>{verified}</h2>
+                                <h2>{officerVerified}</h2>
                             </div>
                         </div>
                     </div>
                     <div className="col-md-3">
                         <div className="card dashboard-card">
                             <div className="card-body">
-                                 <FaDoorClosed
-                                        size={40}
-                                        color="#12a08d"
-                                        className="mb-3"
-                                    />
+                                <FaDoorClosed
+                                    size={40}
+                                    color="#12a08d"
+                                    className="mb-3"
+                                />
 
                                 <h6>Closed</h6>
-                                <h2>{closed}</h2>
+                                <h2>{officerClosed}</h2>
                             </div>
                         </div>
                     </div>
@@ -493,11 +598,7 @@ export default function Dashboard() {
 
                     </h2> */}
 
-                    <p className="text-muted">
-
-                        Station Head Dashboard
-
-                    </p>
+                    
 
                     <div className="row mt-4">
 
@@ -506,7 +607,7 @@ export default function Dashboard() {
                             <div className="card dashboard-card">
 
                                 <div className="card-body">
-                                 <MdLocalPolice
+                                    <MdLocalPolice
                                         size={40}
                                         color="#0f0646"
                                         className="mb-3"
@@ -601,7 +702,7 @@ export default function Dashboard() {
 
                                     <h6>Active</h6>
 
-                                    <h2>{active}</h2>
+                                    <h2>{inProgress}</h2>
 
                                 </div>
 
@@ -622,7 +723,7 @@ export default function Dashboard() {
 
                                     <h6>Closed</h6>
 
-                                    <h2>{closed}</h2>
+                                    <h2>{officerClosed}</h2>
 
                                 </div>
 
@@ -696,7 +797,50 @@ export default function Dashboard() {
 
                                         <td>{i.title}</td>
 
-                                        <td>{i.status.statusName}</td>
+                                        {/* <td>{i.status.statusName}</td> */}
+                                         <td>
+
+                                        {i.status.statusName === "initiated" &&
+
+                                            <span className="badge bg-warning">
+
+                                                Initiated
+
+                                            </span>
+
+                                        }
+
+                                        {i.status.statusName === "active" &&
+
+                                            <span className="badge bg-primary">
+
+                                                Active
+
+                                            </span>
+
+                                        }
+
+                                        {i.status.statusName === "verified" &&
+
+                                            <span className="badge bg-success">
+
+                                                Verified
+
+                                            </span>
+
+                                        }
+
+                                        {i.status.statusName === "closed" &&
+
+                                            <span className="badge bg-dark">
+
+                                                Closed
+
+                                            </span>
+
+                                        }
+
+                                    </td>
 
                                         <td>
 

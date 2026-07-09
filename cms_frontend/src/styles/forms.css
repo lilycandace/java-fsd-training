@@ -39,3 +39,30 @@ label{
     font-size:14px;
 
 }
+.profile-card{
+
+border:none;
+
+border-radius:20px;
+
+box-shadow:0 5px 20px rgba(0,0,0,.1);
+
+}
+
+.profile-card .card-header{
+
+border-radius:20px 20px 0 0;
+
+}
+
+.profile-card img{
+
+transition:.3s;
+
+}
+
+.profile-card img:hover{
+
+transform:scale(1.05);
+
+}

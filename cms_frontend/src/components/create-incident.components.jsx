@@ -1,6 +1,6 @@
 import { useState } from "react";
 import IncidentService from "../services/incident.service";
-
+import { FaCalendarAlt } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 export default function CreateIncident() {
@@ -163,9 +163,50 @@ export default function CreateIncident() {
                 break;
             case "lastSeenDate":
 
-                if (value == "") {
+                if (value === "") {
 
-                    error = "Last seen date required";
+                    error = "Last seen date is required";
+
+                }
+                else {
+
+                    const selectedDate = new Date(value);
+
+                    const today = new Date();
+
+                    // Remove time portion for accurate comparison
+                    today.setHours(0, 0, 0, 0);
+
+                    if (selectedDate > today) {
+
+                        error = "Last seen date cannot be in the future";
+
+                    }
+
+                }
+
+                break;
+            case "incidentDate":
+
+                if (value === "") {
+
+                    error = "Estimated Incident date is required";
+
+                }
+                else {
+
+                    const selectedDate = new Date(value);
+
+                    const today = new Date();
+
+                    // Remove time portion for accurate comparison
+                    today.setHours(0, 0, 0, 0);
+
+                    if (selectedDate > today) {
+
+                        error = "Estimated date cannot be in the future";
+
+                    }
 
                 }
 
@@ -310,351 +351,541 @@ Immediate Danger : ${incident.immediateDanger}`;
 
     return (
 
-        <div className="container mt-5">
+        <div className="container mt-4">
 
-            <h2>Create Incident</h2>
+            <div className="card shadow-lg">
 
-            <form onSubmit={handleSubmit}>
+                <div className="card-header bg-danger text-white">
 
-                <label>Incident Title</label>
+                    <h3>
 
-                <input
-                    type="text"
-                    className={`form-control ${errors.title ? "is-invalid" : ""}`}
-                    name="title"
-                    value={incident.title}
-                    onChange={handleChange}
-                />
-                <div className="invalid-feedback">
+                        🚔 Report Incident
 
-                    {errors.title}
+                    </h3>
 
                 </div>
 
+                <div className="card-body">
+
+                    <form onSubmit={handleSubmit}>
+
+                        <div className="row">
+
+                            <div className="col-md-6">
+
+                                <label>Incident Title</label>
+
+                                <input
+                                    type="text"
+                                    className={`form-control ${errors.title ? "is-invalid" : ""}`}
+                                    name="title"
+                                    placeholder="Enter an appropriate Title"
+                                    value={incident.title}
+                                    onChange={handleChange}
+                                />
+
+                                <div className="invalid-feedback">
+                                    {errors.title}
+                                </div>
+
+                            </div>
+
+                            <div className="col-md-6">
+
+                                <label>Incident Type</label>
+
+                                <select
+                                    className={`form-control ${errors.incidentType ? "is-invalid" : ""}`}
+                                    name="incidentType"
+                                    
+                                    value={incident.incidentType}
+                                    onChange={handleChange}
+                                >
+
+                                    <option value="">Select</option>
+
+                                    <option value="theft">Theft</option>
+
+                                    <option value="murder">Murder</option>
+
+                                    <option value="missing_person">Missing Person</option>
+
+                                    <option value="abuse">Report Abuse</option>
+
+                                    <option value="lost property">Lost Property</option>
+
+                                    <option value="petit larceny">Petit Larceny</option>
+
+                                    <option value="criminal mischief">Criminal Mischief</option>
+
+                                    <option value="graffiti">Graffiti</option>
+
+                                </select>
+
+                                <div className="invalid-feedback">
+                                    {errors.incidentType}
+                                </div>
+
+                            </div>
+
+                        </div>
+                        {incident.incidentType === "theft" && (
+
+                            <div className="card mt-4">
+
+                                <div className="card-header bg-light">
+
+                                    <h5>Theft Details</h5>
+
+                                </div>
+
+                                <div className="card-body">
+
+                                    <div className="row">
+
+                                        <div className="col-md-6">
+
+                                            <label>Property Stolen</label>
+
+                                            <input
+                                                type="text"
+                                                className={`form-control ${errors.propertyStolen ? "is-invalid" : ""}`}
+                                                name="propertyStolen"
+                                                placeholder="What was stolen?"
+                                                value={incident.propertyStolen}
+                                                onChange={handleChange}
+                                            />
+
+                                            <div className="invalid-feedback">
+                                                {errors.propertyStolen}
+                                            </div>
+
+                                        </div>
+
+                                        <div className="col-md-6">
+
+                                            <label>Estimated Value</label>
+
+                                            <input
+                                                type="number"
+                                                className={`form-control ${errors.estimatedValue ? "is-invalid" : ""}`}
+                                                name="estimatedValue"
+                                                placeholder="Enter an Estimated value"
+                                                value={incident.estimatedValue}
+                                                onChange={handleChange}
+                                            />
+
+                                            <div className="invalid-feedback">
+                                                {errors.estimatedValue}
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div className="row mt-3">
+
+                                        <div className="col-md-6">
+
+                                            <label>Was the suspect known?</label>
+
+                                            <select
+                                                className="form-select"
+                                                name="suspectKnown"
+                                                value={incident.suspectKnown}
+                                                onChange={handleChange}
+                                            >
+
+                                                <option value="">Select</option>
+
+                                                <option value="Yes">Yes</option>
+
+                                                <option value="No">No</option>
+
+                                            </select>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        )}
+                        {incident.incidentType === "murder" && (
+                            <div className="card mt-4">
+
+                                <div className="card-header bg-light">
+
+                                    <h5>Murder Details</h5>
+
+                                </div>
+
+                                <div className="card-body">
+
+                                    <div className="row">
+
+                                        <div className="col-md-6">
+
+                                            <label>Victim Name</label>
+
+                                            <input
+                                                type="text"
+                                                className={`form-control ${errors.victimName ? "is-invalid" : ""}`}
+                                                name="victimName"
+                                                value={incident.victimName}
+                                                onChange={handleChange}
+                                            />
+                                            <div className="invalid-feedback">
+
+                                                {errors.victimName}
+
+                                            </div>
+                                        </div>
+
+                                        <div className="col-md-6">
+
+                                            <label className="mt-3">Weapon Used</label>
+
+                                            <input
+                                                type="text"
+                                                className={`form-control ${errors.weaponUsed ? "is-invalid" : ""}`}
+                                                name="weaponUsed"
+                                                value={incident.weaponUsed}
+                                                onChange={handleChange}
+                                            />
+                                            <div className="invalid-feedback">
+
+                                                {errors.weaponUsed}
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div className="row mt-3">
+
+                                        <div className="col-md-6">
+
+                                            <label >Number of witnesses</label>
+
+                                            <input
+                                                type="number"
+                                                className="form-control"
+                                                name="witnesses"
+                                                placeholder="The number of witnesses present if known"
+                                                value={incident.witnesses}
+                                                onChange={handleChange}
+                                            />
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
 
 
-                <label className="mt-3">Incident Type</label>
+                        )}
+                        {incident.incidentType === "missing_person" && (
+                            <div className="card mt-4">
 
-                <select
-                    className={`form-control ${errors.incidentType?"is-invalid":""}`}
-                    name="incidentType"
-                    value={incident.incidentType}
-                    onChange={handleChange}
-                >
+                                <div className="card-header bg-light">
 
-                    <option value="">Select</option>
+                                    <h5>Missing Person Details</h5>
 
-                    <option value="theft">Theft</option>
+                                </div>
 
-                    <option value="murder">Murder</option>
+                                <div className="card-body">
 
-                    <option value="missing_person">Missing Person</option>
+                                    <div className="row">
 
-                    <option value="abuse">Report Abuse</option>
+                                        <div className="col-md-6">
 
-                    <option value="lost property">Lost Property</option>
+                                            <label>Missing Person Name</label>
 
-                    <option value="petit larceny">Petit Larceny</option>
+                                            <input
+                                                type="text"
+                                                className={`form-control ${errors.missingPersonName ? "is-invalid" : ""}`}
+                                                name="missingPersonName"
+                                                value={incident.missingPersonName}
+                                                onChange={handleChange}
+                                            />
+                                            <div className="invalid-feedback">
 
-                    <option value="criminal mischief">Criminal Mischief</option>
+                                                {errors.missingPersonName}
 
-                    <option value="graffiti">Graffiti</option>
+                                            </div>
+                                        </div>
 
-                </select>
-                <div className="invalid-feedback">
+                                        <div className="col-md-6">
+                                            <label >Age</label>
 
-                    {errors.incidentType}
+                                            <input
+                                                type="number"
+                                                className={`form-control ${errors.age ? "is-invalid" : ""}`}
+                                                name="age"
+                                                value={incident.age}
+                                                onChange={handleChange}
+                                            />
+                                            <div className="invalid-feedback">
 
-                </div>
-                {incident.incidentType === "theft" && (
+                                                {errors.age}
 
-                    <div className="mt-3">
+                                            </div>
+                                        </div>
 
-                        <label>Property Stolen</label>
+                                    </div>
+                                    <div className="row mt-3">
 
-                        <input
-                            type="text"
-                            className={`form-control ${errors.propertyStolen?"is-invalid":""}`}
-                            name="propertyStolen"
-                            value={incident.propertyStolen}
-                            onChange={handleChange}
-                        />
-                        <div className="invalid-feedback">
+                                        <div className="col-md-6">
 
-                    {errors.propertyStolen}
+                                            <label >Gender</label>
 
-                </div>
+                                            <select
+                                                className="form-control"
+                                                name="gender"
+                                                value={incident.gender}
+                                                onChange={handleChange}
+                                            >
+                                                <option value="">Select</option>
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                                <option value="Preferred_not">Prefer not to say</option>
+                                            </select>
+                                        </div>
 
-                        <label className="mt-3">Estimated Value</label>
+                                    </div>
+                                </div>
 
-                        <input
-                            type="number"
-                            className={`form-control ${errors.estimatedValue?"is-invalid":""}`}
-                            name="estimatedValue"
-                            value={incident.estimatedValue}
-                            onChange={handleChange}
-                        />
-                        <div className="invalid-feedback">
+                                <div className="row mt-3">
 
-                    {errors.estimatedValue}
+                                    <div className="col-md-6">
 
-                </div>
+                                        <label>Last Seen Location</label>
 
-                        <label className="mt-3">Was the suspect known?</label>
+                                        <input
+                                            type="text"
+                                            className={`form-control ${errors.lastSeenLocation ? "is-invalid" : ""}`}
+                                            name="lastSeenLocation"
+                                            value={incident.lastSeenLocation}
+                                            onChange={handleChange}
+                                        />
 
-                        <select
+                                        <div className="invalid-feedback">
+                                            {errors.lastSeenLocation}
+                                        </div>
+
+                                    </div>
+
+                                    <div className="col-md-6">
+
+                                        <label>Last Seen Date</label>
+
+                                        <input
+                                            type="date"
+                                            className={`form-control ${errors.lastSeenDate ? "is-invalid" : ""}`}
+                                            name="lastSeenDate"
+                                            value={incident.lastSeenDate}
+                                            onChange={handleChange}
+                                        />
+
+                                        <div className="invalid-feedback">
+                                            {errors.lastSeenDate}
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+                        )}
+                        {incident.incidentType === "abuse" && (
+
+                            <div className="card mt-4">
+
+                                <div className="card-header bg-light">
+
+                                    <h5>🚨 Abuse Details</h5>
+
+                                </div>
+
+                                <div className="card-body">
+
+                                    <div className="row">
+
+                                        <div className="col-md-6">
+
+                                            <label>Victim Name</label>
+
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                name="victimName"
+                                                value={incident.victimName}
+                                                onChange={handleChange}
+                                            />
+
+                                        </div>
+
+                                        <div className="col-md-6">
+
+                                            <label>Abuse Type</label>
+
+                                            <select
+                                                className={`form-select ${errors.abuseType ? "is-invalid" : ""}`}
+                                                name="abuseType"
+                                                value={incident.abuseType}
+                                                onChange={handleChange}
+                                            >
+
+                                                <option value="">Select</option>
+
+                                                <option value="Sexual_violence">
+                                                    Sexual Violence
+                                                </option>
+
+                                                <option value="Physical_violence">
+                                                    Physical Violence
+                                                </option>
+
+                                                <option value="Verbal_abuse">
+                                                    Verbal Abuse
+                                                </option>
+
+                                            </select>
+
+                                            <div className="invalid-feedback">
+                                                {errors.abuseType}
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div className="row mt-3">
+
+                                        <div className="col-md-6">
+
+                                            <label>Relationship to the Victim</label>
+
+                                            <input
+                                                type="text"
+                                                className={`form-control ${errors.relationship ? "is-invalid" : ""}`}
+                                                name="relationship"
+                                                value={incident.relationship}
+                                                onChange={handleChange}
+                                            />
+
+                                            <div className="invalid-feedback">
+                                                {errors.relationship}
+                                            </div>
+
+                                        </div>
+
+                                        <div className="col-md-6">
+
+                                            <label>Immediate Danger?</label>
+
+                                            <select
+                                                className="form-select"
+                                                name="immediateDanger"
+                                                value={incident.immediateDanger}
+                                                onChange={handleChange}
+                                            >
+
+                                                <option value="">Select</option>
+
+                                                <option value="Yes">Yes</option>
+
+                                                <option value="No">No</option>
+
+                                            </select>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        )}
+
+
+                        <div className="row mt-3">
+
+                            <div className="col-md-6">
+
+                                <label>Location</label>
+
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    name="location"
+                                    value={incident.location}
+                                    onChange={handleChange}
+                                />
+
+                            </div>
+
+                            <div className="col-md-6">
+
+                                <label>Incident Date</label>
+
+                                <input
+                                    type="datetime-local"
+                                    className={`form-control ${errors.incidentDate ? "is-invalid" : ""}`}
+                                    name="incidentDate"
+                                    value={incident.incidentDate}
+                                    onChange={handleChange}
+                                    
+                                />
+                                <div className="invalid-feedback">
+                                            {errors.incidentDate}
+                                        </div>
+
+                            </div>
+                            
+
+                        </div>
+                        <label className="mt-3">Additional Information</label>
+
+                        <textarea
                             className="form-control"
-                            name="suspectKnown"
-                            value={incident.suspectKnown}
+                            rows="5"
+                            name="description"
+                            value={incident.description}
                             onChange={handleChange}
+                        />
+
+
+
+                        <label className="mt-3">Evidence (Image)</label>
+
+                        <input
+                            type="file"
+                            className="form-control"
+                            name="evidence"
+                        />
+
+                        <button
+                            className="btn btn-danger mt-4 w-100"
+                            type="submit"
                         >
-                            <option value="">Select</option>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
+                            Report Incident
+                        </button>
 
-                    </div>
-
-                )}
-                {incident.incidentType === "murder" && (
-
-                    <div className="mt-3">
-
-                        <label>Victim Name</label>
-
-                        <input
-                            type="text"
-                            className={`form-control ${errors.victimName?"is-invalid":""}`}
-                            name="victimName"
-                            value={incident.victimName}
-                            onChange={handleChange}
-                        />
-                        <div className="invalid-feedback">
-
-                    {errors.victimName}
-
+                    </form>
                 </div>
 
-                        <label className="mt-3">Weapon Used</label>
-
-                        <input
-                            type="text"
-                            className={`form-control ${errors.weaponUsed?"is-invalid":""}`}
-                            name="weaponUsed"
-                            value={incident.weaponUsed}
-                            onChange={handleChange}
-                        />
-                        <div className="invalid-feedback">
-
-                    {errors.weaponUsed}
-
-                </div>
-
-                        <label className="mt-3">Number of witnesses</label>
-
-                        <input
-                            type="number"
-                            className="form-control"
-                            name="witnesses"
-                            value={incident.witnesses}
-                            onChange={handleChange}
-                        />
-
-                    </div>
-
-                )}
-                {incident.incidentType === "missing_person" && (
-
-                    <div className="mt-3">
-
-                        <label>Missing Person Name</label>
-
-                        <input
-                            type="text"
-                            className={`form-control ${errors.missingPersonName?"is-invalid":""}`}
-                            name="missingPersonName"
-                            value={incident.missingPersonName}
-                            onChange={handleChange}
-                        />
-                        <div className="invalid-feedback">
-
-                    {errors.missingPersonName}
-
-                </div>
-                        <label className="mt-3">Age</label>
-
-                        <input
-                            type="number"
-                            className={`form-control ${errors.age?"is-invalid":""}`}
-                            name="age"
-                            value={incident.age}
-                            onChange={handleChange}
-                        />
-                        <div className="invalid-feedback">
-
-                    {errors.age}
-
-                </div>
-                        <label className="mt-3">Gender</label>
-
-                        <select
-                            className="form-control"
-                            name="gender"
-                            value={incident.gender}
-                            onChange={handleChange}
-                        >
-                            <option value="">Select</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                            <option value="Preferred_not">Prefer not to say</option>
-                        </select>
-
-                        <label className="mt-3">Last seen location</label>
-
-                        <input
-                            type="text"
-                            className={`form-control ${errors.lastSeenLocation?"is-invalid":""}`}
-                            name="lastSeenLocation"
-                            value={incident.lastSeenLocation}
-                            onChange={handleChange}
-                        />
-                        <div className="invalid-feedback">
-
-                    {errors.lastSeenLocation}
-
-                </div>
-                        <label className="mt-3">Last seen date</label>
-
-                        <input
-                            type="date"
-                            className={`form-control ${errors.lastSeenDate?"is-invalid":""}`}
-                            name="lastSeenDate"
-                            value={incident.lastSeenDate}
-                            onChange={handleChange}
-                        />
-                        <div className="invalid-feedback">
-
-                    {errors.lastSeenDate}
-
-                </div>
-
-
-
-                    </div>
-
-                )}
-                {incident.incidentType === "abuse" && (
-
-                    <div className="mt-3">
-
-                        <label>Vicitm Name</label>
-
-                        <input
-                            type="text"
-                            className="form-control"
-                            name="victimName"
-                            value={incident.victimName}
-                            onChange={handleChange}
-                        />
-
-                        <label className="mt-3">Abuse Type</label>
-
-                        <select
-                            className={`form-control ${errors.abuseType?"is-invalid":""}`}
-                            name="abuseType"
-                            value={incident.abuseType}
-                            onChange={handleChange}
-                        >
-                            <option value="">Select</option>
-                            <option value="Sexual_violence">Sexual Violence</option>
-                            <option value="Physical_violence">Physical Violence</option>
-                            <option value="Verbal_abuse">Verbal Abuse</option>
-                        </select>
-                        <div className="invalid-feedback">
-
-                    {errors.abuseType}
-
-                </div>
-
-                        <label className="mt-3">Relationship to the victim?</label>
-                        <input
-                            type="text"
-                            className={`form-control ${errors.relationship?"is-invalid":""}`}
-                            name="relationship"
-                            value={incident.relationship}
-                            onChange={handleChange}
-                        />
-                        <div className="invalid-feedback">
-
-                    {errors.relationship}
-
-                </div>
-
-                        <label className="mt-3">Immediate Danger?</label>
-
-                        <select
-                            className="form-control"
-                            name="immediateDanger"
-                            value={incident.immediateDanger}
-                            onChange={handleChange}
-                        >
-                            <option value="">Select</option>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
-
-                    </div>
-
-                )}
-
-
-                <label className="mt-3">Location</label>
-
-                <input
-                    type="text"
-                    className="form-control"
-                    name="location"
-                    value={incident.location}
-                    onChange={handleChange}
-                />
-                <label className="mt-3">Additional Information</label>
-
-                <textarea
-                    className="form-control"
-                    rows="5"
-                    name="description"
-                    value={incident.description}
-                    onChange={handleChange}
-                />
-
-                <label className="mt-3">Incident Date</label>
-
-                <input
-                    type="datetime-local"
-                    className="form-control"
-                    name="incidentDate"
-                    value={incident.incidentDate}
-                    onChange={handleChange}
-                />
-
-                <label className="mt-3">Evidence (Image)</label>
-
-                <input
-                    type="file"
-                    className="form-control"
-                    name="evidence"
-                />
-
-                <button
-                    className="btn btn-danger mt-4 w-100"
-                    type="submit"
-                >
-                    Report Incident
-                </button>
-
-            </form>
+            </div>
 
         </div>
+
+        // </div>
 
     );
 

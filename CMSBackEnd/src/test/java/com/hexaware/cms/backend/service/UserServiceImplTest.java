@@ -10,8 +10,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.hexaware.cms.backend.dto.UserDTO;
-import com.hexaware.cms.backend.entity.User;
+import com.hexaware.cms.dto.UserDTO;
+import com.hexaware.cms.entity.User;
+import com.hexaware.cms.service.IUserService;
 
 @SpringBootTest
 class UserServiceImplTest {

@@ -18,22 +18,22 @@ function IncidentDetails() {
 
     useEffect(() => {
 
-    IncidentService.getIncident(id)
-        .then((response) => {
+        IncidentService.getIncident(id)
+            .then((response) => {
 
-            setIncident(response.data);
+                setIncident(response.data);
 
-        });
+            });
 
-    assignmentService.getAssignmentByIncident(id)
-        .then((response) => {
+        assignmentService.getAssignmentByIncident(id)
+            .then((response) => {
 
-            setAssignment(response.data);
+                setAssignment(response.data);
 
-        })
-        .catch(console.log);
+            })
+            .catch(console.log);
 
-}, [id]);
+    }, [id]);
 
 
     if (!incident) {
@@ -166,143 +166,138 @@ function IncidentDetails() {
         <div className="container mt-5">
 
             <div className="card shadow">
-                <div className="d-flex justify-content-start">
 
-                    <button
-                        className="btn btn-outline-secondary"
-                        // onClick={() => navigate("/incidents")}
-                        onClick={() => navigate(-1)}
-                    >
-                        ← Back
-                    </button>
-
-                </div>
 
                 <div className="card-header bg-dark text-white">
 
-                    <h3>
+                    <div className="card mb-4">
 
-                        Incident Details
+                        <div className="card-body">
 
-                    </h3>
+                            <h2 className="fw-bold text-primary">
+
+                                📋 Incident Details
+
+                            </h2>
+
+                            <p className="text-muted">
+
+                                View complete information about the reported incident.
+
+                            </p>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
-                <div className="card-body">
+                <div className="card mb-4">
 
-                    <div className="row">
+                    <div className="card-header">
 
-                        <div className="col-md-6">
+                        <h5>Incident Information</h5>
 
-                            <p>
+                    </div>
 
-                                <strong>
+                    <div className="card-body">
 
-                                    Incident ID
+                        <div className="row">
 
-                                </strong>
+                            <div className="col-md-6">
 
-                            </p>
+                                <strong>Incident ID</strong>
 
-                            <p>
+                                <p>{incident.incidentId}</p>
 
-                                {incident.incidentId}
+                            </div>
 
-                            </p>
+                            <div className="col-md-6">
+
+                                <strong>Incident Type</strong>
+
+                                <p>{incident.incidentType.incidentTypeName}</p>
+
+                            </div>
 
                         </div>
 
-                        <div className="col-md-6">
+                        <div className="row mt-3">
 
-                            <p>
+                            <div className="col-md-6">
 
-                                <strong>
+                                <strong>Title</strong>
 
-                                    Incident Type
+                                <p>{incident.title}</p>
 
-                                </strong>
+                            </div>
 
-                            </p>
+                            <div className="col-md-6">
 
-                            <p>
+                                <strong>Status</strong>
 
-                                {incident.incidentType.incidentTypeName}
+                                <br />
 
-                            </p>
+                                <span
+                                    className={`badge ${getStatusBadge(
+                                        incident.status.statusName
+                                    )}`}
+                                >
+                                    {incident.status.statusName}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                        <div className="row mt-3">
+
+                            <div className="col-md-6">
+
+                                <strong>Location</strong>
+
+                                <p>{incident.location}</p>
+
+                            </div>
+
+                            <div className="col-md-6">
+
+                                <strong>Reported On</strong>
+
+                                <p>
+
+                                    {new Date(
+                                        incident.incidentDate
+                                    ).toLocaleString()}
+
+                                </p>
+
+                            </div>
 
                         </div>
 
                     </div>
 
-                    <hr />
 
-                    <div className="row">
 
-                        <div className="col-md-6">
+                    <div className="card mb-4">
 
-                            <p>
+                        <div className="card-header">
 
-                                <strong>
-
-                                    Title
-
-                                </strong>
-
-                            </p>
-
-                            <p>
-
-                                {incident.title}
-
-                            </p>
+                            <h5>Description</h5>
 
                         </div>
 
-                        <div className="col-md-6">
+                        <div className="card-body">
 
-                            <p>
-
-                                <strong>
-
-                                    Status
-
-                                </strong>
-
-                            </p>
-
-                            <span
-
-                                className={`badge ${getStatusBadge(
-                                    incident.status.statusName
-                                )}`}
-
-                            >
-
-                                {incident.status.statusName}
-
-                            </span>
+                            {incident.description}
 
                         </div>
 
                     </div>
 
-                    <hr />
+                    {/* <div className="card mb-4"> */}
 
-                    <p>
-
-                        <strong>
-
-                            Description
-
-                        </strong>
-
-                    </p>
-
-                    <p>
-
-                        {incident.description}
-
-                    </p>
                     {auth.role === "Officer" && (
 
                         <div className="card mt-4">
@@ -327,14 +322,14 @@ function IncidentDetails() {
 
 
 
-                                    <option value="1">
+                                    <option value="2">
 
                                         active
 
                                     </option>
 
 
-                                    <option value="2">
+                                    <option value="4">
 
                                         Closed
 
@@ -372,60 +367,52 @@ function IncidentDetails() {
                         </div>
 
                     )}
+                    {/* </div> */}
 
-                    <hr />
 
-                    <p>
+                    <div className="card mb-4">
 
-                        <strong>
+                        <div className="card-header">
 
-                            Location
+                            <h5>Assigned Officer</h5>
 
-                        </strong>
+                        </div>
 
-                    </p>
+                        <div className="card-body">
 
-                    <p>
+                            {assignment ?
 
-                        {incident.location}
+                                <>
 
-                    </p>
+                                    <strong>Name</strong>
 
-                    <hr />
+                                    <p>
 
-                    <p>
+                                        {assignment.officer.firstName}
 
-                        <strong>
+                                        {" "}
 
-                            Reported On
+                                        {assignment.officer.lastName}
 
-                        </strong>
+                                    </p>
 
-                    </p>
+                                </>
 
-                    <p>
+                                :
 
-                        {new Date(
-                            incident.incidentDate
-                        ).toLocaleString()}
+                                <p className="text-muted">
 
-                    </p>
+                                    Not Assigned
 
-                    <hr />
+                                </p>
 
-                    <p>
+                            }
 
-                        <strong>Assigned Officer:</strong>{" "}
+                        </div>
 
-                        {assignment
-                            ? assignment.officer.firstName + " " + assignment.officer.lastName
-                            : "Not Assigned"}
+                    </div>
 
-                    </p>
-
-                    <hr />
-
-                    <button
+                    {/* <button
 
                         className="btn btn-success"
 
@@ -439,14 +426,33 @@ function IncidentDetails() {
 
                         Download Status Card
 
-                    </button>
+                    </button> */}
+                    <div className="d-flex justify-content-end gap-3">
 
+                        <button
+                            className="btn btn-secondary"
+                            onClick={() => navigate(-1)}
+                        >
+
+                            Back
+
+                        </button>
+                        <button
+                            className="btn btn-success"
+                            onClick={() => downloadReport(incident.incidentId)}
+
+                        >
+
+                            Download PDF
+
+                        </button>
+                    </div>
 
                 </div>
 
             </div>
 
-        </div>
+        </div >
 
     );
 }

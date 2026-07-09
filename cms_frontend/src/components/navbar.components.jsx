@@ -153,6 +153,7 @@ export default function Navbar() {
                     Report Incident
                   </NavLink>
                 </li>
+                
                 <li className="nav-item d-flex align-items-center me-3">
 
                   <span className="text-white">
