@@ -30,42 +30,11 @@ public class SecurityConfig {
 	@Autowired
 	JwtAuthFilter authFilter;
 
-//    @Bean
-//    //authentication
-//    public UserDetailsService userDetailsService() {
-//		/*
-//		 * UserDetails admin = User.withUsername("Basant")
-//		 * .password(encoder.encode("Pwd1")) .roles("ADMIN") .build(); UserDetails user
-//		 * = User.withUsername("John") .password(encoder.encode("Pwd2"))
-//		 * .roles("USER","ADMIN","HR") .build(); return new
-//		 * InMemoryUserDetailsManager(admin, user);
-//		 */
-//       return new UserInfoUserDetailsService();
-//    }
-//    
+ 
 	@Autowired
 	private UserInfoUserDetailsService userDetailsService;
 
-//    @Bean
-//    public  SecurityFilterChain   getSecurityFilterChain(HttpSecurity http) throws Exception {
-//    	
-//    		return http.csrf().disable()
-//    			.authorizeHttpRequests().
-//    			requestMatchers("/products/welcome","/users/registration/new","/users/login/authenticate")
-//    			.permitAll()
-//    			.and()
-//    			.authorizeHttpRequests().requestMatchers("/products/**")
-//    			.authenticated().and()   //.formLogin().and().build();
-//    			.sessionManagement()
-//    			.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//    			.and()
-//    			.authenticationProvider(authenticationProvider())
-//    			.addFilterBefore(authFilter	, UsernamePasswordAuthenticationFilter.class)
-//    			.build();
-//    	
-//    }
-//    
-//    
+
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
@@ -93,10 +62,7 @@ public class SecurityConfig {
 				.build();
 	}
 
-//	@Bean
-//	public PasswordEncoder passwordEncoder() {
-//		return NoOpPasswordEncoder.getInstance();
-//	}
+//
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 	    return new BCryptPasswordEncoder();

@@ -1,0 +1,11 @@
+.forgot-page{
+    background-image: url("https://blog.ipleaders.in/wp-content/uploads/2020/04/crimescene.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

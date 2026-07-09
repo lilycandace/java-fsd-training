@@ -146,7 +146,7 @@ export default function Dashboard() {
 
             <div className="mb-4">
 
-                <h2 className="fw-bold">
+                {/* <h2 className="fw-bold">
 
                     Welcome back,
 
@@ -158,7 +158,7 @@ export default function Dashboard() {
 
                     👋
 
-                </h2>
+                </h2> */}
 
                 <p className="text-secondary">
 
@@ -260,7 +260,7 @@ export default function Dashboard() {
                         </div>
 
                     </div>
-                    <div className="card mt-4">
+                    <div className="card mt-4 w-100">
 
                         <div className="card-body">
 
@@ -439,7 +439,7 @@ export default function Dashboard() {
 
                     {/* Officer dashboard here */}
 
-                    <div className="col-md-3">
+                    <div className="col-lg-2 col-md-4 col-sm-6 mb-3">
                         <div className="card dashboard-card">
                             <div className="card-body">
                                 <MdAssignmentAdd
@@ -447,13 +447,13 @@ export default function Dashboard() {
                                     color="#f0f33b"
                                     className="mb-3"
                                 />
-                                <h6>Assigned Cases</h6>
+                                <h6>Assigned </h6>
                                 <h2>{assigned}</h2>
                             </div>
                         </div>
                     </div>
 
-                    <div className="col-md-3">
+                    <div className="col-lg-2 col-md-4 col-sm-6 mb-3">
                         <div className="card dashboard-card">
                             <div className="card-body">
                                 <PiDetectiveFill
@@ -467,7 +467,7 @@ export default function Dashboard() {
                         </div>
                     </div>
 
-                    <div className="col-md-3">
+                    <div className="col-lg-2 col-md-4 col-sm-6 mb-3">
                         <div className="card dashboard-card">
                             <div className="card-body">
                                 <MdOutlineVerifiedUser
@@ -480,7 +480,7 @@ export default function Dashboard() {
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-3">
+                    <div className="col-lg-2 col-md-4 col-sm-6 mb-3">
                         <div className="card dashboard-card">
                             <div className="card-body">
                                 <FaDoorClosed
@@ -746,7 +746,7 @@ export default function Dashboard() {
 
                                     <h6>Closed</h6>
 
-                                    <h2>{officerClosed}</h2>
+                                    <h2>{resolved}</h2>
 
                                 </div>
 

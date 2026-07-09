@@ -14,6 +14,7 @@ export default function Management() {
     const [users, setUsers] = useState([]);
     const [incidents, setIncidents] = useState([]);
     const [errors, setErrors] = useState({});
+    const [incidentTab, setIncidentTab] = useState("unassigned");
 
     const [newOfficer, setNewOfficer] = useState({
         firstName: "",
@@ -42,6 +43,16 @@ export default function Management() {
             .catch(console.log);
 
     };
+    const unassignedIncidents = incidents.filter(
+        i => i.status.statusName.toLowerCase() === "initiated"
+    );
+
+    const assignedIncidents = incidents.filter(
+        i =>
+            i.status.statusName.toLowerCase() === "active" ||
+            i.status.statusName.toLowerCase() === "closed" ||
+            i.status.statusName.toLowerCase() === "verified"
+    );
     const validateField = (name, value) => {
 
         let error = "";
@@ -272,8 +283,8 @@ export default function Management() {
 
                 <button
                     className={`btn ${activeTab === "officers"
-                            ? "btn-primary"
-                            : "btn-outline-primary"
+                        ? "btn-primary"
+                        : "btn-outline-primary"
                         } rounded-pill px-4`}
                     onClick={() => setActiveTab("officers")}
                 >
@@ -283,8 +294,8 @@ export default function Management() {
 
                 <button
                     className={`btn ${activeTab === "users"
-                            ? "btn-primary"
-                            : "btn-outline-primary"
+                        ? "btn-primary"
+                        : "btn-outline-primary"
                         } rounded-pill px-4`}
                     onClick={() => setActiveTab("users")}
                 >
@@ -294,8 +305,8 @@ export default function Management() {
 
                 <button
                     className={`btn ${activeTab === "incidents"
-                            ? "btn-primary"
-                            : "btn-outline-primary"
+                        ? "btn-primary"
+                        : "btn-outline-primary"
                         } rounded-pill px-4`}
                     onClick={() => setActiveTab("incidents")}
                 >
@@ -730,6 +741,29 @@ export default function Management() {
                         <div className="card shadow-sm border-0 mt-4">
 
                             <div className="card-body p-0">
+                                <div className="d-flex gap-3 mb-4">
+
+                                    <button
+                                        className={`btn ${incidentTab === "unassigned"
+                                            ? "btn-primary"
+                                            : "btn-outline-primary"
+                                            }`}
+                                        onClick={() => setIncidentTab("unassigned")}
+                                    >
+                                        Not Assigned
+                                    </button>
+
+                                    <button
+                                        className={`btn ${incidentTab === "assigned"
+                                            ? "btn-primary"
+                                            : "btn-outline-primary"
+                                            }`}
+                                        onClick={() => setIncidentTab("assigned")}
+                                    >
+                                        Assigned
+                                    </button>
+
+                                </div>
 
                                 <table className="table table-hover mb-0">
 
@@ -739,9 +773,9 @@ export default function Management() {
 
                                             <th>ID</th>
 
-                                            <th>Citizen</th>
-
                                             <th>Title</th>
+
+                                            <th>Citizen</th>
 
                                             <th>Status</th>
 
@@ -753,8 +787,10 @@ export default function Management() {
 
                                     <tbody>
 
-                                        {incidents.map(i => (
-
+                                        {(incidentTab === "unassigned"
+                                            ? unassignedIncidents
+                                            : assignedIncidents
+                                        ).map(i => (
 
                                             <tr key={i.incidentId}>
 
@@ -764,28 +800,45 @@ export default function Management() {
 
                                                 <td>{i.user.firstName}</td>
 
-                                                <td>{i.status.statusName}</td>
+                                                <td>
+
+                                                    <span
+                                                        className={`badge ${i.status.statusName.toLowerCase() === "initiated"
+                                                                ? "bg-warning text-dark"
+                                                                : i.status.statusName.toLowerCase() === "active"
+                                                                    ? "bg-primary"
+                                                                    : i.status.statusName.toLowerCase() === "closed"
+                                                                        ? "bg-danger"
+                                                                        : "bg-success"
+                                                            }`}
+                                                    >
+                                                        {i.status.statusName}
+                                                    </span>
+
+                                                </td>
 
                                                 <td>
+
                                                     <div className="d-flex gap-2">
 
-                                                    <Link
-                                                        className="btn btn-primary btn-sm flex-fill"
-                                                        to={`/incidents/${i.incidentId}`}
-                                                    >
-                                                        View
-                                                    </Link>
-
-                                                    {i.status.statusName === "initiated" && (
-
                                                         <Link
-                                                            className="btn btn-success btn-sm flex-fill"
-                                                            to={`/assign/${i.incidentId}`}
+                                                            className="btn btn-primary btn-sm flex-fill"
+                                                            to={`/incidents/${i.incidentId}`}
                                                         >
-                                                            Assign
+                                                            View
                                                         </Link>
 
-                                                    )}
+                                                        {incidentTab === "unassigned" && (
+
+                                                            <Link
+                                                                className="btn btn-success btn-sm flex-fill"
+                                                                to={`/assign/${i.incidentId}`}
+                                                            >
+                                                                Assign
+                                                            </Link>
+
+                                                        )}
+
                                                     </div>
 
                                                 </td>

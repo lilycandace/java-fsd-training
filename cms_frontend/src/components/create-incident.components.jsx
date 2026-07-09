@@ -380,7 +380,7 @@ Immediate Danger : ${incident.immediateDanger}`;
                                     type="text"
                                     className={`form-control ${errors.title ? "is-invalid" : ""}`}
                                     name="title"
-                                    placeholder="Enter an appropriate Title"
+                                    placeholder="eg. Car Window Broken"
                                     value={incident.title}
                                     onChange={handleChange}
                                 />
@@ -452,7 +452,7 @@ Immediate Danger : ${incident.immediateDanger}`;
                                                 type="text"
                                                 className={`form-control ${errors.propertyStolen ? "is-invalid" : ""}`}
                                                 name="propertyStolen"
-                                                placeholder="What was stolen?"
+                                                placeholder="eg. Navy Blue Titan Watch"
                                                 value={incident.propertyStolen}
                                                 onChange={handleChange}
                                             />
@@ -471,7 +471,7 @@ Immediate Danger : ${incident.immediateDanger}`;
                                                 type="number"
                                                 className={`form-control ${errors.estimatedValue ? "is-invalid" : ""}`}
                                                 name="estimatedValue"
-                                                placeholder="Enter an Estimated value"
+                                                placeholder="eg. 10000"
                                                 value={incident.estimatedValue}
                                                 onChange={handleChange}
                                             />
@@ -553,6 +553,7 @@ Immediate Danger : ${incident.immediateDanger}`;
                                                 type="text"
                                                 className={`form-control ${errors.weaponUsed ? "is-invalid" : ""}`}
                                                 name="weaponUsed"
+                                                placeholder="enter if known, if not nil"
                                                 value={incident.weaponUsed}
                                                 onChange={handleChange}
                                             />

@@ -33,7 +33,7 @@ export default function Navbar() {
 
     <nav className="navbar navbar-expand-lg shadow sticky-top custom-navbar">
 
-      <div className="container">
+      <div className="container-fluid px-4">
 
         <NavLink className="navbar-brand fw-bold fs-4" to="/">
           <FaShieldAlt className="me-2 text-warning" />
@@ -54,11 +54,11 @@ export default function Navbar() {
           id="navbarNav"
         >
 
-          <ul className="navbar-nav ms-auto">
+          <ul className="navbar-nav ms-auto align-items-center">
 
             <li className="nav-item">
               <NavLink className="nav-link" to="/">
-                <FaHome className="me-2" />
+                {/* <FaHome className="me-2" /> */}
                 Home
               </NavLink>
             </li>
@@ -66,33 +66,38 @@ export default function Navbar() {
               <>
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/dashboard">
-                    <FaTachometerAlt className="me-2" />
+                    {/* <FaTachometerAlt className="me-2" /> */}
                     Dashboard
                   </NavLink>
                 </li>
 
-                <li className="nav-item">
-                  <NavLink className="nav-link" to="/profile">
-                    <FaUser className="me-2" />
-                    Profile
-                  </NavLink>
-                </li>
+
 
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/officers">
-                    <FaUserShield className="me-2" />
+                    {/* <FaUserShield className="me-2" /> */}
                     Assigned Cases
                   </NavLink>
                 </li>
                 <li className="nav-item d-flex align-items-center me-3">
 
-                  <span className="text-white">
+                  <span className="welcome-text">
 
                     <i className="bi bi-person-circle me-1"></i>
 
                     Welcome, {auth.firstName}
 
                   </span>
+
+                </li>
+
+                <li className="nav-item">
+
+                  <NavLink className="nav-link" to="/profile">
+
+                    Profile
+
+                  </NavLink>
 
                 </li>
                 <li className="nav-item">
@@ -128,35 +133,30 @@ export default function Navbar() {
               <>
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/dashboard">
-                    <FaTachometerAlt className="me-2" />
+                    {/* <FaTachometerAlt className="me-2" /> */}
                     Dashboard
                   </NavLink>
                 </li>
 
-                <li className="nav-item">
-                  <NavLink className="nav-link" to="/profile">
-                    <FaUser className="me-2" />
-                    Profile
-                  </NavLink>
-                </li>
+
 
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/incidents">
-                    <FaClipboardList className="me-2" />
+                    {/* <FaClipboardList className="me-2" /> */}
                     My Incidents
                   </NavLink>
                 </li>
 
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/incidents/create">
-                    <FaPlusCircle className="me-2" />
+                    {/* <FaPlusCircle className="me-2" /> */}
                     Report Incident
                   </NavLink>
                 </li>
-                
+
                 <li className="nav-item d-flex align-items-center me-3">
 
-                  <span className="text-white">
+                  <span className="welcome-text">
 
                     <i className="bi bi-person-circle me-1"></i>
 
@@ -164,6 +164,11 @@ export default function Navbar() {
 
                   </span>
 
+                </li> <li className="nav-item">
+                  <NavLink className="nav-link" to="/profile">
+                    {/* <FaUser className="me-2" /> */}
+                    Profile
+                  </NavLink>
                 </li>
                 <li className="nav-item">
                   <button
@@ -180,34 +185,29 @@ export default function Navbar() {
               <>
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/dashboard">
-                    <FaTachometerAlt className="me-2" />
+                    {/* <FaTachometerAlt className="me-2" /> */}
                     Dashboard
                   </NavLink>
                 </li>
 
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/management">
-                    <FaUsers className="me-2" />
+                    {/* <FaUsers className="me-2" /> */}
                     Management
                   </NavLink>
                 </li>
 
-                {/* <li className="nav-item">
-                  <NavLink className="nav-link" to="/assign">
-                    Assign Incident
-                  </NavLink>
-                </li> */}
 
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/verify">
-                    <FaCheckCircle className="me-2" />
+                    {/* <FaCheckCircle className="me-2" /> */}
                     Verify Cases
                   </NavLink>
                 </li>
 
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/profile">
-                    <FaUser className="me-2" />
+                    {/* <FaUser className="me-2" /> */}
                     Profile
                   </NavLink>
                 </li>

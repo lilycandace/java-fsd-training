@@ -1,8 +1,7 @@
 import { useState } from "react";
 import userService from "../services/user.service";
 import { useNavigate } from "react-router-dom";
-import "../styles/login.css";
-import { toast } from "react-toastify";
+import "../styles/forgotpass.css";
 
 export default function ForgotPassword() {
     const [form, setForm] = useState({
@@ -134,7 +133,7 @@ export default function ForgotPassword() {
 
             .then((response) => {
 
-                toast.success(response.data);
+                alert(response.data);
 
                 navigate("/login");
 
@@ -146,11 +145,11 @@ export default function ForgotPassword() {
 
                 if (error.response) {
 
-                    toast.error(error.response.data);
+                    alert(error.response.data);
 
                 } else {
 
-                    toast.warning("Something went wrong.");
+                    alert("Something went wrong.");
 
                 }
 
@@ -158,6 +157,8 @@ export default function ForgotPassword() {
 
     };
     return (
+        <div className="forgot-page">
+        <div className="container mt-5">
         <form className="form1" onSubmit={handleSubmit}>
 
             {/* Email */}
@@ -239,7 +240,7 @@ export default function ForgotPassword() {
             </button>
 
         </form>
-
+        </div></div>
     );
 
 }

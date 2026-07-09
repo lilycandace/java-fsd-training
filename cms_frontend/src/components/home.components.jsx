@@ -20,10 +20,19 @@ function Home() {
             A secure digital platform designed to simplify crime reporting,
             investigation tracking, and public safety awareness.
           </p>
-          <Link to="/login" className="nav-link"> <button className="hero-btn">
+          {auth.isLoggedIn && auth.role === "Citizen" && (
+
+    <Link to="/incidents/create">
+
+        <button className="hero-btn">
+
             Report Incident
-          </button>
-</Link>
+
+        </button>
+
+    </Link>
+
+)}
         
         </div>
 

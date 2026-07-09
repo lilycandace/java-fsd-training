@@ -44,6 +44,7 @@ export default function Login() {
                     "auth",
                     JSON.stringify(response.data)
                 );
+                toast.success("Logged in successfully!");
 
                 navigate("/dashboard");
 
@@ -53,7 +54,7 @@ export default function Login() {
 
                 console.log(error.response?.data);
 
-                toast.error(
+                alert(
                     error.response?.data?.message || "Login failed"
                 );
 
@@ -61,8 +62,9 @@ export default function Login() {
     };
 
     return (
+        <div className="login-page">
         <div className="container mt-5">
-            <div className="login-page">
+            
                 <div className="login-card">
                     <form className="form1" onSubmit={handleSubmit}>
 

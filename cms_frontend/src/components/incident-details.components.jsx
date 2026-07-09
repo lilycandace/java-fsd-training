@@ -164,9 +164,10 @@ function IncidentDetails() {
     };
     return (
 
-        <div className="container mt-5">
+        <div className="container-fluid px-5 mt-5">
 
             <div className="card shadow">
+                
 
 
                 <div className="card-header bg-dark text-white">
