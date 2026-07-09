@@ -24,5 +24,6 @@ public class VerifyCaseDTO {
     private LocalDateTime assignedAt;
 
     private LocalDateTime closedAt;
+    private String remarks;
 
 }

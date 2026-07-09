@@ -10,6 +10,15 @@ class StatusHistoryService {
         );
 
     }
+    getHistory(incidentId) {
+
+    return http.get(
+
+        `/api/statusHistory/getHistory/${incidentId}`
+
+    );
+
+}
 
 }
 

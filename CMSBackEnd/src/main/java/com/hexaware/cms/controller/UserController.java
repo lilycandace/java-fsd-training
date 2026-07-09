@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hexaware.cms.dto.ChangePasswordDTO;
+import com.hexaware.cms.dto.ForgotPasswordDTO;
 import com.hexaware.cms.dto.UserDTO;
 import com.hexaware.cms.entity.User;
 import com.hexaware.cms.service.IUserService;
@@ -94,20 +96,37 @@ public class UserController {
 		return ResponseEntity.ok(userService.registerUser(dto));
 
 	}
+
 	@PreAuthorize("hasRole('Stationhead')")
 	@DeleteMapping("/deleteOfficer/{id}")
-	public ResponseEntity<String> deleteOfficer(
-	        @PathVariable Integer id) {
+	public ResponseEntity<String> deleteOfficer(@PathVariable Integer id) {
 
-	    userService.deleteUser(id);
+		userService.deleteUser(id);
 
-	    return ResponseEntity.ok("Officer deleted successfully.");
+		return ResponseEntity.ok("Officer deleted successfully.");
 
 	}
+
 	@PreAuthorize("hasRole('Stationhead')")
 	@GetMapping("/citizens")
 	public ResponseEntity<List<UserDTO>> getAllCitizens() {
-	    return ResponseEntity.ok(userService.getAllCitizens());
+		return ResponseEntity.ok(userService.getAllCitizens());
+	}
+
+	@PutMapping("/forgot-password")
+	public ResponseEntity<String> forgotPassword(@RequestBody ForgotPasswordDTO dto) {
+
+		return ResponseEntity.ok(userService.forgotPassword(dto));
+
+	}
+	@PutMapping("/change-password")
+	public ResponseEntity<String> changePassword(
+	        @RequestBody ChangePasswordDTO dto) {
+
+	    return ResponseEntity.ok(
+	            userService.changePassword(dto)
+	    );
+
 	}
 
 }

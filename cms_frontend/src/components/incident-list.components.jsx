@@ -103,7 +103,27 @@ function IncidentList() {
                 onChange={(e) => setSearch(e.target.value)}
 
             />
+            {incidents.length === 0 ? (
 
+    <div className="card shadow mt-5 text-center p-5">
+
+        <i className="bi bi-folder-x display-1 text-secondary"></i>
+
+        <h4 className="mt-3">
+
+            No incidents found
+
+        </h4>
+
+        <p className="text-muted">
+
+            Report your first incident to get started.
+
+        </p>
+
+    </div>
+
+) : (
             <table className="table table-striped table-hover">
 
                 <thead>
@@ -216,6 +236,7 @@ function IncidentList() {
                 </tbody>
 
             </table>
+            )}
 
         </div>
 

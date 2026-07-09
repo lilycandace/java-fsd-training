@@ -1,3 +1,4 @@
+import axios from "axios";
 import http from "../common/http-common";
 
 class UserService {
@@ -21,11 +22,17 @@ class UserService {
     deleteOfficer(id) {
         return http.delete(`/api/users/deleteOfficer/${id}`);
     }
-    getAllCitizens(){
+    getAllCitizens() {
 
-    return http.get("/api/users/citizens");
+        return http.get("/api/users/citizens");
 
-}
+    }
+    forgotPassword(data) {
+        return http.put("/api/users/forgot-password", data);
+    }
+    changePassword(data) {
+        return http.put("/api/users/change-password", data);
+    }
 
 }
 

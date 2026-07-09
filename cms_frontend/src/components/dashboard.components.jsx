@@ -40,11 +40,11 @@ export default function Dashboard() {
             AssignmentService.getAssignmentsByOfficer(auth.userId)
                 .then((response) => {
                     console.table(
-            response.data.map(a => ({
-                incidentId: a.incident.incidentId,
-                status: a.incident.status.statusName
-            }))
-        );
+                        response.data.map(a => ({
+                            incidentId: a.incident.incidentId,
+                            status: a.incident.status.statusName
+                        }))
+                    );
                     setAssignments(response.data);
                 });
 
@@ -70,22 +70,22 @@ export default function Dashboard() {
 
         //     .then(res => setIncidents(res.data));
         IncidentService.getAllIncidents()
-    .then(res => {
+            .then(res => {
 
-        console.log("Dashboard Incidents:", res.data);
+                console.log("Dashboard Incidents:", res.data);
 
-        res.data.forEach(i => {
-            console.log(
-                i.incidentId,
-                i.status.statusId,
-                i.status.statusName
-            );
-        });
+                res.data.forEach(i => {
+                    console.log(
+                        i.incidentId,
+                        i.status.statusId,
+                        i.status.statusName
+                    );
+                });
 
-        setIncidents(res.data);
+                setIncidents(res.data);
 
-    });
-            
+            });
+
 
     };
 
@@ -126,16 +126,16 @@ export default function Dashboard() {
     ).length;
 
     const officerActive = assignments.filter(
-    a => a.incident.status.statusName.toLowerCase() === "active"
-).length;
+        a => a.incident.status.statusName.toLowerCase() === "active"
+    ).length;
 
-const officerVerified = assignments.filter(
-    a => a.incident.status.statusName.toLowerCase() === "verified"
-).length;
+    const officerVerified = assignments.filter(
+        a => a.incident.status.statusName.toLowerCase() === "verified"
+    ).length;
 
-const officerClosed = assignments.filter(
-    a => a.incident.status.statusName.toLowerCase() === "closed"
-).length;
+    const officerClosed = assignments.filter(
+        a => a.incident.status.statusName.toLowerCase() === "closed"
+    ).length;
 
 
     console.log(auth);
@@ -227,7 +227,7 @@ const officerClosed = assignments.filter(
                                         className="mb-3"
                                     />
                                     <h6>In Progress</h6>
-                                    <h2>{active}</h2>
+                                    <h2>{inProgress}</h2>
                                 </div>
                             </div>
                         </div>
@@ -269,108 +269,131 @@ const officerClosed = assignments.filter(
                                 Recent Incidents
 
                             </h4>
+                            {incidents.length === 0 ? (
 
-                            <table className="table table-hover">
+                                <div className="card shadow mt-5 text-center p-5">
 
-                                <thead>
+                                    <i className="bi bi-folder-x display-1 text-secondary"></i>
 
-                                    <tr>
+                                    <h4 className="mt-3">
 
-                                        <th>Title</th>
-                                        <th>Type</th>
-                                        <th>Status</th>
-                                        <th>Date</th>
+                                        No incidents found
 
-                                    </tr>
+                                    </h4>
 
-                                </thead>
+                                    <p className="text-muted">
 
-                                <tbody>
+                                        Report your first incident to get started.
 
-                                    {incidents.length === 0 ? (
+                                    </p>
+
+                                </div>
+
+                            ) : (
+
+
+                                <table className="table table-hover">
+
+                                    <thead>
 
                                         <tr>
 
-                                            <td colSpan="4" className="text-center">
-
-                                                No incidents found.
-
-                                            </td>
+                                            <th>Title</th>
+                                            <th>Type</th>
+                                            <th>Status</th>
+                                            <th>Date</th>
 
                                         </tr>
 
-                                    ) : (
+                                    </thead>
 
-                                        incidents.slice(0, 5).map((incident) => (
+                                    <tbody>
 
-                                            <tr key={incident.incidentId}>
+                                        {incidents.length === 0 ? (
 
-                                                <td>{incident.title}</td>
+                                            <tr>
 
-                                                {/* <td>{incident.incidentType?.typeName}</td> */}
-                                                <td>{incident.incidentType.incidentTypeName}</td>
+                                                <td colSpan="4" className="text-center">
 
-                                                <td>
-
-                                                    {incident.status.statusName === "initiated" &&
-
-                                                        <span className="badge bg-warning">
-
-                                                            Initiated
-
-                                                        </span>
-
-                                                    }
-
-                                                    {incident.status.statusName === "active" &&
-
-                                                        <span className="badge bg-primary">
-
-                                                            Active
-
-                                                        </span>
-
-                                                    }
-
-                                                    {incident.status.statusName === "verified" &&
-
-                                                        <span className="badge bg-success">
-
-                                                            Verified
-
-                                                        </span>
-
-                                                    }
-
-                                                    {incident.status.statusName === "closed" &&
-
-                                                        <span className="badge bg-dark">
-
-                                                            Closed
-
-                                                        </span>
-
-                                                    }
-
-                                                </td>
-
-                                                <td>
-
-                                                    {new Date(
-                                                        incident.incidentDate
-                                                    ).toLocaleDateString()}
+                                                    No incidents found.
 
                                                 </td>
 
                                             </tr>
 
-                                        ))
+                                        ) : (
 
-                                    )}
+                                            incidents.slice(0, 5).map((incident) => (
 
-                                </tbody>
+                                                <tr key={incident.incidentId}>
 
-                            </table>
+                                                    <td>{incident.title}</td>
+
+                                                    {/* <td>{incident.incidentType?.typeName}</td> */}
+                                                    <td>{incident.incidentType.incidentTypeName}</td>
+
+                                                    <td>
+
+                                                        {incident.status.statusName === "initiated" &&
+
+                                                            <span className="badge bg-warning">
+
+                                                                Initiated
+
+                                                            </span>
+
+                                                        }
+
+                                                        {incident.status.statusName === "active" &&
+
+                                                            <span className="badge bg-primary">
+
+                                                                Active
+
+                                                            </span>
+
+                                                        }
+
+                                                        {incident.status.statusName === "verified" &&
+
+                                                            <span className="badge bg-success">
+
+                                                                Verified
+
+                                                            </span>
+
+                                                        }
+
+                                                        {incident.status.statusName === "closed" &&
+
+                                                            <span className="badge bg-dark">
+
+                                                                Closed
+
+                                                            </span>
+
+                                                        }
+
+                                                    </td>
+
+                                                    <td>
+
+                                                        {new Date(
+                                                            incident.incidentDate
+                                                        ).toLocaleDateString()}
+
+                                                    </td>
+
+                                                </tr>
+
+                                            ))
+
+                                        )}
+
+                                    </tbody>
+
+                                </table>
+                            )}
                         </div>
                     </div>
                     {/* <div className="card mt-4">
@@ -598,7 +621,7 @@ const officerClosed = assignments.filter(
 
                     </h2> */}
 
-                    
+
 
                     <div className="row mt-4">
 
@@ -798,49 +821,49 @@ const officerClosed = assignments.filter(
                                         <td>{i.title}</td>
 
                                         {/* <td>{i.status.statusName}</td> */}
-                                         <td>
+                                        <td>
 
-                                        {i.status.statusName === "initiated" &&
+                                            {i.status.statusName === "initiated" &&
 
-                                            <span className="badge bg-warning">
+                                                <span className="badge bg-warning">
 
-                                                Initiated
+                                                    Initiated
 
-                                            </span>
+                                                </span>
 
-                                        }
+                                            }
 
-                                        {i.status.statusName === "active" &&
+                                            {i.status.statusName === "active" &&
 
-                                            <span className="badge bg-primary">
+                                                <span className="badge bg-primary">
 
-                                                Active
+                                                    Active
 
-                                            </span>
+                                                </span>
 
-                                        }
+                                            }
 
-                                        {i.status.statusName === "verified" &&
+                                            {i.status.statusName === "verified" &&
 
-                                            <span className="badge bg-success">
+                                                <span className="badge bg-success">
 
-                                                Verified
+                                                    Verified
 
-                                            </span>
+                                                </span>
 
-                                        }
+                                            }
 
-                                        {i.status.statusName === "closed" &&
+                                            {i.status.statusName === "closed" &&
 
-                                            <span className="badge bg-dark">
+                                                <span className="badge bg-dark">
 
-                                                Closed
+                                                    Closed
 
-                                            </span>
+                                                </span>
 
-                                        }
+                                            }
 
-                                    </td>
+                                        </td>
 
                                         <td>
 

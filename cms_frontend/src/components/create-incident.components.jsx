@@ -3,6 +3,7 @@ import IncidentService from "../services/incident.service";
 import { FaCalendarAlt } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 export default function CreateIncident() {
     const navigate = useNavigate();
     const auth = useSelector((state) => state.auth);
@@ -334,7 +335,7 @@ Immediate Danger : ${incident.immediateDanger}`;
         IncidentService.createIncident(payload)
             .then(() => {
 
-                alert("Incident reported successfully!");
+                toast.success("Incident reported successfully!");
 
                 navigate("/dashboard");
 
@@ -343,7 +344,7 @@ Immediate Danger : ${incident.immediateDanger}`;
 
                 console.log(error);
 
-                alert("Unable to create incident.");
+                toast.warning("Unable to create incident.");
 
             });
 

@@ -6,6 +6,7 @@ import IncidentService from "../services/incident.service";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import assignmentService from "../services/assignment.service";
+import { toast } from "react-toastify";
 function IncidentDetails() {
     const { id } = useParams();
 
@@ -85,7 +86,7 @@ function IncidentDetails() {
 
             .then(() => {
 
-                alert("Status updated successfully!");
+                toast.success("Status updated successfully!");
 
                 return IncidentService.getIncident(incident.incidentId);
 
@@ -105,7 +106,7 @@ function IncidentDetails() {
 
                 console.log(error);
 
-                alert("Unable to update status.");
+                toast.error("Unable to update status.");
 
             });
 

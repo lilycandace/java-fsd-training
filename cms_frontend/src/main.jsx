@@ -13,6 +13,9 @@ import "./styles/forms.css";
 import "./styles/tables.css";
 import "./styles/dashboard.css";
 import "./styles/navbar.css";
+import "./styles/login.css";
+import "./styles/homestyle.css"
+import { toast } from "react-toastify";
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>

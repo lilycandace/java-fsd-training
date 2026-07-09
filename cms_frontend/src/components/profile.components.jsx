@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import UserService from "../services/user.service";
-
+import { useSelector } from "react-redux";
 import pfp1 from "../assets/pfp1.jpg"
 import pfp from "../assets/pfp.jpg"
+import { toast } from "react-toastify";
 
 export default function Profile() {
     const [isEditing, setIsEditing] = useState(false);
+    const auth = useSelector((state) => state.auth);
     const [profile, setProfile] = useState({
 
         userId: null,
@@ -23,6 +25,127 @@ export default function Profile() {
         roleId: ""
 
     });
+    const [password, setPassword] = useState({
+
+        currentPassword: "",
+
+        newPassword: "",
+
+        confirmPassword: ""
+
+    });
+    const handlePasswordChange = (e) => {
+
+        const { name, value } = e.target;
+
+        setPassword({
+
+            ...password,
+
+            [name]: value
+
+        });
+
+        validatePasswordField(name, value);
+
+    };
+    const validatePasswordField = (name, value) => {
+
+        let error = "";
+
+        switch (name) {
+
+            case "currentPassword":
+
+                if (value.trim() === "") {
+
+                    error = "Current password is required";
+
+                }
+
+                break;
+
+            case "newPassword":
+
+                if (value.trim() === "") {
+
+                    error = "New password is required";
+
+                }
+
+                else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/.test(value)) {
+
+                    error = "Password must contain uppercase, lowercase, number and special character.";
+
+                }
+
+                break;
+
+            case "confirmPassword":
+
+                if (value !== password.newPassword) {
+
+                    error = "Passwords do not match.";
+
+                }
+
+                break;
+
+        }
+
+        setPasswordErrors(prev => ({
+
+            ...prev,
+
+            [name]: error
+
+        }));
+
+    };
+    const changePassword = () => {
+
+    if (Object.values(passwordErrors).some(err => err)) {
+
+        return;
+
+    }
+
+    UserService.changePassword({
+
+        userId: auth.userId,
+
+        currentPassword: password.currentPassword,
+
+        newPassword: password.newPassword
+
+    })
+    
+
+    .then((response) => {
+
+        toast.success(response.data);
+
+        setPassword({
+
+            currentPassword: "",
+
+            newPassword: "",
+
+            confirmPassword: ""
+
+        });
+
+    })
+
+    .catch((error) => {
+
+        toast.error(error.response?.data || "Unable to change password.");
+
+    });
+
+};
+
+    const [passwordErrors, setPasswordErrors] = useState({});
     const [errors, setErrors] = useState({});
     const validateField = (name, value) => {
 
@@ -203,7 +326,7 @@ export default function Profile() {
 
         if (hasErrors) {
 
-            alert("Please fix validation errors.");
+            toast.warning("Please fix validation errors.");
 
             return;
 
@@ -218,7 +341,7 @@ export default function Profile() {
         UserService.updateProfile(profile.userId, profile)
             .then(() => {
 
-                alert("Profile updated successfully!");
+                toast.success("Profile updated successfully!");
 
                 return UserService.getProfile();
 
@@ -565,6 +688,137 @@ export default function Profile() {
                             </button>
 
                         </form>
+                        <div className="card shadow mt-5">
+
+                            <div className="card-header bg-dark text-white">
+
+                                <h4>
+
+                                    <i className="bi bi-lock-fill me-2"></i>
+
+                                    Change Password
+
+                                </h4>
+
+                            </div>
+
+                            <div className="card-body">
+
+                                <div className="row">
+
+                                    <div className="col-md-4">
+
+                                        <label className="form-label">
+
+                                            Current Password
+
+                                        </label>
+
+                                        <input
+
+                                            type="password"
+
+                                            className={`form-control ${passwordErrors.currentPassword ? "is-invalid" : ""}`}
+
+                                            name="currentPassword"
+
+                                            value={password.currentPassword}
+
+                                            onChange={handlePasswordChange}
+
+                                        />
+
+                                        <div className="invalid-feedback">
+
+                                            {passwordErrors.currentPassword}
+
+                                        </div>
+
+                                    </div>
+
+                                    <div className="col-md-4">
+
+                                        <label className="form-label">
+
+                                            New Password
+
+                                        </label>
+
+                                        <input
+
+                                            type="password"
+
+                                            className={`form-control ${passwordErrors.newPassword ? "is-invalid" : ""}`}
+
+                                            name="newPassword"
+
+                                            value={password.newPassword}
+
+                                            onChange={handlePasswordChange}
+
+                                        />
+
+                                        <div className="invalid-feedback">
+
+                                            {passwordErrors.newPassword}
+
+                                        </div>
+
+                                    </div>
+
+                                    <div className="col-md-4">
+
+                                        <label className="form-label">
+
+                                            Confirm Password
+
+                                        </label>
+
+                                        <input
+
+                                            type="password"
+
+                                            className={`form-control ${passwordErrors.confirmPassword ? "is-invalid" : ""}`}
+
+                                            name="confirmPassword"
+
+                                            value={password.confirmPassword}
+
+                                            onChange={handlePasswordChange}
+
+                                        />
+
+                                        <div className="invalid-feedback">
+
+                                            {passwordErrors.confirmPassword}
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div className="text-end mt-4">
+
+                                    <button
+
+                                        className="btn btn-danger"
+
+                                        onClick={changePassword}
+
+                                    >
+
+                                        <i className="bi bi-key-fill me-2"></i>
+
+                                        Change Password
+
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
 
                     </div>
                 </div>

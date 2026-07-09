@@ -12,5 +12,6 @@ public interface IStatusHistory {
 	List<IncidentStatusHistory> getHistoryByIncident(Integer incidentId);
 	
 	
+	
 
 }

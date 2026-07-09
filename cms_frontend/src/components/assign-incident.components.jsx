@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import UserService from "../services/user.service";
 import IncidentService from "../services/incident.service";
 import AssignmentService from "../services/assignment.service";
+import { toast } from "react-toastify";
 
 export default function AssignIncident() {
 
@@ -98,7 +99,7 @@ export default function AssignIncident() {
 
         if (!assignment.officerId) {
 
-            alert("Please select an officer.");
+            toast.warning("Please select an officer.");
 
             return;
 
@@ -116,7 +117,7 @@ export default function AssignIncident() {
 
             .then(() => {
 
-                alert("Officer assigned successfully.");
+                toast.success("Officer assigned successfully.");
 
                 navigate("/management");
 

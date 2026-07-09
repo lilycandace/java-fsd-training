@@ -2,6 +2,7 @@
 import { useState } from "react";
 import AuthService from "../services/auth.service";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 export default function Register() {
 
 
@@ -237,7 +238,7 @@ export default function Register() {
 
             console.log(response.data);
 
-            alert("Registration Successful!");
+            toast.success("Registration Successful!");
 
             navigate("/login");   // or "/" if you want to go to Home
 
@@ -246,7 +247,7 @@ export default function Register() {
 
             console.log(error);
 
-            alert(error.response?.data || "Registration Failed");
+            toast.error(error.response?.data || "Registration Failed");
 
          });
 
@@ -257,7 +258,7 @@ export default function Register() {
    return (
 
       <div className="container mt-5">
-         <form onSubmit={handleSubmit}>
+         <form className="form1" onSubmit={handleSubmit}>
             <label htmlFor="firstName">FirstName:</label>
             <input type="text" className={`form-control ${errors.firstName?"is-invalid":""}`}
              name="firstName" placeholder="Enter your First Name "

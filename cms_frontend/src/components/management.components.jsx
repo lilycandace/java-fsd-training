@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import userService from "../services/user.service";
 import incidentService from "../services/incident.service";
 import { Link } from "react-router-dom";
-
+import { toast } from "react-toastify";
+import "../styles/management.css";
 export default function Management() {
 
     const [activeTab, setActiveTab] = useState("officers");
@@ -203,7 +204,7 @@ export default function Management() {
 
             .then(() => {
 
-                alert("Officer added successfully!");
+                toast.success("Officer added successfully!");
 
                 setShowForm(false);
 
@@ -235,7 +236,7 @@ export default function Management() {
         userService.deleteOfficer(id)
 
             .then(() => {
-                alert("Officer deleted successfully!");
+                toast.success("Officer deleted successfully!");
 
 
                 loadOfficers();
@@ -260,45 +261,47 @@ export default function Management() {
 
     return (
 
-        <div className="container mt-4">
+        <div className="container py-5  management-page">
 
-            <h2>Management</h2>
+            {/* <h2 className="fw-bold text-dark mb-3">
+                <i className="bi bi-gear-fill text-primary me-2"></i>
+                Management
+            </h2> */}
 
-            <ul className="nav nav-tabs mt-4">
+            <ul className="d-flex gap-3 mt-4 mb-4">
 
-                <li className="nav-item">
+                <button
+                    className={`btn ${activeTab === "officers"
+                            ? "btn-primary"
+                            : "btn-outline-primary"
+                        } rounded-pill px-4`}
+                    onClick={() => setActiveTab("officers")}
+                >
+                    <i className="bi bi-person-badge me-2"></i>
+                    Officers
+                </button>
 
-                    <button
-                        className={`nav-link ${activeTab === "officers" ? "active" : ""}`}
-                        onClick={() => setActiveTab("officers")}
-                    >
-                        Officers
-                    </button>
+                <button
+                    className={`btn ${activeTab === "users"
+                            ? "btn-primary"
+                            : "btn-outline-primary"
+                        } rounded-pill px-4`}
+                    onClick={() => setActiveTab("users")}
+                >
+                    <i className="bi bi-people me-2"></i>
+                    Users
+                </button>
 
-                </li>
-
-                <li className="nav-item">
-
-                    <button
-                        className={`nav-link ${activeTab === "users" ? "active" : ""}`}
-                        onClick={() => setActiveTab("users")}
-                    >
-                        Users
-                    </button>
-
-                </li>
-
-                <li className="nav-item">
-
-                    <button
-                        className={`nav-link ${activeTab === "incidents" ? "active" : ""}`}
-                        onClick={() => setActiveTab("incidents")}
-                    >
-                        Incidents
-                    </button>
-
-                </li>
-
+                <button
+                    className={`btn ${activeTab === "incidents"
+                            ? "btn-primary"
+                            : "btn-outline-primary"
+                        } rounded-pill px-4`}
+                    onClick={() => setActiveTab("incidents")}
+                >
+                    <i className="bi bi-exclamation-triangle me-2"></i>
+                    Incidents
+                </button>
             </ul>
 
             <div className="mt-4">
@@ -307,22 +310,29 @@ export default function Management() {
                     <>
                         <div className="d-flex justify-content-between align-items-center">
 
-                            <h3>Officer Management</h3>
+                            <h4 className="fw-bold">
+
+                                <i className="bi bi-person-badge-fill text-primary me-2"></i>
+
+                                Officer Management
+
+                            </h4>
 
                             <button
-                                className="btn btn-success"
+                                className="btn btn-success px-4 shadow-sm"
                                 onClick={() => setShowForm(!showForm)}
                             >
-                                + Add Officer
+                                <i className="bi bi-person-plus-fill me-2"></i>
+                                Add Officer
                             </button>
 
                         </div>
 
                         {showForm && (
 
-                            <div className="card shadow mt-4">
+                            <div className="card shadow-lg mt-4 border-0">
 
-                                <div className="card-header bg-primary text-white">
+                                <div className="card-header bg-gradient bg-primary text-white">
 
                                     <h4>Add New Officer</h4>
 
@@ -590,171 +600,205 @@ export default function Management() {
                             </div>
 
                         )}
+                        <div className="card shadow-sm border-0 mt-4">
 
-                        <table className="table table-striped mt-4">
+                            <div className="card-body p-0">
 
-                            <thead>
+                                <table className="table table-hover mb-0">
 
-                                <tr>
+                                    <thead>
 
-                                    <th>Name</th>
+                                        <tr>
 
-                                    <th>Email</th>
+                                            <th>Name</th>
 
-                                    <th>Phone</th>
+                                            <th>Email</th>
 
-                                    <th>Actions</th>
+                                            <th>Phone</th>
 
-                                </tr>
+                                            <th>Actions</th>
 
-                            </thead>
+                                        </tr>
 
-                            <tbody>
+                                    </thead>
 
-                                {officers.map((officer) => (
+                                    <tbody>
 
-                                    <tr key={officer.userId}>
+                                        {officers.map((officer) => (
 
-                                        <td>
+                                            <tr key={officer.userId}>
 
-                                            {officer.firstName} {officer.lastName}
+                                                <td>
 
-                                        </td>
+                                                    {officer.firstName} {officer.lastName}
 
-                                        <td>{officer.email}</td>
+                                                </td>
 
-                                        <td>{officer.phone}</td>
+                                                <td>{officer.email}</td>
 
-                                        <td>
+                                                <td>{officer.phone}</td>
 
-                                            <button
-                                                className="btn btn-danger btn-sm"
-                                                onClick={() => handleDelete(officer.userId)}
-                                            >
-                                                Delete
-                                            </button>
+                                                <td>
 
-                                        </td>
+                                                    <button
+                                                        className="btn btn-outline-danger btn-sm"
+                                                        onClick={() => handleDelete(officer.userId)}
+                                                    >
 
-                                    </tr>
+                                                        <i className="bi bi-trash-fill me-1"></i>
 
-                                ))}
+                                                        Delete
+                                                    </button>
 
-                            </tbody>
+                                                </td>
 
-                        </table>
+                                            </tr>
+
+                                        ))}
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
 
 
                     </>)}
 
                 {activeTab === "users" && (
                     <>
-                        <div>User Management</div>
-                        <table className="table">
+                        <div>
+                            <h4 className="fw-bold"><i className="bi bi-people-fill"></i>
+                                User Management
+                            </h4>
+                        </div>
+                        <div className="card shadow-sm border-0 mt-4">
 
-                            <thead>
+                            <div className="card-body p-0">
 
-                                <tr>
+                                <table className="table table-hover mb-0">
 
-                                    <th>Name</th>
+                                    <thead>
 
-                                    <th>Email</th>
+                                        <tr>
 
-                                    <th>Phone</th>
+                                            <th>Name</th>
 
-                                </tr>
+                                            <th>Email</th>
 
-                            </thead>
+                                            <th>Phone</th>
 
-                            <tbody>
+                                        </tr>
 
-                                {users.map(user => (
+                                    </thead>
 
-                                    <tr key={user.userId}>
+                                    <tbody>
 
-                                        <td>{user.firstName} {user.lastName}</td>
+                                        {users.map(user => (
 
-                                        <td>{user.email}</td>
+                                            <tr key={user.userId}>
 
-                                        <td>{user.phone}</td>
+                                                <td>{user.firstName} {user.lastName}</td>
 
-                                    </tr>
+                                                <td>{user.email}</td>
 
-                                ))}
+                                                <td>{user.phone}</td>
 
-                            </tbody>
+                                            </tr>
 
-                        </table>
+                                        ))}
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+                        </div>
                     </>
                 )}
 
                 {activeTab === "incidents" && (
                     <>
-                        <div>Incident Management</div>
-                        <table className="table">
+                        <h4 className="fw-bold">
 
-                            <thead>
+                            <i className="bi bi-exclamation-octagon-fill"></i>
 
-                                <tr>
+                            Incident Management
 
-                                    <th>ID</th>
+                        </h4>
 
-                                    <th>Citizen</th>
+                        <div className="card shadow-sm border-0 mt-4">
 
-                                    <th>Title</th>
+                            <div className="card-body p-0">
 
-                                    <th>Status</th>
+                                <table className="table table-hover mb-0">
 
-                                    <th>Assign</th>
+                                    <thead>
 
-                                </tr>
+                                        <tr>
 
-                            </thead>
+                                            <th>ID</th>
 
-                            <tbody>
+                                            <th>Citizen</th>
 
-                                {incidents.map(i => (
+                                            <th>Title</th>
+
+                                            <th>Status</th>
+
+                                            <th>Assign</th>
+
+                                        </tr>
+
+                                    </thead>
+
+                                    <tbody>
+
+                                        {incidents.map(i => (
 
 
-                                    <tr key={i.incidentId}>
+                                            <tr key={i.incidentId}>
 
-                                        <td>{i.incidentId}</td>
+                                                <td>{i.incidentId}</td>
 
-                                        <td>{i.title}</td>
+                                                <td>{i.title}</td>
 
-                                        <td>{i.user.firstName}</td>
+                                                <td>{i.user.firstName}</td>
 
-                                        <td>{i.status.statusName}</td>
+                                                <td>{i.status.statusName}</td>
 
-                                        <td>
+                                                <td>
+                                                    <div className="d-flex gap-2">
 
-                                            <Link
-                                                className="btn btn-primary btn-sm me-2"
-                                                to={`/incidents/${i.incidentId}`}
-                                            >
-                                                View
-                                            </Link>
+                                                    <Link
+                                                        className="btn btn-primary btn-sm flex-fill"
+                                                        to={`/incidents/${i.incidentId}`}
+                                                    >
+                                                        View
+                                                    </Link>
 
-                                            {i.status.statusName === "initiated" && (
+                                                    {i.status.statusName === "initiated" && (
 
-                                                <Link
-                                                    className="btn btn-success btn-sm"
-                                                    to={`/assign/${i.incidentId}`}
-                                                >
-                                                    Assign
-                                                </Link>
+                                                        <Link
+                                                            className="btn btn-success btn-sm flex-fill"
+                                                            to={`/assign/${i.incidentId}`}
+                                                        >
+                                                            Assign
+                                                        </Link>
 
-                                            )}
+                                                    )}
+                                                    </div>
 
-                                        </td>
+                                                </td>
 
-                                    </tr>
+                                            </tr>
 
-                                ))}
+                                        ))}
 
-                            </tbody>
+                                    </tbody>
 
-                        </table>
+                                </table>
+                            </div>
+                        </div>
 
                     </>
                 )}

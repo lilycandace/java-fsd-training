@@ -22,6 +22,8 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import Management from "./components/management.components";
 import { loginSuccess } from "./redux/slices/authSlice";
+import ForgotPassword from "./components/forgot-password";
+import { ToastContainer } from "react-toastify";
 function App() {
 
   const dispatch = useDispatch();
@@ -41,6 +43,9 @@ function App() {
         <Route path="/login" element={<Login />} />
 
         <Route path="/register" element={<Register />} />
+        <Route path="/forgot-password" element={<ForgotPassword />}
+
+        />
 
         {/* <Route path="/dashboard" element={<Dashboard />} /> */}
         <Route
@@ -65,13 +70,23 @@ function App() {
         <Route path="/assign/:id" element={<ProtectedRoute><AssignIncident /></ProtectedRoute>} />
 
         <Route path="/verify" element={<ProtectedRoute><VerifyIncident /></ProtectedRoute>} />
-        <Route path="/management" element={ <ProtectedRoute>   <Management /> </ProtectedRoute>  }
+        <Route path="/management" element={<ProtectedRoute>   <Management /> </ProtectedRoute>}
         />
-     
+
 
         <Route path="*" element={<NotFound />} />
+        
 
       </Routes>
+      <ToastContainer position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        pauseOnHover
+        theme="colored"
+      />
+
       <Footer />
 
     </BrowserRouter>

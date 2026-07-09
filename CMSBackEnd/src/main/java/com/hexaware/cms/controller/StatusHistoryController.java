@@ -31,7 +31,7 @@ public class StatusHistoryController {
 
 		return ResponseEntity.ok(statusHistoryService.updateStatus(dto));
 	}
-	@PreAuthorize("hasAnyRole('Citizen','Officer','StationHead')")
+	@PreAuthorize("hasAnyRole('Citizen','Officer','Stationhead')")
 	@GetMapping("/getHistory/{incidentId}")
 	public ResponseEntity<List<IncidentStatusHistory>> getHistory(@PathVariable Integer incidentId) {
 

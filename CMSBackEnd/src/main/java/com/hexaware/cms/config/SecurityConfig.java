@@ -79,7 +79,7 @@ public class SecurityConfig {
 							    "/auth/login",
 							    "/api/users/registerUser",
 							    "/swagger-ui/**",
-							    "/v3/api-docs/**")
+							    "/v3/api-docs/**","/api/users/forgot-password")
 							.permitAll()
 
 						.anyRequest().authenticated())
@@ -93,11 +93,14 @@ public class SecurityConfig {
 				.build();
 	}
 
+//	@Bean
+//	public PasswordEncoder passwordEncoder() {
+//		return NoOpPasswordEncoder.getInstance();
+//	}
 	@Bean
 	public PasswordEncoder passwordEncoder() {
-		return NoOpPasswordEncoder.getInstance();
+	    return new BCryptPasswordEncoder();
 	}
-
 	@Bean
 	public AuthenticationProvider authenticationProvider() {
 		DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
